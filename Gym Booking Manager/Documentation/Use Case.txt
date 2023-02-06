@@ -54,6 +54,7 @@
 |                     |          | renovations; a gym machine can be marked for "repair"       |
 |                     |          | after inspection.                                           |
 |                     |          |                                                             |
+|                     |          |                                                             |
 | Item Repair         | Service  | Service workers can clear item restrictions as part of      |
 |                     |          | finishing their maintenance.                                |
 |                     |          |                                                             |
