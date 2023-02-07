@@ -12,7 +12,7 @@ namespace Gym_Booking_Manager
 {
     internal abstract class User
     {
-        //uniqueID?
+        public string id { get; set; }
         public string name { get; set; } // Here the "field" is private, but properties (access of the field) public here - this constellation being purely declarative without change in functionality
         public string phone { get; set; }
         public string email { get; set; }
@@ -22,6 +22,7 @@ namespace Gym_Booking_Manager
             this.name = name;
             this.phone = "0";
             this.email = "test@test";
+            this.id = "id";
         }
     }
 }

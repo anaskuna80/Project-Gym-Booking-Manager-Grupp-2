@@ -81,15 +81,15 @@ namespace Gym_Booking_Manager
             // Show?
             foreach (Reservation reservation in tableSlice)
             {
-               // Do something?
+               Console.WriteLine(reservation);  
             }
 
         }
 
-        public void MakeReservation(IReservingEntity owner)
+     /*   public void MakeReservation(IReservingEntity owner)
         {
           
-        }
+        }*/
 
         public void CancelReservation()
         {
