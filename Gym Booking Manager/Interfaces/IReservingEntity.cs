@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gym_Booking_Manager.Interfaces
 {
-    internal interface Interface1
+    internal interface IReservingEntity
     {
     }
 }
