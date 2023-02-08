@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gym_Booking_Manager
 {
-    internal class GroupActivty
+    internal class GroupActivty : GroupSchedule
     {
         private string ActivityID;
         private int participantLimit;
@@ -18,7 +18,13 @@ namespace Gym_Booking_Manager
 
         public void SignUp(User participant)
         {
-            this.participants.Add(participant);
+            if (participants.Count < participantLimit)
+            {
+                this.participants.Add(participant);
+                Console.WriteLine("You signed up to the activity");
+            }
+
+            else Console.WriteLine("Group Activity is full");
         }
 
         public void Modify()
