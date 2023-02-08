@@ -89,7 +89,6 @@ namespace Gym_Booking_Manager
 
         }
         
-
         public void MakeReservation(IReservingEntity owner)
         {
             Console.WriteLine("Enter start time (hh:mm):");
@@ -133,7 +132,6 @@ namespace Gym_Booking_Manager
                 reservations.Remove(reservation);
             }
         }
-
         public void CancelReservation()
         {
             // First check if the reservation exists
