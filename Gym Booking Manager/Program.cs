@@ -11,8 +11,8 @@ namespace Gym_Booking_Manager
         static void Main(string[] args)
         {
             User userContext;
-            
-            /*var calendar = new Calendar();
+            /*
+             * var calendar = new Calendar();
             var room = new Room("Meeting Room 1", 10);
 
             calendar.MakeReservation(room, new DateTime(2022, 11, 15, 10, 0, 0), new DateTime(2022, 11, 15, 12, 0, 0));

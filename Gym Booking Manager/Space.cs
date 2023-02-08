@@ -79,7 +79,8 @@ namespace Gym_Booking_Manager
         public void ViewTimeTable()
         {
             // Fetch
-            List<Reservation> tableSlice = this.calendar.GetSlice();
+            List<Reservation> tableSlice = this.calendar.GetSlice(DateTime.Now, DateTime.Now.AddMonths(1));
+
             // Show?
             foreach (Reservation reservation in tableSlice)
             {
@@ -87,6 +88,7 @@ namespace Gym_Booking_Manager
             }
 
         }
+        
 
         public void MakeReservation(IReservingEntity owner)
         {
@@ -123,6 +125,13 @@ namespace Gym_Booking_Manager
 
             Console.WriteLine("Reservation created successfully.");
 
+        }
+        public void RemoveReservation(Reservation reservation)
+        {
+            if (reservations.Contains(reservation))
+            {
+                reservations.Remove(reservation);
+            }
         }
 
         public void CancelReservation()
