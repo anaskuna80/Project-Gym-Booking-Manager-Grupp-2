@@ -27,21 +27,9 @@ namespace Gym_Booking_Manager
             
         }
 
-<<<<<<< HEAD
         // Leaving this method for now. Idea being it may be useful to get entries within a "start" and "end" time/date range.
         // Need parameters if so.
         // Or maybe we'll come up with a better solution elsewhere.
-
-
-        public List<Reservation> GetSlice(DateTime start, DateTime end, IReservingEntity owner = null)
-        {
-            var query = this.reservations.Where(r => r.StartDate >= start && r.EndDate <= end);
-            if (owner != null)
-            {
-                query = query.Where(r => r.Owner == owner);
-            }
-            return query.ToList();
-=======
         public List<Reservation> GetSlice(DateTime start, DateTime end)
         {
             return this.reservations.FindAll(r => r.Start >= start && r.End <= end);
@@ -56,9 +44,6 @@ namespace Gym_Booking_Manager
         public void CancelReservation(Reservation reservation)
         {
             this.reservations.Remove(reservation);
->>>>>>> master
         }
-
-
     }
 }

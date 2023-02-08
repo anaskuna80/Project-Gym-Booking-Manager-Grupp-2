@@ -10,10 +10,10 @@ namespace Gym_Booking_Manager
     {
         static void Main(string[] args)
         {
-<<<<<<< HEAD
+
           MainMenu(); 
-=======
-            User userContext;
+
+          User userContext;
             /*
              * var calendar = new Calendar();
             var room = new Room("Meeting Room 1", 10);
@@ -33,9 +33,6 @@ namespace Gym_Booking_Manager
                 Console.WriteLine("Reserved by: " + reservation.Owner.Name + " from " + reservation.Start + " to " + reservation.End);
             }
             */
->>>>>>> master
-        }
-
-        // Static methods for the program
+        }       // Static methods for the program
     }
 }
