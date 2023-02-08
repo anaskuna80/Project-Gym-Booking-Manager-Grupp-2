@@ -25,6 +25,14 @@ namespace Gym_Booking_Manager
     // the class/method/operator that you want.
     internal class Space : IReservable, ICSVable, IComparable<Space>, IReservingEntity
     {
+
+        public string Name
+        {
+            get { return this.name; }
+            set { this.name = value; }
+        }
+
+
         //private static readonly List<Tuple<Category, int>> hourlyCosts = InitializeHourlyCosts(); // Costs may not be relevant for the prototype. Let's see what the time allows.
         private Category category;
         private String name;
@@ -80,7 +88,10 @@ namespace Gym_Booking_Manager
         {
             // Fetch
             List<Reservation> tableSlice = this.calendar.GetSlice(DateTime.Now, DateTime.Now.AddMonths(1));
+<<<<<<< HEAD
+=======
 
+>>>>>>> master
             // Show?
             foreach (Reservation reservation in tableSlice)
             {
@@ -88,7 +99,13 @@ namespace Gym_Booking_Manager
             }
 
         }
-        
+        public bool IsAvailable(Reservation reservation, DateTime startTime, DateTime endTime)
+        {
+            return !this.reservation.Any(r =>
+                (startTime >= r.StartTime && startTime < r.EndTime) ||
+                (endTime > r.StartTime && endTime <= r.EndTime) ||
+                (startTime <= r.StartTime && endTime >= r.EndTime));
+        }
 
         public void MakeReservation(IReservingEntity owner)
         {
@@ -128,12 +145,19 @@ namespace Gym_Booking_Manager
         }
         public void RemoveReservation(Reservation reservation)
         {
-            if (reservations.Contains(reservation))
+            if (this.calendar.Remove(reservation))
             {
-                reservations.Remove(reservation);
+                Console.WriteLine("Reservation removed successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Reservation could not be found.");
             }
         }
-
+        public bool HasReservation(Reservation reservation)
+        {
+            return calendar.Contains(reservation);
+        }
         public void CancelReservation()
         {
             // First check if the reservation exists
