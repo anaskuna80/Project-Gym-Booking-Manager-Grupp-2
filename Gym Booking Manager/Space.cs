@@ -88,10 +88,6 @@ namespace Gym_Booking_Manager
         {
             // Fetch
             List<Reservation> tableSlice = this.calendar.GetSlice(DateTime.Now, DateTime.Now.AddMonths(1));
-<<<<<<< HEAD
-=======
-
->>>>>>> master
             // Show?
             foreach (Reservation reservation in tableSlice)
             {
