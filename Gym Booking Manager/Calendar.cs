@@ -2,6 +2,7 @@
 // and the organisation thereof.
 
 
+using Gym_Booking_Manager.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,10 +32,16 @@ namespace Gym_Booking_Manager
         // Or maybe we'll come up with a better solution elsewhere.
 
 
-        public List<Reservation> GetSlice(DateTime start, DateTime end)
+        public List<Reservation> GetSlice(DateTime start, DateTime end, IReservingEntity owner = null)
         {
-            return this.reservations.Where(r => r.StartDate >= start && r.EndDate <= end).ToList();
+            var query = this.reservations.Where(r => r.StartDate >= start && r.EndDate <= end);
+            if (owner != null)
+            {
+                query = query.Where(r => r.Owner == owner);
+            }
+            return query.ToList();
         }
+
 
     }
 }
