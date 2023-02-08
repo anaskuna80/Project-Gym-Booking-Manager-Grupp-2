@@ -95,13 +95,6 @@ namespace Gym_Booking_Manager
             }
 
         }
-        public bool IsAvailable(Reservation reservation, DateTime startTime, DateTime endTime)
-        {
-            return !this.reservation.Any(r =>
-                (startTime >= r.StartTime && startTime < r.EndTime) ||
-                (endTime > r.StartTime && endTime <= r.EndTime) ||
-                (startTime <= r.StartTime && endTime >= r.EndTime));
-        }
 
         public void MakeReservation(IReservingEntity owner)
         {
@@ -133,15 +126,15 @@ namespace Gym_Booking_Manager
             }
 
             // Create a new reservation and add it to the calendar.
-            Reservation reservation = new Reservation(startTime, endTime, owner);
-            this.calendar.Add(reservation);
+            this.calendar.MakeReservation(owner, startTime,endTime);
 
             Console.WriteLine("Reservation created successfully.");
 
         }
         public void RemoveReservation(Reservation reservation)
         {
-            if (this.calendar.Remove(reservation))
+            
+            if (this.calendar.CancelReservation(reservation))
             {
                 Console.WriteLine("Reservation removed successfully.");
             }
@@ -152,9 +145,9 @@ namespace Gym_Booking_Manager
         }
         public bool HasReservation(Reservation reservation)
         {
-            return calendar.Contains(reservation);
+            return calendar.HasReservation(reservation);
         }
-        public void CancelReservation()
+        public void CancelReservation(Reservation reservation)
         {
             // First check if the reservation exists
             if (this.calendar.HasReservation(reservation))

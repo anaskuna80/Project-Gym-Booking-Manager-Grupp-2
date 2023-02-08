@@ -6,6 +6,7 @@ using Gym_Booking_Manager.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -41,9 +42,37 @@ namespace Gym_Booking_Manager
             this.reservations.Add(newReservation);
         }
 
-        public void CancelReservation(Reservation reservation)
+        public bool CancelReservation(Reservation reservation)
         {
-            this.reservations.Remove(reservation);
+            if (this.reservations.Remove(reservation))
+            {
+                return true;
+            }
+            else return false;
+        }
+        public bool IsAvailable( DateTime startTime, DateTime endTime)
+        {
+            return !this.reservations.Any(r =>
+                (startTime >= r.Start && startTime < r.End) ||
+                (endTime > r.Start && endTime <= r.End) ||
+                (startTime <= r.Start && endTime >= r.End));
+        }
+        public bool HasReservation(Reservation reservation)
+        {
+            return reservations.Contains(reservation);
+        }
+        public void RemoveReservation(Reservation reservation)
+        {
+
+            if (this.reservations.Contains(reservation))
+            {
+                this.reservations.Remove(reservation);
+                Console.WriteLine("Reservation removed successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Reservation could not be found.");
+            }
         }
     }
 }
