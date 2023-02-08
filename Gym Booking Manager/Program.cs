@@ -6,11 +6,11 @@ using System.Runtime.CompilerServices;
 #endif
 namespace Gym_Booking_Manager
 {
-    internal class Program
+    internal class Program: MenuSystem
     {
         static void Main(string[] args)
         {
-            User userContext;
+          MainMenu(); 
         }
 
         // Static methods for the program
