@@ -24,6 +24,14 @@ namespace Gym_Booking_Manager
     // the class/method/operator that you want.
     internal class Space : IReservable, ICSVable, IComparable<Space>, IReservingEntity
     {
+
+        public string Name
+        {
+            get { return this.name; }
+            set { this.name = value; }
+        }
+
+
         //private static readonly List<Tuple<Category, int>> hourlyCosts = InitializeHourlyCosts(); // Costs may not be relevant for the prototype. Let's see what the time allows.
         private Category category;
         private String name;
@@ -78,7 +86,7 @@ namespace Gym_Booking_Manager
         public void ViewTimeTable()
         {
             // Fetch
-            List<Reservation> tableSlice = this.calendar.GetSlice();
+            List<Reservation> tableSlice = this.calendar.GetSlice(DateTime.Now, DateTime.Now.AddMonths(1));
             // Show?
             foreach (Reservation reservation in tableSlice)
             {

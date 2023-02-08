@@ -9,11 +9,13 @@ namespace Gym_Booking_Manager
 {
     internal class Reservation
     {
+        public readonly IReservingEntity Owner;
         public readonly DateTime StartDate;
         public readonly DateTime EndDate;
 
-        public Reservation(DateTime startDate, DateTime endDate)
+        public Reservation(IReservingEntity owner,DateTime startDate, DateTime endDate)
         {
+            this.Owner = owner;
             this.StartDate = startDate;
             this.EndDate = endDate;
         }
