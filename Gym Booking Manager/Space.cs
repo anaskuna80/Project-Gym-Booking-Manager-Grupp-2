@@ -88,6 +88,7 @@ namespace Gym_Booking_Manager
             }
 
         }
+        
 
         public void MakeReservation(IReservingEntity owner)
         {
@@ -124,6 +125,13 @@ namespace Gym_Booking_Manager
 
             Console.WriteLine("Reservation created successfully.");
 
+        }
+        public void RemoveReservation(Reservation reservation)
+        {
+            if (reservations.Contains(reservation))
+            {
+                reservations.Remove(reservation);
+            }
         }
 
         public void CancelReservation()
