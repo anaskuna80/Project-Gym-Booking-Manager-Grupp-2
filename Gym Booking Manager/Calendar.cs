@@ -2,6 +2,7 @@
 // and the organisation thereof.
 
 
+using Gym_Booking_Manager.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,12 +26,20 @@ namespace Gym_Booking_Manager
             this.reservations = new List<Reservation>();
         }
 
-        // Leaving this method for now. Idea being it may be useful to get entries within a "start" and "end" time/date range.
-        // Need parameters if so.
-        // Or maybe we'll come up with a better solution elsewhere.
-        public List<Reservation> GetSlice()
+        public List<Reservation> GetSlice(DateTime start, DateTime end)
         {
-            return this.reservations; // Promise to implement or delete this later, please just compile.
+            return this.reservations.FindAll(r => r.Start >= start && r.End <= end);
+        }
+
+        public void MakeReservation(IReservingEntity owner, DateTime start, DateTime end)
+        {
+            var newReservation = new Reservation(owner, start, end);
+            this.reservations.Add(newReservation);
+        }
+
+        public void CancelReservation(Reservation reservation)
+        {
+            this.reservations.Remove(reservation);
         }
     }
 }
