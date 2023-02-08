@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace Gym_Booking_Manager
 {
-    internal class Largeequipment
+    internal class Largeequipment : Equipment
     {
         private Litem item;
-        private String name;
-        private readonly Calendar calendar;
+       
 
-        public Largeequipment(Litem item, String name)
+        public Largeequipment(Litem item, String name) : base(name) 
         {
             this.item = item;
             this.name = name;
-            this.calendar = new Calendar();
+            calendar = new Calendar();
         }
         public enum Litem
         {

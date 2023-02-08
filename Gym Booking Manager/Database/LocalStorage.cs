@@ -26,7 +26,7 @@ namespace Gym_Booking_Manager
     {
 
         public DbSet<Space> spaces;
-        // public DbSet<Equipment> equipment; ?
+        public DbSet<Equipment> equipment; 
 
         static private readonly char sep = Path.DirectorySeparatorChar;
         static private readonly string storage = $"GymDB{sep}storage";

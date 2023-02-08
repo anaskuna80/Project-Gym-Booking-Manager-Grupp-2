@@ -1,6 +1,7 @@
 ﻿using Gym_Booking_Manager.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -87,6 +88,10 @@ namespace Gym_Booking_Manager
         {
             // Fetch
             List<Reservation> tableSlice = this.calendar.GetSlice(DateTime.Now, DateTime.Now.AddMonths(1));
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
             // Show?
             foreach (Reservation reservation in tableSlice)
             {
@@ -94,15 +99,78 @@ namespace Gym_Booking_Manager
             }
 
         }
+        public bool IsAvailable(Reservation reservation, DateTime startTime, DateTime endTime)
+        {
+            return !this.reservation.Any(r =>
+                (startTime >= r.StartTime && startTime < r.EndTime) ||
+                (endTime > r.StartTime && endTime <= r.EndTime) ||
+                (startTime <= r.StartTime && endTime >= r.EndTime));
+        }
 
         public void MakeReservation(IReservingEntity owner)
         {
-          
-        }
+            Console.WriteLine("Enter start time (hh:mm):");
+            string startTimeInput = Console.ReadLine();
+            Console.WriteLine("Enter end time (hh:mm):");
+            string endTimeInput = Console.ReadLine();
 
+            // Parse the input strings into DateTime objects for start and end times.
+            if (!DateTime.TryParseExact(startTimeInput, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime startTime) ||
+                !DateTime.TryParseExact(endTimeInput, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime endTime))
+            {
+                Console.WriteLine("Invalid input. Please enter the time in the format hh:mm.");
+                return;
+            }
+
+            // Check if the start time is before the end time.
+            if (startTime >= endTime)
+            {
+                Console.WriteLine("The start time must be before the end time.");
+                return;
+            }
+
+            // Check if the reservation time is available.
+            if (!this.calendar.IsAvailable(startTime, endTime))
+            {
+                Console.WriteLine("The space is not available during the requested time.");
+                return;
+            }
+
+            // Create a new reservation and add it to the calendar.
+            Reservation reservation = new Reservation(startTime, endTime, owner);
+            this.calendar.Add(reservation);
+
+            Console.WriteLine("Reservation created successfully.");
+
+        }
+        public void RemoveReservation(Reservation reservation)
+        {
+            if (this.calendar.Remove(reservation))
+            {
+                Console.WriteLine("Reservation removed successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Reservation could not be found.");
+            }
+        }
+        public bool HasReservation(Reservation reservation)
+        {
+            return calendar.Contains(reservation);
+        }
         public void CancelReservation()
         {
-
+            // First check if the reservation exists
+            if (this.calendar.HasReservation(reservation))
+            {
+                // If it exists, remove it from the calendar
+                this.calendar.RemoveReservation(reservation);
+            }
+            else
+            {
+                // If the reservation does not exist, throw an exception
+                throw new Exception("The reservation could not be found and could not be cancelled.");
+            }
         }
 
         // Consider how and when to add a new Space to the database.

@@ -7,17 +7,16 @@ using static Gym_Booking_Manager.Space;
 
 namespace Gym_Booking_Manager
 {
-    internal class Sportsequipment
+    internal class Sportsequipment : Equipment
     {
         private Item item;
-        private String name;
-        private readonly Calendar calendar;
         
-        public Sportsequipment(Item item, String name)
+        
+        public Sportsequipment(Item item,string name) : base (name)
         {
-            this.item = item;
             this.name = name;
-            this.calendar = new Calendar();
+            this.item = item;  
+            calendar = new Calendar();
         }
         public enum Item
         {
