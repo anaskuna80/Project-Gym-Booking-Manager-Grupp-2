@@ -14,21 +14,7 @@ namespace Gym_Booking_Manager
 {
     internal class GroupSchedule 
     {
-        private readonly Calendar calendar;
-        private readonly string coach;
-        private readonly Sportsequipment equipment;
-        private readonly Space space;
-        private readonly List<User> group;
-        public GroupSchedule(string coach, List<User> group)
-        {
-            this.calendar = new Calendar();
-            this.coach = coach;
-            this.equipment = new Sportsequipment();
-            this.space = new Space();
-            this.group = group;
-                
-            
-        }
+
     }
     
 }
