@@ -12,29 +12,55 @@ using System.Threading.Tasks;
 #endif
 namespace Gym_Booking_Manager
 {
-    internal class GroupSchedule 
+    internal class GroupSchedule : GroupActitity
     {
-        private List<GroupActivty> activites;
+        private List<GroupActitity> activites;
 
         public void ViewSchedule(User observer)
         {
-            foreach (GroupActivty activity in activites)
+            foreach (GroupActitity activity in activites)
             {
                 Console.WriteLine(activity);
             }
             
         }
-        public void AddActivity(User author, ActivityDetails)
+        public void AddActivity(User author)
         {
-
+            
+            GroupActitity activity = new GroupActitity();
+            this.activites.Add(activity);
         }
-        public void RemoveActivity()
+        public void RemoveActivity(User author, GroupActitity activityID)
         {
-
+            activites.Remove(activityID);
         }
-        public void UpdateActivity()
-        {
+        public void UpdateActivity(User author,GroupActitity activityID)
+        {   
+            foreach(GroupActitity activity in activites)
+            {
+                if (activity.ActivityID == activityID.ActivityID)
+                {
+                    Console.WriteLine($"ActivityID:{activity.ActivityID}, participant limit:{activity.participantLimit}, instructor:{activity.instructor}, time:{activity.timeSlot} ");
+                    Console.WriteLine("what do you want to update?");
+                    string change = Console.ReadLine();
+                    if (change == activity.ActivityID)
+                    {
 
+                    }
+                    else if (change == "paricipant limit")
+                    {
+
+                    }
+                    else if (change == activity.instructor)
+                    {
+
+                    }
+                    else if (change == "timeslot")
+                    {
+
+                    }
+                }
+            }
         }
     }
     

@@ -11,11 +11,10 @@ namespace Gym_Booking_Manager
         private Litem item;
        
 
-        public Largeequipment(Litem item, String name) : base(name) 
+        public Largeequipment(Litem item, String name) : base (name) 
         {
             this.item = item;
-            this.name = name;
-            calendar = new Calendar();
+           
         }
         public enum Litem
         {

@@ -6,15 +6,35 @@ using System.Threading.Tasks;
 
 namespace Gym_Booking_Manager
 {
-    internal class GroupActivty : GroupSchedule
+    internal class GroupActitity 
     {
-        private string ActivityID;
-        private int participantLimit;
+        public string ActivityID { get; set; }
+        public int participantLimit { get; set; }
         private List<User> participants;
         private Space space;
         private Equipment equipment;
-        private string instructor;
-        private string timeSlot;
+        public string instructor { get; set; }
+        public string timeSlot { get; set; }
+
+        public GroupActitity()
+        {
+            Console.WriteLine("ActivityID?");
+            string ID = Console.ReadLine();
+            this.ActivityID = ID;
+            Console.WriteLine("Participant Limit?");
+            int Max = Convert.ToInt32(Console.ReadLine());
+            this.participantLimit = Max;
+            Console.WriteLine("Instructors name:");
+            string name = Console.ReadLine();
+            this.instructor = name;
+            Console.WriteLine("Timeslot: format(2023-02-08:14:00-2023-02-08:15:00");
+            string time = Console.ReadLine();
+            this.timeSlot = time;
+            this.equipment = new Equipment();
+            this.space = new Space();
+        }
+
+
 
         public void SignUp(User participant)
         {
