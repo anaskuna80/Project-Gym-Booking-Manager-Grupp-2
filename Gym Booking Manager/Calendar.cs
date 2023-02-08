@@ -23,14 +23,18 @@ namespace Gym_Booking_Manager
         public Calendar()
         {
             this.reservations = new List<Reservation>();
+            
         }
 
         // Leaving this method for now. Idea being it may be useful to get entries within a "start" and "end" time/date range.
         // Need parameters if so.
         // Or maybe we'll come up with a better solution elsewhere.
-        public List<Reservation> GetSlice()
+
+
+        public List<Reservation> GetSlice(DateTime start, DateTime end)
         {
-            return this.reservations; // Promise to implement or delete this later, please just compile.
+            return this.reservations.Where(r => r.StartDate >= start && r.EndDate <= end).ToList();
         }
+
     }
 }
