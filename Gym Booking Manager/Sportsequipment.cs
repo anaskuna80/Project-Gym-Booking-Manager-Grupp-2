@@ -14,9 +14,9 @@ namespace Gym_Booking_Manager
         
         public Sportsequipment(Item item,string name) : base (name)
         {
-            this.name = name;
+            
             this.item = item;  
-            calendar = new Calendar();
+            
         }
         public enum Item
         {
