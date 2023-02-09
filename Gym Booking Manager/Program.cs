@@ -17,7 +17,9 @@ namespace Gym_Booking_Manager
             Space space1 = new Space(Space.Category.Studio, "Erik");
             spaces.Create<Space>(space1);
             Staff user = new Staff("emil");
-            spaces.Create<User>(user);
+            spaces.Create<Staff>(user);
+            Staff user1 = new Staff("Erik");
+            spaces.Create<Staff>(user1);
             
             
         }       // Static methods for the program

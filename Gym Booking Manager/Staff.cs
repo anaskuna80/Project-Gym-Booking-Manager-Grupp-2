@@ -21,7 +21,7 @@ namespace Gym_Booking_Manager
         // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.
         override public string CSVify()
         {
-            return $"{name},{id},{email},{phone}";
+            return $"{nameof(name)}:{name},{nameof(id)}:{id},{nameof(email)}:{email},{nameof(phone)}:{phone}";
         }
     }
 }

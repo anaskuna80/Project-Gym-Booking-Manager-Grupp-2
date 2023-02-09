@@ -27,12 +27,13 @@ namespace Gym_Booking_Manager
 
         public DbSet<Space> spaces;
         public DbSet<Equipment> equipment;
-        public DbSet<User> users;
+        public DbSet<Staff> staffs;
+        
 
         static private readonly char sep = Path.DirectorySeparatorChar;
         static private readonly string storage = $"GymDB{sep}storage";
         static private readonly string fpathSpace = $"{storage}{sep}space.csv";
-        static private readonly string fpathSpace2 = $"{storage}{sep}user.csv";
+        static private readonly string fpathSpace2 = $"{storage}{sep}staff.csv";
         static private readonly string fpathSpace3 = $"{storage}{sep}equipment.csv";
         // private filepath1, 2, 3 etc...
 
@@ -41,7 +42,7 @@ namespace Gym_Booking_Manager
             Directory.CreateDirectory(storage);
             this.spaces = new DbSet<Space>(fpathSpace);
             this.equipment= new DbSet<Equipment>(fpathSpace3);
-            this.users = new DbSet<User>(fpathSpace2);
+            this.staffs = new DbSet<Staff>(fpathSpace2);
         }
 
         public bool Create<T>(T entity)
@@ -73,8 +74,8 @@ namespace Gym_Booking_Manager
                     return this.spaces;
                 case "Equipment":
                     return this.equipment;
-                case "User":
-                    return this.users;
+                case "Staff":
+                    return this.staffs;
                 // Add more cases for which DbSet<T> attributes exist within the class.
                 default:
                     throw new ArgumentException("Dataset for the argument type does not exist.");
