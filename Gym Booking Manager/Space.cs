@@ -96,7 +96,7 @@ namespace Gym_Booking_Manager
 
         }
 
-        public void MakeReservation(IReservingEntity owner)
+        public void MakeReservation(User person)
         {
             Console.WriteLine("Enter start time (hh:mm):");
             string startTimeInput = Console.ReadLine();
@@ -126,7 +126,7 @@ namespace Gym_Booking_Manager
             }
 
             // Create a new reservation and add it to the calendar.
-            this.calendar.MakeReservation(owner, startTime,endTime);
+            this.calendar.MakeReservation(person, startTime,endTime);
 
             Console.WriteLine("Reservation created successfully.");
 

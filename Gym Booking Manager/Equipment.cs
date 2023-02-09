@@ -20,12 +20,12 @@ namespace Gym_Booking_Manager
             Calendar = new Calendar();
         }
 
-        public void BookEquipment(IReservingEntity owner, DateTime startTime, DateTime endTime)
+        public void BookEquipment(User person, DateTime startTime, DateTime endTime)
         {
             if (Quantity > 0 && Calendar.IsAvailable(startTime, endTime))
             {
                 Quantity--;
-                Calendar.MakeReservation(owner, startTime, endTime);
+                Calendar.MakeReservation(person, startTime, endTime);
                 Console.WriteLine("Equipment '{0}' has been successfully booked.", Name);
             }
             else

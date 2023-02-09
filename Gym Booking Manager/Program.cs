@@ -18,6 +18,7 @@ namespace Gym_Booking_Manager
             spaces.Create<Space>(space1);
             Staff user = new Staff("emil");
             spaces.Create<User>(user);
+            space.MakeReservation(space);
             
         }       // Static methods for the program
     }

@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Gym_Booking_Manager
 {
-    internal interface IReservable : IReservingEntity
+    internal interface IReservable 
     {
-        void MakeReservation(IReservingEntity owner);
+        void MakeReservation(User person);
         void CancelReservation(Reservation reservation);
         void ViewTimeTable(); // start and end as arguments?
     }

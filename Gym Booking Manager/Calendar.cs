@@ -36,9 +36,9 @@ namespace Gym_Booking_Manager
             return this.reservations.FindAll(r => r.Start >= start && r.End <= end);
         }
 
-        public void MakeReservation(IReservingEntity owner, DateTime start, DateTime end)
+        public void MakeReservation(User person, DateTime start, DateTime end)
         {
-            var newReservation = new Reservation(owner, start, end);
+            var newReservation = new Reservation(person.name, start, end);
             this.reservations.Add(newReservation);
         }
 
