@@ -1,4 +1,4 @@
-﻿using Gym_Booking_Manager.Interfaces;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -23,7 +23,7 @@ namespace Gym_Booking_Manager
     // As alluded to from previous paragraphs, implementing IComparable<T> is not exhaustive to cover all "comparisons".
     // Refer to official C# documentation to determine what interface to implement to allow use with
     // the class/method/operator that you want.
-    internal class Space : IReservable, ICSVable, IComparable<Space>, IReservingEntity
+    internal class Space : IReservable, ICSVable, IComparable<Space>
     {
 
         public string Name

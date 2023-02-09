@@ -1,4 +1,4 @@
-﻿using Gym_Booking_Manager.Interfaces;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +33,7 @@ namespace Gym_Booking_Manager
             EquipmentList = new List<Equipment>();
         }
 
-        public void BookSession(IReservingEntity owner, DateTime startTime, DateTime endTime)
+        public void BookSession(User owner, DateTime startTime, DateTime endTime)
         {
             if (Calendar.IsAvailable(startTime, endTime))
             {

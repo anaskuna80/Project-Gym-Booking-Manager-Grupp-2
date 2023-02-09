@@ -2,7 +2,7 @@
 // and the organisation thereof.
 
 
-using Gym_Booking_Manager.Interfaces;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,7 +38,7 @@ namespace Gym_Booking_Manager
 
         public void MakeReservation(User person, DateTime start, DateTime end)
         {
-            var newReservation = new Reservation(person.name, start, end);
+            var newReservation = new Reservation(person, start, end);
             this.reservations.Add(newReservation);
         }
 
