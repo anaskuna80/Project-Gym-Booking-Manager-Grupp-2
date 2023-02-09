@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static Gym_Booking_Manager.Space;
 
 #if DEBUG
 [assembly: InternalsVisibleTo("Tests")]
@@ -23,6 +24,13 @@ namespace Gym_Booking_Manager
             this.phone = "0";
             this.email = "test@test";
             this.id = "id";
+        }
+        public User(Dictionary<String, String> constructionArgs)
+        {
+            this.name = constructionArgs[nameof(name)];
+            this.phone= constructionArgs[nameof(phone)];
+            this.email= constructionArgs[nameof(email)];
+            this.id = constructionArgs[nameof(id)];
         }
         public override string ToString()
         {

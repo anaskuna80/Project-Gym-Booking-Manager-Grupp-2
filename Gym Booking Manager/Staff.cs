@@ -7,12 +7,17 @@ using static Gym_Booking_Manager.Space;
 
 namespace Gym_Booking_Manager
 {
-    internal class Staff : User , ICSVable
+    internal class Staff : User , ICSVable , IComparable<Staff>
     {
         public Staff(string name) : base(name)
         {
 
         }
+        public Staff(Dictionary<String, String> constructionArgs) : base(constructionArgs)
+        {
+
+        }
+
         public override string ToString()
         {
             return this.CSVify(); // TODO: Don't use CSVify. Make it more readable.
@@ -22,6 +27,14 @@ namespace Gym_Booking_Manager
         override public string CSVify()
         {
             return $"{nameof(name)}:{name},{nameof(id)}:{id},{nameof(email)}:{email},{nameof(phone)}:{phone}";
+        }
+        public int CompareTo(Staff? other)
+        {
+            // If other is not a valid object reference, this instance is greater.
+            if (other == null) return 1;
+            
+            // When category is the same, sort on name.
+            return this.name.CompareTo(other.name);
         }
     }
 }

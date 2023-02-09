@@ -40,24 +40,36 @@ namespace Gym_Booking_Manager
             {
                 if (activity.ActivityID == activityID.ActivityID)
                 {
-                    Console.WriteLine($"ActivityID:{activity.ActivityID}, participant limit:{activity.participantLimit}, instructor:{activity.instructor}, time:{activity.timeSlot} ");
+                    Console.WriteLine($"[1]ActivityID:{activity.ActivityID}, [2]participant limit:{activity.participantLimit}, [3]instructor:{activity.instructor}, [4]time:{activity.timeSlot} ");
                     Console.WriteLine("what do you want to update?");
-                    string change = Console.ReadLine();
-                    if (change == activity.ActivityID)
+                    int change = Convert.ToInt32(Console.ReadLine());
+                    if (change == 1)
                     {
-
+                        Console.Write("ActivityID:");
+                        string id = Console.ReadLine();
+                        activity.ActivityID = id;
                     }
-                    else if (change == "paricipant limit")
+                    else if (change == 2)
                     {
-
+                        Console.Write("participant limit:");
+                        int max = Convert.ToInt32(Console.ReadLine());
+                        activity.participantLimit = max;
                     }
-                    else if (change == activity.instructor)
+                    else if (change == 3)
                     {
-
+                        Console.Write("instructor:");
+                        string person = Console.ReadLine();
+                        activity.instructor= person;
                     }
-                    else if (change == "timeslot")
+                    else if (change == 4)
                     {
-
+                        Console.Write("time:");
+                        string time = Console.ReadLine();
+                        activity.timeSlot = time;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Sorry please select 1-4");
                     }
                 }
             }
