@@ -131,22 +131,6 @@ namespace Gym_Booking_Manager
             Console.WriteLine("Reservation created successfully.");
 
         }
-        public void RemoveReservation(Reservation reservation)
-        {
-            
-            if (this.calendar.CancelReservation(reservation))
-            {
-                Console.WriteLine("Reservation removed successfully.");
-            }
-            else
-            {
-                Console.WriteLine("Reservation could not be found.");
-            }
-        }
-        public bool HasReservation(Reservation reservation)
-        {
-            return calendar.HasReservation(reservation);
-        }
         public void CancelReservation(Reservation reservation)
         {
             // First check if the reservation exists
@@ -176,6 +160,21 @@ namespace Gym_Booking_Manager
         //    };
         //    return hourlyCosts;
         //}
-
+                /*public void RemoveReservation(Reservation reservation)
+        {
+            
+            if (this.calendar.CancelReservation(reservation))
+            {
+                Console.WriteLine("Reservation removed successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Reservation could not be found.");
+            }
+        }
+        public bool HasReservation(Reservation reservation)
+        {
+            return calendar.HasReservation(reservation);
+        }*/
     }
 }

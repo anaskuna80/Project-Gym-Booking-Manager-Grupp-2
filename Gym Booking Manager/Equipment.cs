@@ -9,14 +9,6 @@ namespace Gym_Booking_Manager
 {
     internal class Equipment : Calendar
     {
-        /*private String name;
-        private Calendar calendar;
-
-        public Equipment(string name)
-        {
-            this.name = name;
-            this.calendar = new Calendar();
-        }*/
         public string Name { get; set; }
         public int Quantity { get; set; }
         public Calendar Calendar { get; set; }

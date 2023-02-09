@@ -12,7 +12,7 @@ namespace Gym_Booking_Manager
         private Item item;
         
         
-        public Sportsequipment(Item item,string name) : base (name)
+        public Sportsequipment(Item item,string name,int quantity) : base (name,quantity)
         {
             
             this.item = item;  

@@ -6,14 +6,18 @@ using System.Runtime.CompilerServices;
 #endif
 namespace Gym_Booking_Manager
 {
-    internal class Program
+    internal class Program 
     {
         static void Main(string[] args)
         {
 
-          
-          User userContext;
-
+            Space space = new Space(Space.Category.Hall, "Emil");
+            GymDatabaseContext spaces = new GymDatabaseContext();           
+            spaces.Create<Space>(space);
+            Space space1 = new Space(Space.Category.Studio, "Erik");
+            spaces.Create<Space>(space1);
+            Staff user = new Staff("emil");
+            spaces.Create<User>(user);
             
         }       // Static methods for the program
     }

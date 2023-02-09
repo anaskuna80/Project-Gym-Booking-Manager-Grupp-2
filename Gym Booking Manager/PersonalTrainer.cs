@@ -9,19 +9,6 @@ namespace Gym_Booking_Manager
 {
     internal class PersonalTrainer
     {
-        
-        private PT personaltrainer;
-        private String name;
-        private String description;
-        private readonly Calendar calendar;
-
-        /*public PersonalTrainer(PT personaltrainer, String name, string description) // desciption(consultation or supervised training session), maybe it will need space/equipment booked in with it?
-        {
-            this.personaltrainer = personaltrainer;
-            this.name = name;
-            this.calendar = new Calendar();
-            this.description = description;
-        }*/
         public enum PT
         {
             Emil,
@@ -32,12 +19,12 @@ namespace Gym_Booking_Manager
         
 
         public PT PersonalTrainerType { get; set; }
-        public string Name { get; set; }
+        public User Name { get; set; }
         public string Description { get; set; }
         public Calendar Calendar { get; set; }
-        //public List<Equipment> EquipmentList { get; set; }
+        public List<Equipment> EquipmentList { get; set; }
 
-        public PersonalTrainer(PT personalTrainerType, string name, string description)
+        public PersonalTrainer(PT personalTrainerType, User name, string description)
         {
             PersonalTrainerType = personalTrainerType;
             Name = name;

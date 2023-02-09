@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 #endif
 namespace Gym_Booking_Manager
 {
-    internal abstract class User
+    internal abstract class User : ICSVable
     {
         public string id { get; set; }
         public string name { get; set; } // Here the "field" is private, but properties (access of the field) public here - this constellation being purely declarative without change in functionality
@@ -23,6 +23,16 @@ namespace Gym_Booking_Manager
             this.phone = "0";
             this.email = "test@test";
             this.id = "id";
+        }
+        public override string ToString()
+        {
+            return this.CSVify(); // TODO: Don't use CSVify. Make it more readable.
+        }
+
+        // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.
+        virtual public string CSVify()
+        {
+            return $"{name},{id},{email},{phone}";
         }
     }
 }

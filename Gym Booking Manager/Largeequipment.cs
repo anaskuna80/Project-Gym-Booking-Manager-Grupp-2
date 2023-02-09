@@ -11,7 +11,7 @@ namespace Gym_Booking_Manager
         private Litem item;
        
 
-        public Largeequipment(Litem item, String name) : base (name) 
+        public Largeequipment(Litem item, String name,int quantity) : base (name, quantity) 
         {
             this.item = item;
            
