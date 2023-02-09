@@ -31,8 +31,7 @@ namespace Gym_Booking_Manager
         public int CompareTo(Staff? other)
         {
             // If other is not a valid object reference, this instance is greater.
-            if (other == null) return 1;
-            
+            if (other == null) return 1;           
             // When category is the same, sort on name.
             return this.name.CompareTo(other.name);
         }
