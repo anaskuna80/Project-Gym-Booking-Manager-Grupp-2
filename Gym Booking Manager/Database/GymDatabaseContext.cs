@@ -8,7 +8,7 @@ namespace Gym_Booking_Manager
 {
     internal class GymDatabaseContext 
     {
-        private IDatabase dbImplementation = new LocalStorage();
+        public IDatabase dbImplementation = new LocalStorage();
 
         public bool Create<T>(T entity)
         {

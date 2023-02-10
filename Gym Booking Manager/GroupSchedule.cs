@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 #endif
 namespace Gym_Booking_Manager
 {
-    internal class GroupSchedule : GroupActitity
+    internal class GroupSchedule 
     {
         private List<GroupActitity> activites;
 
@@ -27,8 +27,8 @@ namespace Gym_Booking_Manager
         public void AddActivity(User author)
         {
 
-            GroupActitity activity = new GroupActitity();
-            this.activites.Add(activity);
+           // GroupActitity activity = new GroupActitity();
+            //this.activites.Add(activity);
         }
         public void RemoveActivity(User author, GroupActitity activityID)
         {

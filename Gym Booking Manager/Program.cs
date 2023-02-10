@@ -20,11 +20,15 @@ namespace Gym_Booking_Manager
             spaces.Create<Staff>(user);
             Staff user1 = new Staff("erik", "2", "hej1@hej1", "070123424", "hej12345");
             spaces.Create<Staff>(user1);*/
-            GymDatabaseContext spaces = new GymDatabaseContext(); 
+            LocalStorage spaces = new LocalStorage(); 
 
-            spaces.Read<Staff>("id", "2");
+            //spaces.Read<Staff>("id", "2");
+            
+            foreach (Staff staff in spaces.staffs.read("id","2"))
+            {
+                Console.WriteLine(staff);
+            }
 
-            Console.WriteLine("Tillagd");
 
             //Staff Test
             //Staff user = new Staff("Alex", "1", "alex@alex", "0701234567", "alex123");
@@ -34,7 +38,7 @@ namespace Gym_Booking_Manager
 
 
 
-            Console.WriteLine(spaces.dbImplementation);
+            //Console.WriteLine(spaces.dbImplementation);
             //MenuSystem.StartMenu();
 
         }       // Static methods for the program
