@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 #endif
 namespace Gym_Booking_Manager
 {
-    internal class Program 
+    internal class Program
     {
         static void Main(string[] args)
         {
@@ -23,9 +23,18 @@ namespace Gym_Booking_Manager
             GymDatabaseContext spaces = new GymDatabaseContext();
             spaces.Read<Staff>("id", "2");
 
-            Console.WriteLine(spaces.);
+            Console.WriteLine("Tillagd");
+
+            //add user Alex with id to Staff
+            Staff user = new Staff("Alex", "1", "alex@alex", "0701234567", "alex123");
+            spaces.Create<Staff>(user);
+            Console.WriteLine("User added");
+
+
+
+
             //MenuSystem.StartMenu();
-            
+
         }       // Static methods for the program
     }
 }
