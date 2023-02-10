@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gym_Booking_Manager
 {
-    internal class GymDatabaseContext
+    internal class GymDatabaseContext 
     {
         private IDatabase dbImplementation = new LocalStorage();
 

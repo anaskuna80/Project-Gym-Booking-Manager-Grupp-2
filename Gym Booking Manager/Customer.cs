@@ -7,13 +7,13 @@ using static Gym_Booking_Manager.Space;
 
 namespace Gym_Booking_Manager
 {
-    internal class Staff : User , ICSVable , IComparable<Staff>
+    internal class Customer : User , ICSVable , IComparable<Customer>
     {
-        public Staff(string name,string id, string email, string phone, string password) : base(name,password,email,phone,id)
+        public Customer(string name,string id, string email, string phone, string password) : base(name,password,email,phone,id)
         {
 
         }
-        public Staff(Dictionary<String, String> constructionArgs) : base(constructionArgs)
+        public Customer(Dictionary<String, String> constructionArgs) : base(constructionArgs)
         {
 
         }
@@ -28,7 +28,7 @@ namespace Gym_Booking_Manager
         {
             return $"{nameof(name)}:{name},{nameof(id)}:{id},{nameof(email)}:{email},{nameof(phone)}:{phone}";
         }
-        public int CompareTo(Staff? other)
+        public int CompareTo(Customer? other)
         {
             // If other is not a valid object reference, this instance is greater.
             if (other == null) return 1;           
