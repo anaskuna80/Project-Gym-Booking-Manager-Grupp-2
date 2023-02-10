@@ -20,15 +20,16 @@ namespace Gym_Booking_Manager
             spaces.Create<Staff>(user);
             Staff user1 = new Staff("erik", "2", "hej1@hej1", "070123424", "hej12345");
             spaces.Create<Staff>(user1);*/
-            GymDatabaseContext spaces = new GymDatabaseContext();
+            GymDatabaseContext spaces = new GymDatabaseContext(); 
+
             spaces.Read<Staff>("id", "2");
 
             Console.WriteLine("Tillagd");
 
-            //add user Alex with id to Staff
-            Staff user = new Staff("Alex", "1", "alex@alex", "0701234567", "alex123");
-            spaces.Create<Staff>(user);
-            Console.WriteLine("User added");
+            //Staff Test
+            //Staff user = new Staff("Alex", "1", "alex@alex", "0701234567", "alex123");
+            //spaces.Create<Staff>(user);
+            //Console.WriteLine("User added");
 
 
 
