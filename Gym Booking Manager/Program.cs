@@ -23,7 +23,7 @@ namespace Gym_Booking_Manager
             GymDatabaseContext spaces = new GymDatabaseContext();
             spaces.Read<Staff>("id", "2");
 
-            Console.WriteLine(spaces.);
+            Console.WriteLine(spaces.dbImplementation);
             //MenuSystem.StartMenu();
             
         }       // Static methods for the program
