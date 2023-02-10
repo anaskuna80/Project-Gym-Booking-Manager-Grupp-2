@@ -11,40 +11,53 @@ namespace Gym_Booking_Manager
     {
         public static void Login()
         {
-            string userID = "emptyUser";
-            string password = "emptyPassword";
+            LocalStorage userdata = new LocalStorage();
+            string userID = "";
+            string password = "";
             Console.Write("   ┌───────────────────────────────────────┐\n");
             Console.Write("   │  Gym Booking Manager (Grp2 Version)   │\n");
             Console.Write("   └───────────────────────────────────────┘\n\n");
-            Console.WriteLine(" Please enter Username: ");
+            Console.Write(" Please enter UserID: ");
             userID = Console.ReadLine();
-                     
-            // Check the database that UserID exists...
-            if (userID != null) // Print this only if the UserID exist!
+            if (userID != "") // Print this only if the UserID exist!
             {
-                Console.Write($"   User {userID} selected!");
+                
+                foreach (Staff user in userdata.staffs.read("id", userID))
+                {
+                    if (user.id == userID)
+                    {
+                        Console.WriteLine($" User {userID} selected");
+                        Console.Write($"   Please enter password for <{userID}>: ");
+                        password = Console.ReadLine();
+                        if (password != "")
+                        {
+                            if (user.password == password)
+                            {
+                                Console.Write($"   {userID} logged in!");
+                                StaffMenuMain();
+                            }
+                            else
+                            {
+                                Console.WriteLine(" Incorrect password");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine(" Please type ur password");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($" UserID[{userID}] Was not found in database!");
+                    }
+                }
             }
             else
             {
-                throw new Exception("   User not found"); 
+                Console.WriteLine(" Please type ur UserID");
             }
-            // If user X exists program proceed, else system will ask for another userID.
-            Console.Write($"   Please enter password for <{userID}>: ");
-            password = Console.ReadLine();
-            // Check if password is correct.
-            if (password != null)
-            {
-                Console.Write($"   {userID} logged in!");
-            }
-            else
-            {
-                throw new Exception("   Incorrect password"); 
-            }
-
-            // If the user entered right credentials we go in to the method which fits with the users usertype:
+            
         }
-
-
         //This menu will appear when a user of the type "staff" logged in: 
         public static void StaffMenuMain()
         {
