@@ -17,13 +17,17 @@ namespace Gym_Booking_Manager
         public string name { get; set; } // Here the "field" is private, but properties (access of the field) public here - this constellation being purely declarative without change in functionality
         public string phone { get; set; }
         public string email { get; set; }
+        public string password { get; set; }
+        
+      
 
-        protected User(string name)
+        protected User(string name, string phone, string email, string password, string id)
         {
             this.name = name;
-            this.phone = "0";
-            this.email = "test@test";
-            this.id = "id";
+            this.phone = phone;
+            this.email = email;
+            this.id = id;
+            this.password = password;
         }
         public User(Dictionary<String, String> constructionArgs)
         {
@@ -40,7 +44,7 @@ namespace Gym_Booking_Manager
         // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.
         virtual public string CSVify()
         {
-            return $"{nameof(name)}:{name},{nameof(id)}:{id},{nameof(email)}:{email},{nameof(phone)}:{phone}";
+            return $"{nameof(name)}:{name},{nameof(id)}:{id},{nameof(email)}:{email},{nameof(phone)}:{phone}, {nameof(password)}:{password}";
         }
 
     }
