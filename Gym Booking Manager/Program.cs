@@ -26,7 +26,7 @@ namespace Gym_Booking_Manager
             
             foreach (Staff staff in spaces.staffs.read("id","2"))
             {
-                Console.WriteLine(staff);
+                Console.WriteLine(staff.CSVify());
             }
 
 
