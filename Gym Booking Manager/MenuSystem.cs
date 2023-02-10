@@ -16,10 +16,13 @@ namespace Gym_Booking_Manager
             // Check the database that UserID exists...
             if (userID == null)
             {
-                throw new NotImplementedException(); // Please delete this...
+                Console.WriteLine("Please type a password"); // Please delete this...
             }
+
             // If user X exists program proceed, else system will ask for a new userID.
             Console.Write($"User {userID} password: ");
+            string password = Console.ReadLine();
+
             // Check if password is correct. A counter will appear if the entered password was wrong that say the user have 2 chances left of 3.
             // If the user entered right credentials we go in to next screen:
         }

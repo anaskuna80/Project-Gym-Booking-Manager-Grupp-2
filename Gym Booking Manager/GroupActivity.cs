@@ -30,7 +30,7 @@ namespace Gym_Booking_Manager
             Console.WriteLine("Timeslot: format(2023-02-08:14:00-2023-02-08:15:00");
             string time = Console.ReadLine();
             this.timeSlot = time;
-            //this.equipment = new Equipment(name,20);
+            this.equipment = new Equipment(name,20);
             this.space = new Space(Space.Category.Hall,name);
         }
 
