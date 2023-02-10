@@ -16,8 +16,9 @@ namespace Gym_Booking_Manager
             Console.Write("   ┌───────────────────────────────────────┐\n");
             Console.Write("   │  Gym Booking Manager (Grp2 Version)   │\n");
             Console.Write("   └───────────────────────────────────────┘\n\n");
+            Console.WriteLine(" Please enter Username: ");
             userID = Console.ReadLine();
-            Console.WriteLine(" Please enter Username: ");          
+                     
             // Check the database that UserID exists...
             if (userID != null) // Print this only if the UserID exist!
             {
