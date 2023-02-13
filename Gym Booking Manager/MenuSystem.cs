@@ -31,7 +31,7 @@ namespace Gym_Booking_Manager
                 if (userID != "")
                 {
 
-                    if (userdata.staffs.read("id", userID).Count == 0 || userdata.customer.read("id",userID).Count == 0)
+                    if (userdata.staffs.read("id", userID).Count == 0 && userdata.customer.read("id",userID).Count == 0)
                     {
                         Console.WriteLine($" {userID} was not found in the database");
                     }
@@ -40,14 +40,14 @@ namespace Gym_Booking_Manager
                         Console.WriteLine($" User {userID} selected");
                         do
                         {
-
+                            Console.WriteLine($"try:{count}/5");
                             Console.Write($"   Please enter password for <{userID}>: ");
                             password = Console.ReadLine();
                             if (password != "")
                             {
                                 if (user.password == password)
                                 {
-                                    Console.WriteLine($"   {userID} logged in!");
+                                    Console.WriteLine($"   Welcome {user.name}!");
                                     StaffMenuMain();
                                 }
                                 else
@@ -68,14 +68,14 @@ namespace Gym_Booking_Manager
                         Console.WriteLine($" User {userID} selected");
                         do
                         {
-
+                            Console.WriteLine($"try:{count}/5");
                             Console.Write($"   Please enter password for <{userID}>: ");
                             password = Console.ReadLine();
                             if (password != "")
                             {
                                 if (user.password == password)
                                 {
-                                    Console.WriteLine($"   {userID} logged in!");
+                                    Console.WriteLine($"   Welcome {user.name}!");
                                     CustomerMenu();
                                 }
                                 else

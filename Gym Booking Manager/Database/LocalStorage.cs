@@ -26,17 +26,19 @@ namespace Gym_Booking_Manager
     {
 
         public DbSet<Space> spaces;
-        public DbSet<Equipment> equipment;
+        public DbSet<Largeequipment> largeequipment;
         public DbSet<Staff> staffs;
         public DbSet<Customer> customer;
+        public DbSet<Sportsequipment> sportsequipment;
 
 
         static private readonly char sep = Path.DirectorySeparatorChar;
         static private readonly string storage = $"GymDB{sep}storage";
         static private readonly string fpathSpace = $"{storage}{sep}space.csv";
         static private readonly string fpathSpace2 = $"{storage}{sep}staff.csv";
-        static private readonly string fpathSpace3 = $"{storage}{sep}equipment.csv";
+        static private readonly string fpathSpace3 = $"{storage}{sep}sportsequipment.csv";
         static private readonly string fpathSpace4 = $"{storage}{sep}customer.csv";
+        static private readonly string fpathSpace5 = $"{storage}{sep}lasrgeequipment.csv";
         // private filepath1, 2, 3 etc...
 
         public LocalStorage()
@@ -44,9 +46,9 @@ namespace Gym_Booking_Manager
             Directory.CreateDirectory(storage);
             this.spaces = new DbSet<Space>(fpathSpace);
             this.staffs = new DbSet<Staff>(fpathSpace2);
-            this.equipment= new DbSet<Equipment>(fpathSpace3);
+            this.sportsequipment= new DbSet<Sportsequipment>(fpathSpace3);
             this.customer = new DbSet<Customer>(fpathSpace4);
-            
+            this.largeequipment = new DbSet<Largeequipment>(fpathSpace5);
         }
 
         public bool Create<T>(T entity)
@@ -76,12 +78,14 @@ namespace Gym_Booking_Manager
             {
                 case "Space":
                     return this.spaces;
-                case "Equipment":
-                    return this.equipment;
+                case "Sportsequipment":
+                    return this.sportsequipment;
                 case "Staff":
                     return this.staffs;
                 case "Customer":
                     return this.customer;
+                case "Largeequipment":
+                    return this.largeequipment;
                 // Add more cases for which DbSet<T> attributes exist within the class.
                 default:
                     throw new ArgumentException("Dataset for the argument type does not exist.");
