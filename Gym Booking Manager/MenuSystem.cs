@@ -14,48 +14,85 @@ namespace Gym_Booking_Manager
             LocalStorage userdata = new LocalStorage();
             string userID = "";
             string password = "";
+            int count = 0;
             Console.Write("   ┌───────────────────────────────────────┐\n");
             Console.Write("   │  Gym Booking Manager (Grp2 Version)   │\n");
             Console.Write("   └───────────────────────────────────────┘\n\n");
-            Console.Write(" Please enter UserID: ");
-            userID = Console.ReadLine();
-            if (userID != "") // Print this only if the UserID exist!
+            do
             {
-                
-                foreach (Staff user in userdata.staffs.read("id", userID)) // doesnt work correctly need more job to be done
+                Console.WriteLine(" type 'quit' to quit");
+                Console.Write(" Please enter UserID: ");
+                userID = Console.ReadLine();
+                if (userID == "quit") break;
+                if (userID != "")
                 {
-                    if (user.id == userID)
+
+                    if (userdata.staffs.read("id", userID).Count == 0 || userdata.customer.read("id",userID).Count == 0)
+                    {
+                        Console.WriteLine($" {userID} was not found in the database");
+                    }
+                    foreach (Staff user in userdata.staffs.read("id", userID))
                     {
                         Console.WriteLine($" User {userID} selected");
-                        Console.Write($"   Please enter password for <{userID}>: ");
-                        password = Console.ReadLine();
-                        if (password != "")
+                        do
                         {
-                            if (user.password == password)
+
+                            Console.Write($"   Please enter password for <{userID}>: ");
+                            password = Console.ReadLine();
+                            if (password != "")
                             {
-                                Console.Write($"   {userID} logged in!");
-                                StaffMenuMain();
+                                if (user.password == password)
+                                {
+                                    Console.WriteLine($"   {userID} logged in!");
+                                    StaffMenuMain();
+                                }
+                                else
+                                {
+                                    Console.WriteLine(" Incorrect password");
+                                    count++;
+                                }
                             }
                             else
                             {
-                                Console.WriteLine(" Incorrect password");
+                                Console.WriteLine(" Please type ur password");
+                                count++;
                             }
-                        }
-                        else
-                        {
-                            Console.WriteLine(" Please type ur password");
-                        }
+                        }while(count != 5);
                     }
-                    else
+                    foreach (Customer user in userdata.customer.read("id", userID))
                     {
-                        Console.WriteLine($" UserID[{userID}] Was not found in database!");
+                        Console.WriteLine($" User {userID} selected");
+                        do
+                        {
+
+                            Console.Write($"   Please enter password for <{userID}>: ");
+                            password = Console.ReadLine();
+                            if (password != "")
+                            {
+                                if (user.password == password)
+                                {
+                                    Console.WriteLine($"   {userID} logged in!");
+                                    CustomerMenu();
+                                }
+                                else
+                                {
+                                    Console.WriteLine(" Incorrect password");
+                                    count++;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine(" Please type ur password");
+                                count++;
+                            }
+                        } while (count != 5);
                     }
                 }
-            }
-            else
-            {
-                Console.WriteLine(" Please type ur UserID");
-            }
+                else
+                {
+                    Console.WriteLine(" Please type ur UserID");
+                }
+            } while (userID != "quit");
             
         }
         //This menu will appear when a user of the type "staff" logged in: 

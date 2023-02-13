@@ -35,6 +35,7 @@ namespace Gym_Booking_Manager
             this.phone= constructionArgs[nameof(phone)];
             this.email= constructionArgs[nameof(email)];
             this.id = constructionArgs[nameof(id)];
+            this.password = constructionArgs[nameof(password)];
         }
         public override string ToString()
         {
