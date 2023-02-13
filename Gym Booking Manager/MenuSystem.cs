@@ -5,10 +5,15 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace Gym_Booking_Manager
 {
+    
     public static class MenuSystem
     {
+        private static readonly object selectedEquipment;
+
         public static void Login()
         {
             LocalStorage userdata = new LocalStorage();
@@ -188,6 +193,73 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [6] Main Menu                                          │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
             Console.Write("                                 You are at --> Equipment Menu \n");
+            Console.Write(">>");
+            string selection = Console.ReadLine();
+            switch (selection)
+            {
+                case "1":
+                    Console.WriteLine("\n List of available equipment:");
+                    Console.WriteLine("------------------------------------------------");
+                    foreach (Equipment equipment in Equipment.EquipmentList)
+                    {
+                        if (!equipment.IsBooked)
+                        {
+                            Console.WriteLine($" {equipment.Name} - ID: {equipment.ID}");
+                        }
+                    }
+                    Console.WriteLine("------------------------------------------------");
+                    break;
+                case "2":
+                    Console.WriteLine("\n Reserve Equipment");
+                    Console.WriteLine("------------------------------------------------");
+                    Console.Write("Enter the name of the equipment you wish to reserve: ");
+                    string equipmentName = Console.ReadLine();
+                    Equipment selectedEquipment = Equipment.GetEquipment("Name", equipmentName);
+                    if (selectedEquipment == null)
+                    {
+                        Console.WriteLine("\n Equipment not found.");
+                    }
+                    else
+                    {
+                        Console.Write("Enter start time (YYYY-MM-DD HH:MM): ");
+                        DateTime startTime = DateTime.Parse(Console.ReadLine());
+                        Console.Write("Enter end time (YYYY-MM-DD HH:MM): ");
+                        DateTime endTime = DateTime.Parse(Console.ReadLine());
+                        if (selectedEquipment.IsAvailable(startTime, endTime))
+                        {
+                            selectedEquipment.MakeReservation(startTime, endTime);
+                            Console.WriteLine("\n Equipment successfully reserved.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n Equipment not available at the specified time.");
+                        }
+                    }
+                    break;
+
+                case "5":
+                    Console.WriteLine("\n Help");
+                    Console.WriteLine("------------------------------------------------");
+                    Console.WriteLine("Welcome to the Help section of the Equipment Menu!");
+                    Console.WriteLine("\n [1] - List of available equipment");
+                    Console.WriteLine("Displays a list of all equipment that is not currently reserved.");
+                    Console.WriteLine("\n [2] - Reserve Equipment");
+                    Console.WriteLine("Allows you to reserve a specific piece of equipment for a certain period of time.");
+                    Console.WriteLine("\n [6] - Main Menu");
+                    Console.WriteLine("Returns you to the Main Menu.");
+                    Console.WriteLine("------------------------------------------------");
+                    break;
+                    
+                case "6":
+                    Console.WriteLine("\n Main Menu");
+                    Console.WriteLine("------------------------------------------------");
+                    StaffMenuMain();
+                    break;
+                default:
+                    Console.WriteLine("\n Invalid selection. Please try again.");
+                    StaffMenuEquipment();
+                    break;
+            }
         }
 
         public static void StaffMenuSpaces()

@@ -13,12 +13,20 @@ namespace Gym_Booking_Manager
         public string Name { get; set; }
         public int Quantity { get; set; }
         public Calendar Calendar { get; set; }
+        public static object Sportsequipment { get; internal set; }
+        public bool IsBooked { get; internal set; }
+        public static IEnumerable<Equipment> EquipmentList { get; internal set; }
+        public object ID { get; internal set; }
 
         public Equipment(string name, int quantity)
         {
             Name = name;
             Quantity = quantity;
             Calendar = new Calendar();
+        }
+        public bool IsAvailable()
+        {
+            return Quantity > 0;
         }
 
         public void BookEquipment(User person, DateTime startTime, DateTime endTime)
@@ -50,8 +58,45 @@ namespace Gym_Booking_Manager
             }
         }
 
-        
-        
+        public List<Equipment> GetAvailableEquipments(List<Equipment> equipments, DateTime startTime, DateTime endTime)
+        {
+            List<Equipment> availableEquipments = new List<Equipment>();
+            foreach (var equipment in equipments)
+            {
+                if (equipment.IsAvailable() && equipment.Calendar.IsAvailable(startTime, endTime))
+                {
+                    availableEquipments.Add(equipment);
+                }
+            }
+            return availableEquipments;
+        }
+
+        public void DisplayAvailableEquipments(List<Equipment> equipments, DateTime startTime, DateTime endTime)
+        {
+            List<Equipment> availableEquipments = GetAvailableEquipments(equipments, startTime, endTime);
+            if (availableEquipments.Count > 0)
+            {
+                Console.WriteLine("The following equipment is available:");
+                foreach (var equipment in availableEquipments)
+                {
+                    Console.WriteLine("- {0}", equipment.Name);
+                }
+            }
+            else
+            {
+                Console.WriteLine("No equipment is available.");
+            }
+        }
+
+        internal static Equipment GetEquipment(string v, string? equipmentName)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void MakeReservation(DateTime startTime, DateTime endTime)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

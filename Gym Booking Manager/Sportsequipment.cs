@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static Gym_Booking_Manager.Space;
 
 namespace Gym_Booking_Manager
@@ -25,12 +26,19 @@ namespace Gym_Booking_Manager
             football,
             basketball
         }
-
+       
         public Sportsequipment(string name, int quantity, Item type) : base(name, quantity)
         {
             Type = type;
         }
-
+        public override string ToString()
+        {
+            return this.CSVify(); // TODO: Don't use CSVify. Make it more readable.
+        }
+        public string CSVify()
+        {
+            return $"{nameof(Type)}:{Type.ToString()},{nameof(Name)}:{Name},{nameof(Quantity)}:{Quantity} ";
+        }
         public void BookSportsequipment(User person, DateTime startTime, DateTime endTime)
         {
             BookEquipment(person, startTime, endTime);
