@@ -23,15 +23,15 @@ namespace Gym_Booking_Manager
                 Console.WriteLine(" type 'quit' to quit");
                 Console.Write(" Please enter UserID: ");
                 userID = Console.ReadLine();
-                /*if (userID == "quit")
+                if (userID == "quit")
                 {
                     Console.WriteLine("Good Bye!");
                     break;
-                }*/
+                }
                 if (userID != "")
                 {
 
-                    if (userdata.staffs.read("id", userID).Count == 0 || userdata.customer.read("id",userID).Count == 0)
+                    if (userdata.staffs.read("id", userID).Count == 0 && userdata.customer.read("id",userID).Count == 0)
                     {
                         Console.WriteLine($" {userID} was not found in the database");
                     }
@@ -47,7 +47,7 @@ namespace Gym_Booking_Manager
                             {
                                 if (user.password == password)
                                 {
-                                    Console.WriteLine($"   {userID} logged in!");
+                                    Console.WriteLine($"   Welcome {user.name}!");
                                     StaffMenuMain();
                                 }
                                 else
@@ -75,7 +75,7 @@ namespace Gym_Booking_Manager
                             {
                                 if (user.password == password)
                                 {
-                                    Console.WriteLine($"   {userID} logged in!");
+                                    Console.WriteLine($"   Welcome {user.name}!");
                                     CustomerMenu();
                                 }
                                 else
