@@ -22,7 +22,20 @@ namespace Gym_Booking_Manager
         public void AddStaff(string name, string id, string email, string phone, string password)
         {
             Staff user = new Staff(name, id, email, phone, password);
-           
+            Console.WriteLine("Input Name: ");
+            name = Console.ReadLine();
+            Console.WriteLine("Input ID: ");
+            id = Console.ReadLine();
+            Console.WriteLine("Input Email: ");
+            email = Console.ReadLine();
+            Console.WriteLine("Input Phone: ");
+            phone = Console.ReadLine();
+            Console.WriteLine("Input Password: ");
+            password = Console.ReadLine();
+            
+
+
+
             spaces.Create<Staff>(user);
             Console.WriteLine("Staff added");
 
@@ -38,7 +51,19 @@ namespace Gym_Booking_Manager
         public void AddCustomer(string name, string id, string email, string phone, string password)
         {
             Customer user = new Customer(name, id, email, phone, password);
-            
+
+            Console.WriteLine("Input Name: ");
+            name = Console.ReadLine();
+            Console.WriteLine("Input ID: ");
+            id = Console.ReadLine();
+            Console.WriteLine("Input Email: ");
+            email = Console.ReadLine();
+            Console.WriteLine("Input Phone: ");
+            phone = Console.ReadLine();
+            Console.WriteLine("Input Password: ");
+            password = Console.ReadLine();
+
+
             spaces.Create<Customer>(user);
             Console.WriteLine("Customer added");
 
