@@ -21,20 +21,20 @@ namespace Gym_Booking_Manager
         
       
 
-        protected User(string name, string phone, string email, string password, string id)
+        protected User(string id, string name, string email, string phone, string password)
         {
+            this.id = id;
             this.name = name;
             this.phone = phone;
             this.email = email;
-            this.id = id;
             this.password = password;
         }
         public User(Dictionary<String, String> constructionArgs)
         {
+            this.id = constructionArgs[nameof(id)];
             this.name = constructionArgs[nameof(name)];
             this.phone= constructionArgs[nameof(phone)];
             this.email= constructionArgs[nameof(email)];
-            this.id = constructionArgs[nameof(id)];
             this.password = constructionArgs[nameof(password)];
         }
         public override string ToString()
@@ -45,7 +45,7 @@ namespace Gym_Booking_Manager
         // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.
         virtual public string CSVify()
         {
-            return $"{nameof(name)}:{name},{nameof(id)}:{id},{nameof(email)}:{email},{nameof(phone)}:{phone}, {nameof(password)}:{password}";
+            return $"{nameof(id)}:{id},{nameof(name)}:{name},{nameof(email)}:{email},{nameof(phone)}:{phone},{nameof(password)}:{password}";
         }
 
     }

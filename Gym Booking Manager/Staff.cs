@@ -9,7 +9,7 @@ namespace Gym_Booking_Manager
 {
     internal class Staff : User , ICSVable , IComparable<Staff>
     {
-        public Staff(string name,string id, string email, string phone, string password) : base(name,password,email,phone,id)
+        public Staff(string id,string name, string email, string phone, string password) : base(id,name,email,phone,password)
         {
 
         }
@@ -26,14 +26,14 @@ namespace Gym_Booking_Manager
         // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.
         override public string CSVify()
         {
-            return $"{nameof(name)}:{name},{nameof(id)}:{id},{nameof(email)}:{email},{nameof(phone)}:{phone},{nameof(password)}:{password}";
+            return $"{nameof(id)}:{id},{nameof(name)}:{name},{nameof(email)}:{email},{nameof(phone)}:{phone},{nameof(password)}:{password}";
         }
         public int CompareTo(Staff? other)
         {
             // If other is not a valid object reference, this instance is greater.
             if (other == null) return 1;           
             // When category is the same, sort on name.
-            return this.name.CompareTo(other.name);
+            return this.id.CompareTo(other.id);
         }
     }
 }
