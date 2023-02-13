@@ -23,7 +23,7 @@ namespace Gym_Booking_Manager
                 Console.WriteLine(" type 'quit' to quit");
                 Console.Write(" Please enter UserID: ");
                 userID = Console.ReadLine();
-                if (userID == "quit")
+                if (userID == "quit".ToLower())
                 {
                     Console.WriteLine("Good Bye!");
                     break;
