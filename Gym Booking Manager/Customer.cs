@@ -35,5 +35,18 @@ namespace Gym_Booking_Manager
             // When category is the same, sort on name.
             return this.id.CompareTo(other.id);
         }
+        /*public int CompareTo(Customer? other)
+        {
+            int idCompare = this.id.CompareTo(other.id);
+            if (idCompare != 0)
+            {
+                return idCompare;
+            }
+            else
+            {
+                return this.name.CompareTo(other.name);
+            }
+        */
+        }
     }
-}
+

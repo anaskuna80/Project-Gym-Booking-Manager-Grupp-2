@@ -75,6 +75,7 @@ namespace Gym_Booking_Manager
                             {
                                 if (user.password == password)
                                 {
+                                    count = 5;
                                     Console.WriteLine($"   Welcome {user.name}!");
                                     CustomerMenu();
                                 }

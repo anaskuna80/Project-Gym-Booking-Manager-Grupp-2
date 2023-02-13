@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static Gym_Booking_Manager.Space;
 
 namespace Gym_Booking_Manager
 {
-    internal class Staff : User , ICSVable , IComparable<Staff>
+    internal class Staff : User, ICSVable, IComparable<Staff>
     {
-        public Staff(string id,string name, string email, string phone, string password) : base(id,name,email,phone,password)
+        public Staff(string id, string name, string email, string phone, string password) : base(id, name, email, phone, password)
         {
 
         }
@@ -31,9 +32,10 @@ namespace Gym_Booking_Manager
         public int CompareTo(Staff? other)
         {
             // If other is not a valid object reference, this instance is greater.
-            if (other == null) return 1;           
+            if (other == null) return 1;
             // When category is the same, sort on name.
             return this.id.CompareTo(other.id);
         }
     }
+
 }

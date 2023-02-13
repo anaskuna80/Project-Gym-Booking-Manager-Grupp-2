@@ -34,9 +34,9 @@ namespace Gym_Booking_Manager
 
 
 
-            //MenuSystem.Login();
+            MenuSystem.Login();
             //UserMgmt.AddStaff();
-            UserMgmt.DelStaff();
+            //UserMgmt.DelStaff();
 
         }       // Static methods for the program
     }
