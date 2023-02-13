@@ -3,53 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static Gym_Booking_Manager.Space;
 
 namespace Gym_Booking_Manager
 {
-    internal class Sportsequipment : Equipment
+    internal class Sportsequipment
     {
-        private Item item;
+        public string name { get; set; }
+        public string Item { get; set; }
+        public string ID { get; set; }
 
-        public Item Type { get; set; }
-        public Sportsequipment(Item item,string name,int quantity) : base (name,quantity)
+        public bool IsBooked()
         {
-            
-            this.item = item;  
-            
+
+            return true;
+
         }
-        public enum Item
+        protected Sportsequipment(string name, string Item, string ID)
         {
-            racket,
-            floorballstick,
-            football,
-            basketball
-        }
 
-        public Sportsequipment(string name, int quantity, Item type) : base(name, quantity)
+            this.name = name;
+            this.Item = Item;
+            this.ID = ID;
+        }
+        public Sportsequipment(Dictionary<String, String> constructionArgs)
         {
-            Type = type;
+            this.name = constructionArgs[nameof(name)];
+            this.ID = constructionArgs[nameof(ID)];
+            this.Item = constructionArgs[nameof(Item)];
         }
-
-        public void BookSportsequipment(User person, DateTime startTime, DateTime endTime)
+        public override string ToString()
         {
-            BookEquipment(person, startTime, endTime);
+            return this.CSVify(); 
         }
-
-        public void UnbookSportsequipment(Reservation reservation)
+        public string CSVify()
         {
-            CancelBooking(reservation);
+            return $"{nameof(name)}:{name},{nameof(ID)}:{ID},{nameof(IsBooked)}:{IsBooked} ";
         }
-
-        /*
-        
-            Sportsequipment tennisRacket = new Sportsequipment("Tennis Racket", 5, Sportsequipment.Item.racket);
-            tennisRacket.BookSportsequipment(user, startTime, endTime);
-
-            Reservation reservation = new Reservation(user, startTime, endTime);
-            tennisRacket.UnbookSportsequipment(reservation);
-        
-        */ //Can use these above in program side for call out exactly what member need to.
+      
 
 
 

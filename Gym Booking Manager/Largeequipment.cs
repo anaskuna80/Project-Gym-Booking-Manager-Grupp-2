@@ -1,51 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static Gym_Booking_Manager.Sportsequipment;
 
 namespace Gym_Booking_Manager
 {
-    internal class Largeequipment : Equipment
+    internal class Largeequipment
     {
-        private Litem item;
-        public Litem Type { get; set; }
-
-        public Largeequipment(Litem item, String name,int quantity) : base (name, quantity) 
-        {
-            this.item = item;
-           
-        }
-        public enum Litem
-        {
-            Bench,
-            legpress,
-            rowmachine,
-            boxingsack
-        }
-        public Largeequipment(string name, int quantity, Litem type) : base(name, quantity)
-        {
-            Type = type;
-        }
-        public void BookLargeequipment(User person, DateTime startTime, DateTime endTime)
-        {
-            BookEquipment(person, startTime, endTime);
-        }
-
-        public void UnbookLargeequipment(Reservation reservation)
-        {
-            CancelBooking(reservation);
-        }
-
-        /*
- 
-            Largeequipment benchPress = new Largeequipment("Bench Press", 2, Largeequipment.Litem.Bench);
-            benchPress.BookLargeequipment(user, startTime, endTime);
-
-            Reservation reservation = new Reservation(user, startTime, endTime);
-            benchPress.UnbookLargeequipment(reservation);
         
-        */ //Can use these above in program side for call out exactly what member need to.
+        public string name { get; set; } 
+        public string Item { get; set; }
+        public string ID { get; set; }
+
+        public bool IsBooked()
+        {
+
+            return true;
+
+        }
+        protected Largeequipment(string name, string Item, string ID)
+        {
+            
+            this.name = name;
+            this.Item = Item;
+            this.ID = ID;
+        }
+        public Largeequipment(Dictionary<String,String> constructionArgs)
+        { 
+            this.name = constructionArgs[nameof(name)];
+            this.ID = constructionArgs[nameof(ID)];
+            this.Item = constructionArgs[nameof(Item)];
+        }
+        public override string ToString()
+        {
+            return this.CSVify();
+        }
+        public string CSVify()
+        {
+            return $"{nameof(name)}:{name},{nameof(ID)}:{ID},{nameof(IsBooked)}:{IsBooked} ";
+        }
+       
         
     }
 

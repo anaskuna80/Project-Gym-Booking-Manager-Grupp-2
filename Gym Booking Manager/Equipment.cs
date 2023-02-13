@@ -3,55 +3,44 @@ using Gym_Booking_Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using static Gym_Booking_Manager.Space;
 
 namespace Gym_Booking_Manager
 {
-    internal class Equipment : Calendar
+    internal class Equipment
     {
+        public string ID { get; set; }
         public string Name { get; set; }
-        public int Quantity { get; set; }
-        public Calendar Calendar { get; set; }
-
-        public Equipment(string name, int quantity)
+        public Calendar Calendar { get; set; }  
+        public bool IsBooked { get; internal set; }
+        public bool IsAvailable()
         {
-            Name = name;
-            Quantity = quantity;
-            Calendar = new Calendar();
+            return true;
         }
-
-        public void BookEquipment(User person, DateTime startTime, DateTime endTime)
+        protected Equipment(string id, string name)
         {
-            if (Quantity > 0 && Calendar.IsAvailable(startTime, endTime))
-            {
-                Quantity--;
-                Calendar.MakeReservation(person, startTime, endTime);
-                Console.WriteLine("Equipment '{0}' has been successfully booked.", Name);
-            }
-            else
-            {
-                Console.WriteLine("Equipment '{0}' is not available for booking.", Name);
-            }
+            this.ID = id;
+            this.Name = name;
+            
         }
-
-        public bool CancelBooking(Reservation reservation)
+        public Equipment(Dictionary<String, String> constructionArgs)
         {
-            if (Calendar.HasReservation(reservation))
-            {
-                Calendar.RemoveReservation(reservation);
-                Quantity++;
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("This reservation does not exist for this equipment.");
-                return false;
-            }
+            this.ID = constructionArgs[nameof(ID)];
+            this.Name = constructionArgs[nameof(Name)];
+            
         }
-
-        
-        
+        public override string ToString()
+        {
+            return this.CSVify();
+        }
+        public string CSVify()
+        {
+            return $"{nameof(Name)}:{Name},{nameof(ID)}:{ID},{nameof(IsBooked)}:{IsBooked} ";
+        }
     }
 }
 
