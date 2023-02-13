@@ -174,7 +174,30 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [6] Main Menu                                          │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
             Console.Write("                                      You are at --> User Menu \n");
-
+            Console.WriteLine(">>");
+            string input = Console.ReadLine();
+            if (input == "1")
+            {
+                Console.Write("Do you want to add staff or customer?");
+                string input1 = Console.ReadLine();
+                if (input1 == "staff") UserMgmt.AddStaff();
+                else if(input1 == "customer") UserMgmt.AddCustomer();
+            }
+            else if (input == "2")
+            {
+                Console.Write("Do you want to delete staff or customer?");
+                string input2 = Console.ReadLine();
+                if (input2 == "staff") UserMgmt.DelStaff();
+                else if (input2 == "customer") UserMgmt.DelCustomer();
+            }
+            else if (input == "3")
+            {
+                //NYI
+            }
+            else if (input == "4")
+            {
+                //NYI
+            }
         }
 
 

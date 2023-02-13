@@ -9,30 +9,29 @@ using static Gym_Booking_Manager.Space;
 
 namespace Gym_Booking_Manager
 {
-    internal class UserMgmt : ICSVable, IComparable<Staff>
-    
+    public static class UserMgmt
 
-
-        
 
     {
-        private readonly GymDatabaseContext spaces = new GymDatabaseContext();
+        //private readonly GymDatabaseContext spaces = new GymDatabaseContext();
 
         //Add Staff to the database
-        public void AddStaff(string name, string id, string email, string phone, string password)
+        public static void AddStaff()
         {
-            Staff user = new Staff(name, id, email, phone, password);
-            Console.WriteLine("Input Name: ");
-            name = Console.ReadLine();
-            Console.WriteLine("Input ID: ");
-            id = Console.ReadLine();
-            Console.WriteLine("Input Email: ");
-            email = Console.ReadLine();
-            Console.WriteLine("Input Phone: ");
-            phone = Console.ReadLine();
-            Console.WriteLine("Input Password: ");
-            password = Console.ReadLine();
+            GymDatabaseContext spaces = new GymDatabaseContext();
             
+            Console.WriteLine("Input Name: ");
+            string name = Console.ReadLine();
+            Console.WriteLine("Input ID: ");
+            string id = Console.ReadLine();
+            Console.WriteLine("Input Email: ");
+            string email = Console.ReadLine();
+            Console.WriteLine("Input Phone: ");
+            string phone = Console.ReadLine();
+            Console.WriteLine("Input Password: ");
+            string password = Console.ReadLine();
+
+            Staff user = new Staff(id, name, email, phone, password);
 
 
 
@@ -48,21 +47,23 @@ namespace Gym_Booking_Manager
 
 
         //Add a customer to the database
-        public void AddCustomer(string name, string id, string email, string phone, string password)
+        public static void AddCustomer()
         {
-            Customer user = new Customer(name, id, email, phone, password);
+            GymDatabaseContext spaces = new GymDatabaseContext();
+            
 
             Console.WriteLine("Input Name: ");
-            name = Console.ReadLine();
+            string name = Console.ReadLine();
             Console.WriteLine("Input ID: ");
-            id = Console.ReadLine();
+            string id = Console.ReadLine();
             Console.WriteLine("Input Email: ");
-            email = Console.ReadLine();
+            string email = Console.ReadLine();
             Console.WriteLine("Input Phone: ");
-            phone = Console.ReadLine();
+            string phone = Console.ReadLine();
             Console.WriteLine("Input Password: ");
-            password = Console.ReadLine();
+            string password = Console.ReadLine();
 
+            Customer user = new Customer(name:name, id:id, email:email, phone:phone, password:password);
 
             spaces.Create<Customer>(user);
             Console.WriteLine("Customer added");
@@ -72,13 +73,13 @@ namespace Gym_Booking_Manager
 
 
         //Delete Staff from the database
-        public void DelStaff()
+        public static void DelStaff()
         {
-           
 
-            
+
+            GymDatabaseContext staffs = new GymDatabaseContext();
             Console.WriteLine("Here is a list of all current Staff members:");
-            var staffList = spaces.Read<Staff>();
+            var staffList = staffs.Read<Staff>();
             foreach (var staff in staffList)
             {
                 Console.WriteLine($"ID: {staff.id}, Name: {staff.name}");
@@ -96,7 +97,7 @@ namespace Gym_Booking_Manager
                 return;
             }
 
-            spaces.Delete<Staff>(user);
+            staffs.Delete<Staff>(user);
             Console.WriteLine("Staff deleted");
 
 
@@ -105,13 +106,13 @@ namespace Gym_Booking_Manager
         //Delete Customer from the database
 
 
-        public void DelCustomer()
+        public static void DelCustomer()
         {
-            
 
+            GymDatabaseContext customers = new GymDatabaseContext();
 
             Console.WriteLine("Here is a list of all current Customers:");
-            var customerList = spaces.Read<Customer>();
+            var customerList = customers.Read<Customer>();
             foreach (var customer in customerList)
             {
                 Console.WriteLine($"ID: {customer.id}, Name: {customer.name}");
@@ -125,40 +126,14 @@ namespace Gym_Booking_Manager
 
             if (user == null)
             {
-                Console.WriteLine("Staff member not found. Please try again.");
+                Console.WriteLine("Customer member not found. Please try again.");
                 return;
             }
 
-            spaces.Delete<Customer>(user);
-            Console.WriteLine("Staff member deleted");
+            customers.Delete<Customer>(user);
+            Console.WriteLine("customer member deleted");
 
 
         }
-
-
-
-
-
-        // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.
-        override public string CSVify()
-        {
-            return $"{nameof(name)}:{name},{nameof(id)}:{id},{nameof(email)}:{email},{nameof(phone)}:{phone}";
-        }
-        public int CompareTo(Customer? other)
-        {
-            // If other is not a valid object reference, this instance is greater.
-            if (other == null) return 1;
-            // When category is the same, sort on name.
-            return this.name.CompareTo(other.name);
-        }
-
-        public int CompareTo(Staff? other)
-        {
-            // If other is not a valid object reference, this instance is greater.
-            if (other == null) return 1;
-            // When category is the same, sort on name.
-            return this.name.CompareTo(other.name);
-        }
-
     }
 }

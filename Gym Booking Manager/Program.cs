@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 #endif
 namespace Gym_Booking_Manager
 {
-    internal class Program
+    internal class Program 
     {
         static void Main(string[] args)
         {
@@ -34,8 +34,9 @@ namespace Gym_Booking_Manager
 
 
 
-            MenuSystem.Login();
-            
+            //MenuSystem.Login();
+            //UserMgmt.AddStaff();
+            UserMgmt.DelStaff();
 
         }       // Static methods for the program
     }
