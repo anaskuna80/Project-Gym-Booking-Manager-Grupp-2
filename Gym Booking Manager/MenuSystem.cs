@@ -101,8 +101,7 @@ namespace Gym_Booking_Manager
         }
         //This menu will appear when a user of the type "staff" logged in: 
         public static void StaffMenuMain()
-        {
-            string selection;
+        {           
             Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] Calendar                                           │\n");
             Console.Write("   │-- [2] Equipment                                          │\n");
@@ -113,8 +112,7 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [6] Logout/Exit                                        │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
             Console.Write("                                      You are at --> Main Menu \n");
-            Console.Write("   Please enter your selection >");
-            selection = Console.ReadLine();
+            Console.Write("   Please enter your selection >");          
             /* if (selection != "1,2,3,4,5,6,7,8") magic code here!}
              * 1 if (selection == 1) then StaffMenuCalendar();
              * 2 if (selection == 2) then StaffMenuEquipment();
@@ -123,6 +121,46 @@ namespace Gym_Booking_Manager
              * 5 if (selection == 5) then deploy the huge documentation PDF!
              * 6 if (selection == 6) the Logout(); NYI
              */
+            int choice = Convert.ToInt32(Console.ReadLine());
+            switch (choice)
+            {
+                case 1:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("   Entering Calendar.");
+                    Linger();
+                    StaffMenuCalendar();
+                    break;
+                case 2:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("   Entering Equipment.");
+                    Linger();
+
+                    break;
+                case 3:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("   Entering Spaces.");
+                    Linger();
+                    break;
+                case 4:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("   Entering Users.");
+                    Linger();
+                    break;
+                case 5:
+                    StaffHelp();
+                    break;
+                case 6:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("   Logging out.");
+                    Linger();
+                    //Exit
+                    break;
+                default:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("   Invalid choice!");
+                    Linger();
+                    break;
+            }
 
         }
         public static void StaffMenuCalendar()
@@ -232,7 +270,24 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [6] Main Menu                                          │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
             Console.Write("                                     You are at --> Users Menu \n");
+        }
+        public static void Linger()
+        {
+            Thread.Sleep(1000);
+            Console.Write(".");
+            Thread.Sleep(1000);
+            Console.Write(".");
+            Thread.Sleep(1000);
+            Console.ResetColor();
+        }
 
+        public static void StaffHelp() 
+        {
+            Console.WriteLine("   Sorry, no help here!");
+        }
+        public static void CostumerHelp()
+        {
+            Console.WriteLine("   You want help? FORGET IT! The customer is never right!");
         }
 
     }
