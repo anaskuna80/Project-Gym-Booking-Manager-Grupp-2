@@ -13,7 +13,8 @@ namespace Gym_Booking_Manager
     
     public static class MenuSystem 
     {
-        
+        private static int id;
+
         public static void Login()
         {
             LocalStorage userdata = new LocalStorage();
@@ -193,8 +194,6 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [1] List of Equipments                                 │\n");
             Console.Write("   │-- [2] Reserve Equipment                                  │\n");
             Console.Write("   │-- [3] Reserve Large Equipment                            │\n");
-            Console.Write("   │-- [2] Reserve Sportsequipment                            │\n");
-            Console.Write("   │-- [3] Reserve Large equipment                            │\n");
             Console.Write("   │                                                          │\n");
             Console.Write("   │-- [5] Help                                               │\n");
             Console.Write("   │-- [6] Main Menu                                          │\n");
@@ -299,6 +298,69 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [3] Help                                               │\n");
             Console.Write("   │-- [4] Main Menu                                          │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
+            string selection = Console.ReadLine();
+            GymDatabaseContext space1 = new GymDatabaseContext();
+            switch (selection)
+            {
+                case "1":
+                    Console.WriteLine("Booked Spaces:");
+                    Console.WriteLine();
+                    foreach (Space place in space1.Read<Space>())
+                    {
+
+                        Console.WriteLine(place.CSVify());
+
+                    }
+                    Console.WriteLine();
+                    break;
+
+                case "2":
+                    Console.WriteLine("\n Reserve Space");
+                    Console.WriteLine("------------------------------------------------");
+                    Console.Write("Enter the name of the space you wish to reserve: ");
+                    string space2 = Console.ReadLine();
+
+
+                    foreach (Space place2 in space1.Read<Space>("name", space2))
+                    {
+                        if (place2.isBooked == false)
+                        {
+
+
+                            place2.id = id;
+                            place2.isBooked = true;
+                            Space newspace = new Space(place2.uniqueID, place2.category, place2.id, place2.isBooked);
+                            space1.Update<Space>(newspace, place2);
+                            Console.WriteLine($"You reserved {place2.uniqueID}");
+                        }
+                    }
+
+
+                    break;
+                
+                case "5":
+                    Console.WriteLine("\n Help");
+                    Console.WriteLine("------------------------------------------------");
+                    Console.WriteLine("Welcome to the Help section of the Spaces Menu!");
+                    Console.WriteLine("\n [1] - View Booked Spaces");
+                    Console.WriteLine("Displays of all booking spaces.");
+                    Console.WriteLine("\n [2] - Reserve Space");
+                    Console.WriteLine("Allows you to reserve a specific place of space.");
+                    Console.WriteLine("\n [6] - Main Menu");
+                    Console.WriteLine("Returns you to the Main Menu.");
+                    Console.WriteLine("------------------------------------------------");
+                    break;
+
+                case "6":
+                    Console.Clear();
+                    StaffMenuSpaces();
+                    break;
+                default:
+                    Console.WriteLine("\n Invalid selection. Please try again.");
+                    StaffMenuSpaces();
+                    break;
+            }
+
         }
         public static void StaffMenuUsers(int id)
         {

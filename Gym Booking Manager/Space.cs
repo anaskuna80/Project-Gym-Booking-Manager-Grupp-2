@@ -30,7 +30,8 @@ namespace Gym_Booking_Manager
 
         //private static readonly List<Tuple<Category, int>> hourlyCosts = InitializeHourlyCosts(); // Costs may not be relevant for the prototype. Let's see what the time allows.
         private Category category;
-        private int id;
+        //public Category category { get; set; }
+        public int id { get; set; }
         private readonly Calendar calendar;
         public int uniqueID { get; set; }
         public bool isBooked { get; set; }
@@ -47,7 +48,7 @@ namespace Gym_Booking_Manager
         // Every class T to be used for DbSet<T> needs a constructor with this parameter signature. Make sure the object is properly initialized.
         public Space(Dictionary<String, String> constructionArgs)
         {
-            this.id = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
+            this.id = Convert.ToInt32(constructionArgs[nameof(id)]);
             if (!Category.TryParse(constructionArgs[nameof(category)], out this.category))
             {
                 throw new ArgumentException("Couldn't parse a valid Space.Category value.", nameof(category));
@@ -55,6 +56,14 @@ namespace Gym_Booking_Manager
             this.uniqueID = this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
             this.isBooked = Convert.ToBoolean(constructionArgs[nameof(isBooked)]);
             
+        }
+
+        public Space(int uniqueID, Category category, int id, bool isBooked)
+        {
+            this.uniqueID = uniqueID;
+            this.category = category;
+            this.id = id;
+            this.isBooked = isBooked;
         }
 
         public int CompareTo(Space? other)
