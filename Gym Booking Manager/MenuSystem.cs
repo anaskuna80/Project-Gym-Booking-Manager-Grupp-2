@@ -193,8 +193,6 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [1] List of Equipments                                 │\n");
             Console.Write("   │-- [2] Reserve Equipment                                  │\n");
             Console.Write("   │-- [3] Reserve Large Equipment                            │\n");
-            Console.Write("   │-- [2] Reserve Sportsequipment                            │\n");
-            Console.Write("   │-- [3] Reserve Large equipment                            │\n");
             Console.Write("   │                                                          │\n");
             Console.Write("   │-- [5] Help                                               │\n");
             Console.Write("   │-- [6] Main Menu                                          │\n");
