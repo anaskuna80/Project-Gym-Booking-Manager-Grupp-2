@@ -33,9 +33,9 @@ namespace Gym_Booking_Manager
         private int id;
         private readonly Calendar calendar;
         public int uniqueID { get; set; }
-        public string isBooked { get; set; }
+        public bool isBooked { get; set; }
 
-        public Space(Category category, int id, int uniqueiD, string isBooked )
+        public Space(Category category, int id, int uniqueiD, bool isBooked )
         {
             this.category = category;
             this.id = id;
@@ -53,7 +53,7 @@ namespace Gym_Booking_Manager
                 throw new ArgumentException("Couldn't parse a valid Space.Category value.", nameof(category));
             }
             this.uniqueID = this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
-            this.isBooked = constructionArgs[nameof(isBooked)];
+            this.isBooked = Convert.ToBoolean(constructionArgs[nameof(isBooked)]);
             
         }
 
