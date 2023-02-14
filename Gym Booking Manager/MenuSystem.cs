@@ -203,7 +203,7 @@ namespace Gym_Booking_Manager
             switch (selection)
             {
                 case "1":
-                    Console.WriteLine("Largeequipment available:");
+                    Console.WriteLine("Largeequipment:");
                     Console.WriteLine();
                     foreach (Largeequipment largeequip in equipment.Read<Largeequipment>())
                     {
@@ -212,7 +212,7 @@ namespace Gym_Booking_Manager
                         
                     }
                     Console.WriteLine();
-                    Console.WriteLine("Sportsequipment available:");
+                    Console.WriteLine("Sportsequipment:");
                     Console.WriteLine();
                     foreach (Sportsequipment sportsequip in equipment.Read<Sportsequipment>())
                     {

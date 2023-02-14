@@ -33,12 +33,14 @@ namespace Gym_Booking_Manager
             //Console.WriteLine("User added");
 
 
-            
 
-            MenuSystem.Login();
+
+            //MenuSystem.Login();
             //UserMgmt.AddStaff();
             //UserMgmt.DelStaff();
             //MenuSystem.StaffMenuEquipment();
+            GroupSchedule activity = new GroupSchedule();
+            activity.AddActivity();
 
         }       // Static methods for the program
     }
