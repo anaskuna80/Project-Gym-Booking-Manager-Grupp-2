@@ -188,7 +188,8 @@ namespace Gym_Booking_Manager
         {
             Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] List of Equipments                                 │\n");
-            Console.Write("   │-- [2] Reserve Equipment                                  │\n");
+            Console.Write("   │-- [2] Reserve Sportsequipment                            │\n");
+            Console.Write("   │-- [3] Reserve Large equipment                            │\n");
             Console.Write("   │                                                          │\n");
             Console.Write("   │-- [5] Help                                               │\n");
             Console.Write("   │-- [6] Main Menu                                          │\n");
@@ -225,12 +226,17 @@ namespace Gym_Booking_Manager
                     Console.Write("Enter the name of the equipment you wish to reserve: ");
                     string equipmentName = Console.ReadLine();
                     
+
                     foreach (Sportsequipment sportsequip in equipment.Read<Sportsequipment>("name", equipmentName))
                     {
-                        if (sportsequip.IsBooked == false)
+                        if (sportsequip.isBooked == false)
                         {
+                            
+                            
                             sportsequip.id = id;
-                            sportsequip.IsBooked = true;
+                            sportsequip.isBooked = true;
+                            Sportsequipment newsport = new Sportsequipment(sportsequip.name, sportsequip.id, sportsequip.uniqueID, sportsequip.isBooked);
+                            equipment.Update<Sportsequipment>(newsport,sportsequip);
                             Console.WriteLine($"You reserved {sportsequip.name}");
                         }
                     }
@@ -245,10 +251,11 @@ namespace Gym_Booking_Manager
 
                     foreach (Largeequipment largeequip in equipment.Read<Largeequipment>("name", equipmentName1))
                     {
-                        if (largeequip.IsBooked == false)
+                        if (largeequip.isBooked == false)
                         {
                             largeequip.id = id;
-                            largeequip.IsBooked = true;
+                            largeequip.isBooked = true;
+                            Largeequipment newsport = new Largeequipment(largeequip.name, largeequip.id, largeequip.uniqueID, largeequip.isBooked);
                             Console.WriteLine($"You reserved {largeequip.name}");
                         }
                     }

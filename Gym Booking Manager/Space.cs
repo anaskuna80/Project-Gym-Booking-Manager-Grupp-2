@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 
 #if DEBUG
@@ -26,35 +27,34 @@ namespace Gym_Booking_Manager
     internal class Space : IReservable, ICSVable, IComparable<Space>
     {
 
-        public string Name
-        {
-            get { return this.name; }
-            set { this.name = value; }
-        }
-
 
         //private static readonly List<Tuple<Category, int>> hourlyCosts = InitializeHourlyCosts(); // Costs may not be relevant for the prototype. Let's see what the time allows.
         private Category category;
-        private String name;
+        private int id;
         private readonly Calendar calendar;
+        public int uniqueID { get; set; }
+        public string isBooked { get; set; }
 
-        public Space(Category category, string name)
+        public Space(Category category, int id, int uniqueiD, string isBooked )
         {
             this.category = category;
-            this.name = name;
-            this.calendar = new Calendar();
+            this.id = id;
+            this.uniqueID= uniqueiD;
+            this.isBooked = isBooked;
+            
         }
 
         // Every class T to be used for DbSet<T> needs a constructor with this parameter signature. Make sure the object is properly initialized.
         public Space(Dictionary<String, String> constructionArgs)
         {
-            this.name = constructionArgs[nameof(name)];
+            this.id = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
             if (!Category.TryParse(constructionArgs[nameof(category)], out this.category))
             {
                 throw new ArgumentException("Couldn't parse a valid Space.Category value.", nameof(category));
             }
-
-            this.calendar = new Calendar();
+            this.uniqueID = this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
+            this.isBooked = constructionArgs[nameof(isBooked)];
+            
         }
 
         public int CompareTo(Space? other)
@@ -64,7 +64,7 @@ namespace Gym_Booking_Manager
             // Sort primarily on category.
             if (this.category != other.category) return this.category.CompareTo(other.category);
             // When category is the same, sort on name.
-            return this.name.CompareTo(other.name);
+            return this.uniqueID.CompareTo(other.uniqueID);
         }
 
         public override string ToString()
@@ -75,7 +75,7 @@ namespace Gym_Booking_Manager
         // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.
         public string CSVify()
         {
-            return $"{nameof(category)}:{category.ToString()},{nameof(name)}:{name}";
+            return $"{nameof(uniqueID)}:{uniqueID},{nameof(category)}:{category.ToString()},{nameof(id)}:{id},{nameof(isBooked)}:{isBooked}";
         }
         public enum Category
         {

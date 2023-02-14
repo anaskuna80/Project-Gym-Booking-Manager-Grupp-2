@@ -17,16 +17,17 @@ namespace Gym_Booking_Manager
         public int id { get; set; }
         public string name { get; set; }
         public Calendar Calendar { get; set; }  
-        public bool IsBooked { get; set; }
+        public bool isBooked { get; set; }
         public virtual bool IsAvailable()
         {
             return true;
         }
-        protected Equipment(string name, int id, int uniqueID)
+        protected Equipment(string name, int id, int uniqueID,bool isBooked)
         {
             this.id = id;
             this.name = name;
             this.uniqueID = uniqueID;
+            this.isBooked= isBooked;
             
         }
         public Equipment(Dictionary<String, String> constructionArgs)
@@ -34,7 +35,9 @@ namespace Gym_Booking_Manager
             this.id = Convert.ToInt32(constructionArgs[nameof(id)]);
             this.name = constructionArgs[nameof(name)];
             this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
+            this.isBooked = Convert.ToBoolean(constructionArgs[nameof(isBooked)]);
             
+
 
         }
         public override string ToString()
@@ -43,7 +46,7 @@ namespace Gym_Booking_Manager
         }
         public string CSVify()
         {
-            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{nameof(id)}:{id},{nameof(IsBooked)}:{IsBooked.ToString()} ";
+            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{nameof(id)}:{id},{nameof(isBooked)}:{isBooked} ";
         }
         public int CompareTo(Equipment? other)
         {

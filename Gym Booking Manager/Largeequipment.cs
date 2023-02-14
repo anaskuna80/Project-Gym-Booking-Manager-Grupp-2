@@ -19,7 +19,7 @@ namespace Gym_Booking_Manager
             return true;
 
         }
-        protected Largeequipment(string name, int id,int uniqueID) : base (name, id, uniqueID)
+        public Largeequipment(string name, int id,int uniqueID,bool isBooked) : base (name, id, uniqueID,isBooked)
         {
             
 
@@ -34,7 +34,7 @@ namespace Gym_Booking_Manager
         }
         public string CSVify()
         {
-            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{nameof(id)}:{id},{nameof(IsBooked)}:{IsBooked.ToString()} ";
+            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{nameof(id)}:{id},{nameof(isBooked)}:{isBooked} ";
         }
         public int CompareTo(Largeequipment? other)
         {
