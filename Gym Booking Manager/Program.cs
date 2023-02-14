@@ -56,7 +56,7 @@ namespace Gym_Booking_Manager
             //UserMgmt.DelStaff();
             //MenuSystem.StaffMenuEquipment();
             //GroupSchedule activity = new GroupSchedule();
-            //activity.AddActivity();
+            //activity.AddActivity();*/
 
         }       // Static methods for the program
     }
