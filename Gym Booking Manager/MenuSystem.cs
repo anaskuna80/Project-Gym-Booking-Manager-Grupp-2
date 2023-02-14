@@ -83,7 +83,7 @@ namespace Gym_Booking_Manager
                                     count = 5;
                                     Console.WriteLine($"   Welcome {user.name}!");
                                     int id = user.id;
-                                    CustomerMenu();
+                                    MemberCustomerMenu();
                                 }
                                 else
                                 {
@@ -108,8 +108,10 @@ namespace Gym_Booking_Manager
         }
         //This menu will appear when a user of the type "staff" logged in: 
         public static void StaffMenuMain(int id)
-        {           
-            Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
+        {
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │   Main Menu    │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] Calendar                                           │\n");
             Console.Write("   │-- [2] Equipment                                          │\n");
             Console.Write("   │-- [3] Spaces                                             │\n");
@@ -118,7 +120,6 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [5] Help                                               │\n");
             Console.Write("   │-- [6] Logout/Exit                                        │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
-            Console.Write("                                      You are at --> Main Menu \n");
             Console.Write("   Please enter your selection >");          
             /* if (selection != "1,2,3,4,5,6,7,8") magic code here!}
              * 1 if (selection == 1) then StaffMenuCalendar();
@@ -133,24 +134,24 @@ namespace Gym_Booking_Manager
             {
                 case 1:
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("   Entering Calendar.");
+                    Console.Write("   Entering Calendar.");
                     Linger();
                     StaffMenuCalendar(id);
                     break;
                 case 2:
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("   Entering Equipment.");
+                    Console.Write("   Entering Equipment.");
                     StaffMenuEquipment(id);
 
                     break;
                 case 3:
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("   Entering Spaces.");
+                    Console.Write("   Entering Spaces.");
                     Linger();
                     break;
                 case 4:
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("   Entering Users.");
+                    Console.Write("   Entering Users.");
                     Linger();
                     break;
                 case 5:
@@ -158,13 +159,13 @@ namespace Gym_Booking_Manager
                     break;
                 case 6:
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("   Logging out.");
+                    Console.Write("   Logging out.");
                     Linger();
-                    //Exit
+                    Environment.Exit(0);
                     break;
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("   Invalid choice!");
+                    Console.Write("   Invalid choice!");
                     Linger();
                     break;
             }
@@ -172,8 +173,9 @@ namespace Gym_Booking_Manager
         }
         public static void StaffMenuCalendar(int id)
         {
-
-            Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │   Calendar     │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] View All Reservations                              │\n");
             Console.Write("   │-- [2] Vacant Reservations                                │\n");
             Console.Write("   │-- [3] Make Reservation                                   │\n");
@@ -182,18 +184,19 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [5] Help                                               │\n");
             Console.Write("   │-- [6] Main Menu                                          │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
-            Console.Write("                                  You are at --> Calendar Menu \n");
         }
         public static void StaffMenuEquipment(int id)
         {
-            Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │   Equipment    │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] List of Equipments                                 │\n");
             Console.Write("   │-- [2] Reserve Equipment                                  │\n");
+            Console.Write("   │-- [3] Reserve Large Equipment                            │\n");
             Console.Write("   │                                                          │\n");
             Console.Write("   │-- [5] Help                                               │\n");
             Console.Write("   │-- [6] Main Menu                                          │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
-            Console.Write("                                 You are at --> Equipment Menu \n");
             Console.Write(">>");
             string selection = Console.ReadLine();
             GymDatabaseContext equipment = new GymDatabaseContext();
@@ -267,8 +270,7 @@ namespace Gym_Booking_Manager
                     break;
                     
                 case "6":
-                    Console.WriteLine("\n Main Menu");
-                    Console.WriteLine("------------------------------------------------");
+                    Console.Clear();
                     StaffMenuMain(id);
                     break;
                 default:
@@ -280,18 +282,21 @@ namespace Gym_Booking_Manager
 
         public static void StaffMenuSpaces()
         {
-            Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │   Spaces       │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] View Booked Spaces                                 │\n");
             Console.Write("   │-- [2] Reserve Space                                      │\n");
             Console.Write("   │                                                          │\n");
-            Console.Write("   │-- [5] Help                                               │\n");
-            Console.Write("   │-- [6] Main Menu                                          │\n");
+            Console.Write("   │-- [3] Help                                               │\n");
+            Console.Write("   │-- [4] Main Menu                                          │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
-            Console.Write("                                        You are at --> PT Menu \n");
         }
-        public static void StaffMenuUsers()
+        public static void StaffMenuUsers(int id)
         {
-            Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │   User Menu    │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] Add User                                           │\n");
             Console.Write("   │-- [2] Delete User                                        │\n");
             Console.Write("   │-- [3] Sell Membership                                    │\n");
@@ -300,7 +305,6 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [5] Help                                               │\n");
             Console.Write("   │-- [6] Main Menu                                          │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
-            Console.Write("                                      You are at --> User Menu \n");
             Console.WriteLine(">>");
             string input = Console.ReadLine();
             if (input == "1")
@@ -325,24 +329,23 @@ namespace Gym_Booking_Manager
             {
                 //NYI
             }
+            else if (input == "5")
+            {
+                //NYI
+            }
+            else if (input == "6")
+            {
+                Console.Clear();
+                StaffMenuMain(id);
+            }
         }
 
-
-        public static void CustomerMenu()
+        //TBD
+        public static void MemberCustomerMenu()
         {
-            // if customer == member = true then type this
-            Console.WriteLine($"<user>(Member) --- Main Menu");
-            Console.Write("---------------------------------------------------------");
-            Console.Write("-- Calendar Menu");
-            // else type this
-            Console.WriteLine($"<user>(Non Member Customer) --- Main Menu");
-            Console.Write("---------------------------------------------------------");
-        }
-
-        //Use  this for later...
-        public static void AdminMenuMain()
-        {
-            Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │   Main Menu    │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] Calendar                                           │\n");
             Console.Write("   │-- [2] Equipment                                          │\n");
             Console.Write("   │-- [3] PT                                                 │\n");
@@ -353,12 +356,43 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [7] Help                                               │\n");
             Console.Write("   │-- [8] Logout/Exit                                        │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
-            Console.Write("                                     You are at --> Main Menu  \n");
-            //AdminMenuUser();
+        }
+        public static void NonMemberCustomerMenu()
+        {
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │   Main Menu    │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
+            Console.Write("   │-- [1] View Calendar                                      │\n");
+            Console.Write("   │-- [2] Buy Membership                                     │\n");
+            Console.Write("   │-- [3] Buy Daypass                                        │\n");
+            Console.Write("   │                                                          │\n");
+            Console.Write("   │-- [4] Help                                               │\n");
+            Console.Write("   │-- [5] Logout/Exit                                        │\n");
+            Console.Write("   └──────────────────────────────────────────────────────────┘\n");
+        }
+
+
+        public static void AdminMenuMain()
+        {
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │   Main Menu    │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
+            Console.Write("   │-- [1] Calendar                                           │\n");
+            Console.Write("   │-- [2] Equipment                                          │\n");
+            Console.Write("   │-- [3] PT                                                 │\n");
+            Console.Write("   │-- [4] Schedules                                          │\n");
+            Console.Write("   │-- [5] Spaces                                             │\n");
+            Console.Write("   │-- [6] User                                               │\n");
+            Console.Write("   │                                                          │\n");
+            Console.Write("   │-- [7] Help                                               │\n");
+            Console.Write("   │-- [8] Logout/Exit                                        │\n");
+            Console.Write("   └──────────────────────────────────────────────────────────┘\n");
         }
         public static void AdminMenuCalendar()
         {
-
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │   Calendar     │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] View All Reservations                              │\n");
             Console.Write("   │-- [2] Vacant Reservations                                │\n");
@@ -372,6 +406,9 @@ namespace Gym_Booking_Manager
         }
         public static void AdminMenuUser()
         {
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │   Calendar     │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] Add User                                           │\n");
             Console.Write("   │-- [2] Delete User                                        │\n");
@@ -401,7 +438,6 @@ namespace Gym_Booking_Manager
         {
             Console.WriteLine("   You want help? FORGET IT! The customer is never right!");
         }
-
     }
 
     /*
