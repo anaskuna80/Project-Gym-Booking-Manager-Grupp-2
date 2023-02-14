@@ -25,12 +25,12 @@ namespace Gym_Booking_Manager
             Console.Write("   └───────────────────────────────────────┘\n\n");
             do
             {
-                Console.WriteLine(" type 'quit' to quit");
-                Console.Write(" Please enter UserID: ");
+                Console.WriteLine("   Type 'quit' to quit");
+                Console.Write("   Please enter UserID: ");
                 userID = Console.ReadLine();
                 if (userID == "quit".ToLower())
                 {
-                    Console.WriteLine("Good Bye!");
+                    Console.WriteLine("   Good Bye!");
                     break;
                 }
                 if (userID != "")
@@ -42,11 +42,10 @@ namespace Gym_Booking_Manager
                     }
                     foreach (Staff user in userdata.staffs.read("id", userID))
                     {
-                        Console.WriteLine($" User {userID} selected");
+                        Console.WriteLine($"   User {userID} selected");
                         do
                         {
-                            Console.WriteLine($"try:{count}/5");
-                            Console.Write($"   Please enter password for <{userID}>: ");
+                            Console.Write($"   [Try: {count} / 5]\n   Please enter password for <{userID}>: ");
                             password = Console.ReadLine();
                             if (password != "")
                             {
@@ -73,8 +72,7 @@ namespace Gym_Booking_Manager
                         Console.WriteLine($" User {userID} selected");
                         do
                         {
-                            Console.WriteLine($"try:{count}/5");
-                            Console.Write($"   Please enter password for <{userID}>: ");
+                            Console.Write($"   [Try: {count} / 5]\n   Please enter password for <{userID}>: ");
                             password = Console.ReadLine();
                             if (password != "")
                             {
@@ -87,13 +85,13 @@ namespace Gym_Booking_Manager
                                 }
                                 else
                                 {
-                                    Console.WriteLine(" Incorrect password");
+                                    Console.WriteLine("   Incorrect password!");
                                     count++;
                                 }
                             }
                             else
                             {
-                                Console.WriteLine(" Please type ur password");
+                                Console.WriteLine("  Please type password");
                                 count++;
                             }
                         } while (count != 5);
@@ -101,9 +99,9 @@ namespace Gym_Booking_Manager
                 }
                 else
                 {
-                    Console.WriteLine(" Please type ur UserID");
+                    Console.WriteLine("   Please type a valid UserID to continue.");
                 }
-            } while (userID != "quit");
+            } while (userID != "quit".ToLower() || userID != "stop".ToLower());
             
         }
         //This menu will appear when a user of the type "staff" logged in: 
@@ -183,7 +181,30 @@ namespace Gym_Booking_Manager
             Console.Write("   │                                                          │\n");
             Console.Write("   │-- [5] Help                                               │\n");
             Console.Write("   │-- [6] Main Menu                                          │\n");
-            Console.Write("   └──────────────────────────────────────────────────────────┘\n");
+            Console.Write("   └──────────────────────────────────────────────────────────┘\n");           
+            Console.Write(">> ");
+            string val = Console.ReadLine();
+            switch (val) 
+            {
+                case "1":
+                    Console.WriteLine("Coming soon...");
+                    break;
+                case "2":
+                    Console.WriteLine("Coming soon...");
+                    break;
+                case "3":
+                    Console.WriteLine("Coming soon...");
+                    break;
+                case "4":
+                    Console.WriteLine("Coming soon...");
+                    break;
+                case "5":
+                    Console.WriteLine("Coming soon...");
+                    break;
+                case "6":
+                    Console.WriteLine("Coming soon...");
+                    break;
+            }
         }
         public static void StaffMenuEquipment(int id)
         {
@@ -197,7 +218,7 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [5] Help                                               │\n");
             Console.Write("   │-- [6] Main Menu                                          │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
-            Console.Write(">>");
+            Console.Write(">> ");
             string selection = Console.ReadLine();
             GymDatabaseContext equipment = new GymDatabaseContext();
             switch (selection)
@@ -311,7 +332,7 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [5] Help                                               │\n");
             Console.Write("   │-- [6] Main Menu                                          │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
-            Console.WriteLine(">>");
+            Console.WriteLine(" >>");
             string input = Console.ReadLine();
             if (input == "1")
             {
@@ -434,6 +455,7 @@ namespace Gym_Booking_Manager
             Console.Write(".");
             Thread.Sleep(1000);
             Console.ResetColor();
+            Console.Clear();
         }
 
         public static void StaffHelp() 
