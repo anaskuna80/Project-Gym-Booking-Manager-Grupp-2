@@ -10,7 +10,7 @@ namespace Gym_Booking_Manager
 {
     internal class Staff : User, ICSVable, IComparable<Staff>
     {
-        public Staff(string id, string name, string email, string phone, string password) : base(id, name, email, phone, password)
+        public Staff(int id, string name, string email, string phone, string password) : base(id, name, email, phone, password)
         {
 
         }

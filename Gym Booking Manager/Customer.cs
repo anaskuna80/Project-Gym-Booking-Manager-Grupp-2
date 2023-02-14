@@ -9,7 +9,7 @@ namespace Gym_Booking_Manager
 {
     internal class Customer : User , ICSVable , IComparable<Customer>
     {
-        public Customer(string id,string name, string email, string phone, string password) : base(id,name,email,phone,password)
+        public Customer(int id,string name, string email, string phone, string password) : base(id,name,email,phone,password)
         {
 
         }
