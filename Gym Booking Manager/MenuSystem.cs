@@ -11,8 +11,9 @@ using System.IO;
 namespace Gym_Booking_Manager
 {
     
-    public static class MenuSystem
+    public static class MenuSystem 
     {
+        
         public static void Login()
         {
             LocalStorage userdata = new LocalStorage();
@@ -52,7 +53,7 @@ namespace Gym_Booking_Manager
                                 if (user.password == password)
                                 {
                                     Console.WriteLine($"   Welcome {user.name}!");
-                                    StaffMenuMain();
+                                    StaffMenuMain(user.id);
                                 }
                                 else
                                 {
@@ -81,6 +82,7 @@ namespace Gym_Booking_Manager
                                 {
                                     count = 5;
                                     Console.WriteLine($"   Welcome {user.name}!");
+                                    int id = user.id;
                                     CustomerMenu();
                                 }
                                 else
@@ -105,7 +107,7 @@ namespace Gym_Booking_Manager
             
         }
         //This menu will appear when a user of the type "staff" logged in: 
-        public static void StaffMenuMain()
+        public static void StaffMenuMain(int id)
         {           
             Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] Calendar                                           │\n");
@@ -133,12 +135,12 @@ namespace Gym_Booking_Manager
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("   Entering Calendar.");
                     Linger();
-                    StaffMenuCalendar();
+                    StaffMenuCalendar(id);
                     break;
                 case 2:
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("   Entering Equipment.");
-                    StaffMenuEquipment();
+                    StaffMenuEquipment(id);
 
                     break;
                 case 3:
@@ -168,7 +170,7 @@ namespace Gym_Booking_Manager
             }
 
         }
-        public static void StaffMenuCalendar()
+        public static void StaffMenuCalendar(int id)
         {
 
             Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
@@ -182,7 +184,7 @@ namespace Gym_Booking_Manager
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
             Console.Write("                                  You are at --> Calendar Menu \n");
         }
-        public static void StaffMenuEquipment()
+        public static void StaffMenuEquipment(int id)
         {
             Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] List of Equipments                                 │\n");
@@ -194,55 +196,63 @@ namespace Gym_Booking_Manager
             Console.Write("                                 You are at --> Equipment Menu \n");
             Console.Write(">>");
             string selection = Console.ReadLine();
+            GymDatabaseContext equipment = new GymDatabaseContext();
             switch (selection)
             {
                 case "1":
-                    
-                    GymDatabaseContext equipment = new GymDatabaseContext();
-                    string fileName = "Equipment.csv";
-                    string filePath = Path.Combine(Directory.GetCurrentDirectory(), "GymDB", "storage", fileName);
-                    if (File.Exists(filePath))
+                    Console.WriteLine("Largeequipment available:");
+                    Console.WriteLine();
+                    foreach (Largeequipment largeequip in equipment.Read<Largeequipment>())
                     {
-                        string fileContents = File.ReadAllText(filePath);
-                        Console.WriteLine(fileContents);
+                        
+                            Console.WriteLine(largeequip.CSVify());
+                        
                     }
-                    else
+                    Console.WriteLine();
+                    Console.WriteLine("Sportsequipment available:");
+                    Console.WriteLine();
+                    foreach (Sportsequipment sportsequip in equipment.Read<Sportsequipment>())
                     {
-                        Console.WriteLine("File not found.");
+                        
+                            Console.WriteLine(sportsequip.CSVify());
+                        
                     }
-                    StaffMenuEquipment();
                     break;
+
                 case "2":
-                    Console.WriteLine("\n Reserve Equipment");
+                    Console.WriteLine("\n Reserve Sportsequipment");
                     Console.WriteLine("------------------------------------------------");
                     Console.Write("Enter the name of the equipment you wish to reserve: ");
                     string equipmentName = Console.ReadLine();
+                    
+                    foreach (Sportsequipment sportsequip in equipment.Read<Sportsequipment>("name", equipmentName))
+                    {
+                        if (sportsequip.IsBooked == false)
+                        {
+                            sportsequip.id = id;
+                            sportsequip.IsBooked = true;
+                            Console.WriteLine($"You reserved {sportsequip.name}");
+                        }
+                    }
 
-                    string fileName2 = "Sportsequipment.csv";
-                    string filePath2 = Path.Combine(Directory.GetCurrentDirectory(), "GymDB", "storage", fileName2);
-                    if (File.Exists(filePath2))
-                    {
-                        string fileContents = File.ReadAllText(filePath2);
-                        if (fileContents.Contains(equipmentName))
-                        {
-                            // Update the CSV file to mark the equipment as reserved
-                            string newFileContents = fileContents.Replace($"{equipmentName},Available", $"{equipmentName},Reserved");
-                            File.WriteAllText(filePath2, newFileContents);
-                            Console.WriteLine($"Equipment {equipmentName} reserved.");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Equipment {equipmentName} not found.");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("File not found.");
-                    }
-                    Console.WriteLine("------------------------------------------------");
-                    StaffMenuEquipment();
+
                     break;
+                case "3":
+                    Console.WriteLine("\n Reserve Large equipment");
+                    Console.WriteLine("------------------------------------------------");
+                    Console.Write("Enter the name of the equipment you wish to reserve: ");
+                    string equipmentName1 = Console.ReadLine();
 
+                    foreach (Largeequipment largeequip in equipment.Read<Largeequipment>("name", equipmentName1))
+                    {
+                        if (largeequip.IsBooked == false)
+                        {
+                            largeequip.id = id;
+                            largeequip.IsBooked = true;
+                            Console.WriteLine($"You reserved {largeequip.name}");
+                        }
+                    }
+                    break;
                 case "5":
                     Console.WriteLine("\n Help");
                     Console.WriteLine("------------------------------------------------");
@@ -259,11 +269,11 @@ namespace Gym_Booking_Manager
                 case "6":
                     Console.WriteLine("\n Main Menu");
                     Console.WriteLine("------------------------------------------------");
-                    StaffMenuMain();
+                    StaffMenuMain(id);
                     break;
                 default:
                     Console.WriteLine("\n Invalid selection. Please try again.");
-                    StaffMenuEquipment();
+                    StaffMenuEquipment(id);
                     break;
             }
         }

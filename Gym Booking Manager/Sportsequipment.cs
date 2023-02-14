@@ -8,30 +8,23 @@ using static Gym_Booking_Manager.Space;
 
 namespace Gym_Booking_Manager
 {
-    internal class Sportsequipment
+    internal class Sportsequipment : Equipment, ICSVable, IComparable<Sportsequipment>
     {
-        public string name { get; set; }
-        public string Item { get; set; }
-        public string ID { get; set; }
 
-        public bool IsBooked()
+        public override bool IsAvailable()
         {
 
             return true;
 
         }
-        protected Sportsequipment(string name, string Item, string ID)
+        protected Sportsequipment(string name, int id, int uniqueID) : base(name, id, uniqueID)
         {
 
-            this.name = name;
-            this.Item = Item;
-            this.ID = ID;
+        
         }
-        public Sportsequipment(Dictionary<String, String> constructionArgs)
+        public Sportsequipment(Dictionary<String, String> constructionArgs) : base (constructionArgs) 
         {
-            this.name = constructionArgs[nameof(name)];
-            this.ID = constructionArgs[nameof(ID)];
-            this.Item = constructionArgs[nameof(Item)];
+            
         }
         public override string ToString()
         {
@@ -39,9 +32,17 @@ namespace Gym_Booking_Manager
         }
         public string CSVify()
         {
-            return $"{nameof(name)}:{name},{nameof(ID)}:{ID},{nameof(IsBooked)}:{IsBooked} ";
+            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{nameof(id)}:{id},{nameof(IsBooked)}:{IsBooked.ToString()} ";
         }
-      
+        public int CompareTo(Sportsequipment? other)
+        {
+            // If other is not a valid object reference, this instance is greater.
+            if (other == null) return 1;
+            // When category is the same, sort on name.
+            return this.uniqueID.CompareTo(other.uniqueID);
+            
+        }
+
 
 
 

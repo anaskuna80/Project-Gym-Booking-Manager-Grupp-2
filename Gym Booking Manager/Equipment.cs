@@ -11,27 +11,31 @@ using static Gym_Booking_Manager.Space;
 
 namespace Gym_Booking_Manager
 {
-    internal class Equipment
+    internal class Equipment: ICSVable, IComparable<Equipment>
     {
-        public string ID { get; set; }
-        public string Name { get; set; }
+        public int uniqueID { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
         public Calendar Calendar { get; set; }  
-        public bool IsBooked { get; internal set; }
-        public bool IsAvailable()
+        public bool IsBooked { get; set; }
+        public virtual bool IsAvailable()
         {
             return true;
         }
-        protected Equipment(string id, string name)
+        protected Equipment(string name, int id, int uniqueID)
         {
-            this.ID = id;
-            this.Name = name;
+            this.id = id;
+            this.name = name;
+            this.uniqueID = uniqueID;
             
         }
         public Equipment(Dictionary<String, String> constructionArgs)
         {
-            this.ID = constructionArgs[nameof(ID)];
-            this.Name = constructionArgs[nameof(Name)];
+            this.id = Convert.ToInt32(constructionArgs[nameof(id)]);
+            this.name = constructionArgs[nameof(name)];
+            this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
             
+
         }
         public override string ToString()
         {
@@ -39,7 +43,15 @@ namespace Gym_Booking_Manager
         }
         public string CSVify()
         {
-            return $"{nameof(Name)}:{Name},{nameof(ID)}:{ID},{nameof(IsBooked)}:{IsBooked} ";
+            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{nameof(id)}:{id},{nameof(IsBooked)}:{IsBooked.ToString()} ";
+        }
+        public int CompareTo(Equipment? other)
+        {
+            // If other is not a valid object reference, this instance is greater.
+            if (other == null) return 1;
+            // When category is the same, sort on name.
+            return this.uniqueID.CompareTo(other.uniqueID);
+            
         }
     }
 }

@@ -8,6 +8,7 @@ namespace Gym_Booking_Manager
 {
     internal class Program 
     {
+        
         static void Main(string[] args)
         {
 
@@ -32,12 +33,12 @@ namespace Gym_Booking_Manager
             //Console.WriteLine("User added");
 
 
-
+            
 
             MenuSystem.Login();
             //UserMgmt.AddStaff();
             //UserMgmt.DelStaff();
-            MenuSystem.StaffMenuEquipment();
+            //MenuSystem.StaffMenuEquipment();
 
         }       // Static methods for the program
     }
