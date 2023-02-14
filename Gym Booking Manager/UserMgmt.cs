@@ -23,7 +23,7 @@ namespace Gym_Booking_Manager
             Console.WriteLine("Input Name: ");
             string name = Console.ReadLine();
             Console.WriteLine("Input ID: ");
-            string id = Console.ReadLine();
+            int id = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Input Email: ");
             string email = Console.ReadLine();
             Console.WriteLine("Input Phone: ");
@@ -55,7 +55,7 @@ namespace Gym_Booking_Manager
             Console.WriteLine("Input Name: ");
             string name = Console.ReadLine();
             Console.WriteLine("Input ID: ");
-            string id = Console.ReadLine();
+            int id = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Input Email: ");
             string email = Console.ReadLine();
             Console.WriteLine("Input Phone: ");
@@ -87,7 +87,7 @@ namespace Gym_Booking_Manager
 
 
             Console.WriteLine("Enter the ID of the Staff to be deleted:");
-            string staffId = Console.ReadLine();
+            int staffId = Convert.ToInt32(Console.ReadLine());
 
             Staff user = staffList.FirstOrDefault(s => s.id == staffId);
 
@@ -120,7 +120,7 @@ namespace Gym_Booking_Manager
 
 
             Console.WriteLine("Enter the ID of the Customer to be deleted:");
-            string customerId = Console.ReadLine();
+            int customerId = Convert.ToInt32(Console.ReadLine());
 
             Customer user = customerList.FirstOrDefault(s => s.id == customerId);
 
