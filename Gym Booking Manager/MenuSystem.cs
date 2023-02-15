@@ -115,63 +115,66 @@ namespace Gym_Booking_Manager
         //This menu will appear when a user of the type "staff" logged in: 
         public static void StaffMenuMain(int id)
         {
-            Console.Write("   ┌────────────────┐                                          \n");
-            Console.Write("   │   Main Menu    │                                          \n");
-            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
-            Console.Write("   │-- [1] Calendar                                           │\n");
-            Console.Write("   │-- [2] Equipment                                          │\n");
-            Console.Write("   │-- [3] Spaces                                             │\n");
-            Console.Write("   │-- [4] Users                                              │\n");
-            Console.Write("   │                                                          │\n");
-            Console.Write("   │-- [5] Help                                               │\n");
-            Console.Write("   │-- [6] Logout/Exit                                        │\n");
-            Console.Write("   └──────────────────────────────────────────────────────────┘\n");
-            Console.Write("   >> ");          
-            int choice = Convert.ToInt32(Console.ReadLine());
-            switch (choice)
+            do
             {
-                case 1:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("   Entering Calendar.");
-                    Linger();
-                    StaffMenuCalendar(id);
-                    break;
-                case 2:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("   Entering Equipment.");
-                    StaffMenuEquipment(id);
-                    Linger();
-                    break;
-                case 3:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("   Entering Spaces.");
-                    Linger();
-                    StaffMenuSpaces(id);                  
-                    break;
-                case 4:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("   Entering Users.");
-                    Linger();
 
-                    break;
-                case 5:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("   Entering Help.");
-                    Linger();
-                    StaffHelp();
-                    break;
-                case 6:
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("   Logging out.");
-                    Linger();
-                    Environment.Exit(0);
-                    break;
-                default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("   Invalid choice!");
-                    break;
-            }
+                Console.Write("   ┌────────────────┐                                          \n");
+                Console.Write("   │   Main Menu    │                                          \n");
+                Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
+                Console.Write("   │-- [1] Calendar                                           │\n");
+                Console.Write("   │-- [2] Equipment                                          │\n");
+                Console.Write("   │-- [3] Spaces                                             │\n");
+                Console.Write("   │-- [4] Users                                              │\n");
+                Console.Write("   │                                                          │\n");
+                Console.Write("   │-- [5] Help                                               │\n");
+                Console.Write("   │-- [6] Logout/Exit                                        │\n");
+                Console.Write("   └──────────────────────────────────────────────────────────┘\n");
+                Console.Write("   >> ");
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("   Entering Calendar.");
+                        Linger();
+                        StaffMenuCalendar(id);
+                        break;
+                    case 2:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("   Entering Equipment.");
+                        StaffMenuEquipment(id);
+                        Linger();
+                        break;
+                    case 3:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("   Entering Spaces.");
+                        Linger();
+                        StaffMenuSpaces(id);
+                        break;
+                    case 4:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("   Entering Users.");
+                        Linger();
 
+                        break;
+                    case 5:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("   Entering Help.");
+                        Linger();
+                        StaffHelp();
+                        break;
+                    case 6:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("   Logging out.");
+                        Linger();
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("   Invalid choice!");
+                        break;
+                }
+            } while (true);
         }
         public static void StaffMenuCalendar(int id)
         {
