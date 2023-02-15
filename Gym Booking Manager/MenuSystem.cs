@@ -115,9 +115,10 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [2] Equipment                                          │\n");
             Console.Write("   │-- [3] Spaces                                             │\n");
             Console.Write("   │-- [4] Users                                              │\n");
+            Console.Write("   │-- [5] group Schedule                                     │\n");
             Console.Write("   │                                                          │\n");
-            Console.Write("   │-- [5] Help                                               │\n");
-            Console.Write("   │-- [6] Logout/Exit                                        │\n");
+            Console.Write("   │-- [6] Help                                               │\n");
+            Console.Write("   │-- [7] Logout/Exit                                        │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
             Console.Write("   Please enter your selection >");          
             /* if (selection != "1,2,3,4,5,6,7,8") magic code here!}
@@ -154,10 +155,16 @@ namespace Gym_Booking_Manager
                     Console.WriteLine("   Entering Users.");
                     Linger();
                     break;
-                case 5:
+                case 5:                   
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("   EnteringGroupSchedule.");
+                    StaffMenuGroupSchedule(id);
+                    break;
+
+                case 6:
                     StaffHelp();
                     break;
-                case 6:
+                case 7:
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("   Logging out.");
                     Linger();
@@ -167,6 +174,62 @@ namespace Gym_Booking_Manager
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("   Invalid choice!");
                     Linger();
+                    break;
+            }
+
+        }
+        public static void StaffMenuGroupSchedule(int id)
+        {
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │   Spaces       │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
+            Console.Write("   │-- [1] View GroupSchedule                                 │\n");
+            Console.Write("   │-- [2] Add Group Activity to GroupSchedule                │\n");
+            Console.Write("   │                                                          │\n");
+            Console.Write("   │-- [3] Help                                               │\n");
+            Console.Write("   │-- [4] Main Menu                                          │\n");
+            Console.Write("   └──────────────────────────────────────────────────────────┘\n");
+            string selection = Console.ReadLine();
+            GymDatabaseContext space1 = new GymDatabaseContext();
+            switch (selection)
+            {
+                case "1":
+                    Console.WriteLine("Group Activitys::");
+                    Console.WriteLine();
+                    
+                    GroupSchedule.ViewSchedule();
+                    Console.WriteLine();
+                    break;
+
+                case "2":
+                    Console.WriteLine("\n Create Group Activity");
+                    Console.WriteLine("------------------------------------------------");
+                    
+                    GroupSchedule.AddActivity();
+
+
+                    break;
+
+                case "5":
+                    Console.WriteLine("\n Help");
+                    Console.WriteLine("------------------------------------------------");
+                    Console.WriteLine("Welcome to the Help section of the Spaces Menu!");
+                    Console.WriteLine("\n [1] - View Booked Spaces");
+                    Console.WriteLine("Displays of all booking spaces.");
+                    Console.WriteLine("\n [2] - Reserve Space");
+                    Console.WriteLine("Allows you to reserve a specific place of space.");
+                    Console.WriteLine("\n [6] - Main Menu");
+                    Console.WriteLine("Returns you to the Main Menu.");
+                    Console.WriteLine("------------------------------------------------");
+                    break;
+
+                case "6":
+                    Console.Clear();
+                    StaffMenuSpaces(id);
+                    break;
+                default:
+                    Console.WriteLine("\n Invalid selection. Please try again.");
+                    StaffMenuSpaces(id);
                     break;
             }
 
