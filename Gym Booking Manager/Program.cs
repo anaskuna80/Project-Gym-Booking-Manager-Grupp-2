@@ -1,5 +1,6 @@
 ﻿using Gym_Booking_Manager;
 using System.Runtime.CompilerServices;
+using System.Xml;
 
 #if DEBUG
 [assembly: InternalsVisibleTo("Tests")]
