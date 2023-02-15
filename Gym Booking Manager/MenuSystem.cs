@@ -126,15 +126,7 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [5] Help                                               │\n");
             Console.Write("   │-- [6] Logout/Exit                                        │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
-            Console.Write("   Please enter your selection >");          
-            /* if (selection != "1,2,3,4,5,6,7,8") magic code here!}
-             * 1 if (selection == 1) then StaffMenuCalendar();
-             * 2 if (selection == 2) then StaffMenuEquipment();
-             * 3 if (selection == 3) then StaffMenuSpaces();
-             * 4 if (selection == 4) then StaffMenuUsers();
-             * 5 if (selection == 5) then deploy the huge documentation PDF!
-             * 6 if (selection == 6) the Logout(); NYI
-             */
+            Console.Write("   >> ");          
             int choice = Convert.ToInt32(Console.ReadLine());
             switch (choice)
             {
@@ -148,20 +140,24 @@ namespace Gym_Booking_Manager
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("   Entering Equipment.");
                     StaffMenuEquipment(id);
-
+                    Linger();
                     break;
                 case 3:
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("   Entering Spaces.");
-                    StaffMenuSpaces(id);
-                    //Linger();
+                    Linger();
+                    StaffMenuSpaces(id);                  
                     break;
                 case 4:
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("   Entering Users.");
                     Linger();
+
                     break;
                 case 5:
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("   Entering Help.");
+                    Linger();
                     StaffHelp();
                     break;
                 case 6:
@@ -173,7 +169,6 @@ namespace Gym_Booking_Manager
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("   Invalid choice!");
-                    Linger();
                     break;
             }
 
