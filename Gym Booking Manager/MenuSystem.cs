@@ -163,6 +163,7 @@ namespace Gym_Booking_Manager
                         Console.WriteLine("   EnteringGroupSchedule.");
                         Linger();
                         StaffMenuGroupSchedule(id);
+                        break;
                     case 6:
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("   Entering Help.");
@@ -188,7 +189,7 @@ namespace Gym_Booking_Manager
             Console.Write("   │   Spaces       │                                          \n");
             Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] View all Group Activitys                           │\n");
-            Console.Write("   │-- [2] Add  Group activity                               │\n");
+            Console.Write("   │-- [2] Add  Group activity                                │\n");
             Console.Write("   │                                                          │\n");
             Console.Write("   │-- [3] Help                                               │\n");
             Console.Write("   │-- [4] Main Menu                                          │\n");
