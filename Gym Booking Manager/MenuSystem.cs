@@ -587,9 +587,10 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [4] Schedules                                          │\n");
             Console.Write("   │-- [5] Spaces                                             │\n");
             Console.Write("   │-- [6] User                                               │\n");
+            Console.Write("   │-- [7] group Schedule                                     │\n");
             Console.Write("   │                                                          │\n");
-            Console.Write("   │-- [7] Help                                               │\n");
-            Console.Write("   │-- [8] Logout/Exit                                        │\n");
+            Console.Write("   │-- [8] Help                                               │\n");
+            Console.Write("   │-- [9] Logout/Exit                                        │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
         }
         public static void NonMemberCustomerMenu()
