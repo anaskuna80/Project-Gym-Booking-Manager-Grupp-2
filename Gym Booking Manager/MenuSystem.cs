@@ -137,25 +137,25 @@ namespace Gym_Booking_Manager
                 {
                     case 1:
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("   Entering Calendar.");
+                        Console.Write("   Entering Calendar.");
                         Linger();
                         StaffMenuCalendar(id);
                         break;
                     case 2:
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("   Entering Equipment.");
+                        Console.Write("   Entering Equipment.");
                         StaffMenuEquipment(id);
                         Linger();
                         break;
                     case 3:
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("   Entering Spaces.");
+                        Console.Write("   Entering Spaces.");
                         Linger();
                         StaffMenuSpaces(id);
                         break;
                     case 4:
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("   Entering Users.");
+                        Console.Write("   Entering Users.");
                         Linger();
 
                         break;
@@ -179,13 +179,13 @@ namespace Gym_Booking_Manager
                         break;
                     case 8:
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("   Logging out.");
+                        Console.Write("   Logging out.");
                         Linger();
                         Environment.Exit(0);
                         break;
                     default:
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("   Invalid choice!");
+                        Console.Write("   Invalid choice!");
                         break;
                 }
             } while (true);
