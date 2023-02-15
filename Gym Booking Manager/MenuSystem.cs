@@ -145,7 +145,8 @@ namespace Gym_Booking_Manager
                 case 3:
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("   Entering Spaces.");
-                    Linger();
+                    SpacesAvail.ChooseSpace();
+                    //Linger();
                     break;
                 case 4:
                     Console.ForegroundColor = ConsoleColor.Yellow;
