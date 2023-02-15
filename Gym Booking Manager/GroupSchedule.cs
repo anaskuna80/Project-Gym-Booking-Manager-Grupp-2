@@ -143,7 +143,7 @@ namespace Gym_Booking_Manager
                 Console.WriteLine($"You have removed {activity.name} from the groupschedule");
             }
         }
-        public void UpdateActivity()
+        public static void UpdateActivity()
         {
             GymDatabaseContext updateactivity = new GymDatabaseContext();
             ViewSchedule();
