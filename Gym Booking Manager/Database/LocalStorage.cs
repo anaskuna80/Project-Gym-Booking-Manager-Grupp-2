@@ -30,8 +30,7 @@ namespace Gym_Booking_Manager
         public DbSet<Staff> staffs;
         public DbSet<Customer> customer;
         public DbSet<Sportsequipment> sportsequipment;
-        public DbSet<SpacesAvail> spacesavail;
-
+        public DbSet<GroupSchedule> groupactivities;
 
 
         static private readonly char sep = Path.DirectorySeparatorChar;
@@ -41,7 +40,7 @@ namespace Gym_Booking_Manager
         static private readonly string fpathSpace3 = $"{storage}{sep}sportsequipment.csv";
         static private readonly string fpathSpace4 = $"{storage}{sep}customer.csv";
         static private readonly string fpathSpace5 = $"{storage}{sep}largeequipment.csv";
-        static private readonly string fpathSpace6 = $"{storage}{sep}spacesavail.csv";
+        static private readonly string fpathSpace6 = $"{storage}{sep}groupactivities.csv";
         //static private readonly string fpathSpace6 = $"{storage}{sep}equipment.csv";
         // private filepath1, 2, 3 etc...
 
@@ -53,7 +52,7 @@ namespace Gym_Booking_Manager
             this.sportsequipment= new DbSet<Sportsequipment>(fpathSpace3);
             this.customer = new DbSet<Customer>(fpathSpace4);
             this.largeequipment = new DbSet<Largeequipment>(fpathSpace5);
-            this.spacesavail = new DbSet<SpacesAvail>(fpathSpace6);
+            this.groupactivities = new DbSet<GroupSchedule>(fpathSpace6);
         }
 
         public bool Create<T>(T entity)
@@ -91,8 +90,9 @@ namespace Gym_Booking_Manager
                     return this.customer;
                 case "Largeequipment":
                     return this.largeequipment;
-                case "SpacesAvail":
-                    return this.spacesavail;
+                case "GroupSchedule":
+                    return this.groupactivities;
+
                 // Add more cases for which DbSet<T> attributes exist within the class.
                 default:
                     throw new ArgumentException("Dataset for the argument type does not exist.");

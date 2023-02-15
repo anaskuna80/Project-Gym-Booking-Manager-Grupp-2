@@ -7,25 +7,37 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 #if DEBUG
 [assembly: InternalsVisibleTo("Tests")]
 #endif
 namespace Gym_Booking_Manager
 {
-    internal class GroupSchedule 
+    internal class GroupSchedule : GroupActitity
     {
         private List<GroupActitity> activites;
 
-        public void ViewSchedule()
+        public GroupSchedule(string name,int participantlimit,string instructor,int uniqueID) : base(name, participantlimit,instructor,uniqueID)
         {
-            foreach (GroupActitity activity in activites)
+            this.activites = new List<GroupActitity>();
+        }
+
+        public GroupSchedule(Dictionary<String, String> constructionArgs) : base( constructionArgs)
+        {
+           
+
+        }
+        public static void ViewSchedule()
+        {
+            GymDatabaseContext equipment = new GymDatabaseContext();
+            foreach (GroupSchedule activity in equipment.Read<GroupSchedule>())
             {
                 Console.WriteLine(activity);
             }
 
         }
-        public void AddActivity()
+        public static void AddActivity()
         {
             GymDatabaseContext equipment = new GymDatabaseContext();
             Console.Write("Name of your Activity:");
@@ -34,9 +46,9 @@ namespace Gym_Booking_Manager
             int participantlimit = Convert.ToInt32(Console.ReadLine());
             Console.Write("Name for the instructor?:");
             string instuctor = Console.ReadLine();
-            Console.Write("UniqueID for the Activity? 500-600");
+            Console.Write("UniqueID for the Activity? (500-600)");
             int uniqueid = Convert.ToInt32(Console.ReadLine());
-            GroupActitity activity = new GroupActitity(name,participantlimit,instuctor,uniqueid);
+            GroupSchedule activity = new GroupSchedule(name,participantlimit,instuctor,uniqueid);
             Console.WriteLine("Sports equipment:");
             foreach (Sportsequipment sportsequip in equipment.Read<Sportsequipment>())
             {
@@ -93,7 +105,8 @@ namespace Gym_Booking_Manager
             }
             //space reserv
 
-            this.activites.Add(activity);
+            //this.activites.Add(activity);
+            equipment.Create<GroupSchedule>(activity);
         }
         public void RemoveActivity(GroupActitity activityID)
         {

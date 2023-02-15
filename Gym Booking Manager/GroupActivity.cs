@@ -6,10 +6,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static Gym_Booking_Manager.Space;
 
 namespace Gym_Booking_Manager
 {
-    internal class GroupActitity : GroupSchedule, ICSVable, IComparable<GroupActitity>
+    internal class GroupActitity : ICSVable, IComparable<GroupActitity>
     {
         public string name { get; set; }
         public int uniqueID { get; set; }
@@ -29,7 +30,15 @@ namespace Gym_Booking_Manager
             this .uniqueID = uniqueID;
             //this.timeSlot = timeslot;
         }
+        public GroupActitity(Dictionary<String, String> constructionArgs)
+        {
+            this.name = constructionArgs[nameof(name)];
+            this.participantLimit = Convert.ToInt32(constructionArgs[nameof(participantLimit)]);
+            this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
+            this.instructor = constructionArgs[nameof(instructor)];
 
+
+        }
 
 
         public void SignUp(User participant)
