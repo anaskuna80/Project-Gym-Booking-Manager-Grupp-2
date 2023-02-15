@@ -197,9 +197,11 @@ namespace Gym_Booking_Manager
             Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] View all Group Activities                          │\n");
             Console.Write("   │-- [2] Add  Group activity                                │\n");
+            Console.Write("   │-- [3] Remove Group activity                              │\n");
+            Console.Write("   │-- [4] Update Group activity                              │\n");
             Console.Write("   │                                                          │\n");
-            Console.Write("   │-- [3] Help                                               │\n");
-            Console.Write("   │-- [4] Main Menu                                          │\n");
+            Console.Write("   │-- [5] Help                                               │\n");
+            Console.Write("   │-- [6] Main Menu                                          │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
             string selection = Console.ReadLine();
             switch (selection)
@@ -215,8 +217,16 @@ namespace Gym_Booking_Manager
                     Console.WriteLine("\n Add Group Activity");
                     Console.WriteLine("------------------------------------------------");
                     GroupSchedule.AddActivity();
-
-
+                    break;
+                case "3":
+                    Console.WriteLine("\n Remove Group Activity");
+                    Console.WriteLine("------------------------------------------------");
+                    GroupSchedule.RemoveActivity();
+                    break;
+                case "4":
+                    Console.WriteLine("\n Update Group Activity");
+                    Console.WriteLine("------------------------------------------------");
+                    GroupSchedule.UpdateActivity();
                     break;
 
                 case "5":
@@ -227,6 +237,10 @@ namespace Gym_Booking_Manager
                     Console.WriteLine("Displays of all Group Activitys.");
                     Console.WriteLine("\n [2] - Add Group Activity");
                     Console.WriteLine("Allows you to add a Group Activity.");
+                    Console.WriteLine("\n [3] - Remove Group Activity");
+                    Console.WriteLine("Allows you to remove a Group Activity.");
+                    Console.WriteLine("\n [4] - Update Group Activity");
+                    Console.WriteLine("Allows you to Update a Group Activity.");
                     Console.WriteLine("\n [6] - Main Menu");
                     Console.WriteLine("Returns you to the Main Menu.");
                     Console.WriteLine("------------------------------------------------");

@@ -40,6 +40,7 @@ namespace Gym_Booking_Manager
         public static void AddActivity()
         {
             GymDatabaseContext equipment = new GymDatabaseContext();
+            GymDatabaseContext space = new GymDatabaseContext();
             Console.Write("Name of your Activity:");
             string name = Console.ReadLine();
             Console.Write("How many participants?:");
@@ -103,47 +104,87 @@ namespace Gym_Booking_Manager
 
                 if (count2 == totalequip) break;
             }
-            //space reserv
+            Console.WriteLine();
+            foreach (Space spaces in space.Read<Space>())
+            {
+                Console.WriteLine(spaces);
+            }
+            Console.WriteLine("--------------------------------------------------");
+            Console.Write("What space do you need?:");
+            string choise = Console.ReadLine();
+            foreach (Space space1 in space.Read<Space>("category", choise))
+            {
+                if (space1.id > 0)
+                {
+                    Console.WriteLine($"Notification sent to id:({space1.id}) email and number that the space is been booked for a group activity");
+                    space1.id = uniqueid;
+                    space1.isBooked = true;
+                    Space newspace = new Space(space1.category,space1.id,space1.uniqueID,space1.isBooked);
+                    space.Update<Space>(newspace,space1);
+                    Console.WriteLine($"you reserved {space1.category}");
+                    break;
+
+                }
+            }
+            
 
             //this.activites.Add(activity);
             equipment.Create<GroupSchedule>(activity);
         }
-        public void RemoveActivity(GroupActitity activityID)
+        public static void RemoveActivity()
         {
-            activites.Remove(activityID);
-        }
-        public void UpdateActivity(GroupActitity activityID)
-        {
-            foreach (GroupActitity activity in activites)
+            GymDatabaseContext grpactivity= new GymDatabaseContext();
+            ViewSchedule();
+            Console.Write("What Activity do you want to remove?:");
+            string remove = Console.ReadLine();
+            foreach (GroupSchedule activity in grpactivity.Read<GroupSchedule>("name", remove))
             {
-                if (activity.name == activityID.name)
+                grpactivity.Delete<GroupSchedule>(activity);
+                Console.WriteLine($"You have removed {activity.name} from the groupschedule");
+            }
+        }
+        public void UpdateActivity()
+        {
+            GymDatabaseContext updateactivity = new GymDatabaseContext();
+            ViewSchedule();
+            Console.Write("What activity do you want to update?");
+            string choise = Console.ReadLine();
+            foreach (GroupSchedule activity in updateactivity.Read<GroupSchedule>("name",choise))
+            {
+                if (activity.name == choise)
                 {
-                    Console.WriteLine($"[1]ActivityID:{activity.name}, [2]participant limit:{activity.participantLimit}, [3]instructor:{activity.instructor}"); //  [4]time:{activity.timeSlot} 
+                    Console.WriteLine($"[1]name:{activity.name}, [2]participant limit:{activity.participantLimit}, [3]instructor:{activity.instructor}"); //  [4]time:{activity.timeSlot} 
                     Console.WriteLine("what do you want to update?");
                     int change = Convert.ToInt32(Console.ReadLine());
                     if (change == 1)
                     {
-                        Console.Write("ActivityID:");
+                        Console.Write("name:");
                         string id = Console.ReadLine();
                         activity.name = id;
+                        GroupSchedule newgroup = new GroupSchedule(activity.name,activity.participantLimit,activity.instructor,activity.uniqueID);
+                        updateactivity.Update<GroupSchedule>(newgroup,activity);
+                        Console.WriteLine($"Activity name has been updated to({activity.name})");
+                        break;
                     }
                     else if (change == 2)
                     {
                         Console.Write("participant limit:");
                         int max = Convert.ToInt32(Console.ReadLine());
                         activity.participantLimit = max;
+                        GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor, activity.uniqueID);
+                        updateactivity.Update<GroupSchedule>(newgroup, activity);
+                        Console.WriteLine($"Activity particpant limit has been updated to({activity.participantLimit})");
+                        break;
                     }
                     else if (change == 3)
                     {
                         Console.Write("instructor:");
                         string person = Console.ReadLine();
                         activity.instructor= person;
-                    }
-                    else if (change == 4)
-                    {
-                        Console.Write("time:");
-                        string time = Console.ReadLine();
-                        //activity.timeSlot = time;
+                        GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor, activity.uniqueID);
+                        updateactivity.Update<GroupSchedule>(newgroup, activity);
+                        Console.WriteLine($"Activity instructor has been updated to({activity.instructor})");
+                        break;
                     }
                     else
                     {
