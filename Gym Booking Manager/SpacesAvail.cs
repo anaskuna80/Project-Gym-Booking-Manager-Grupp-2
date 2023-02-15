@@ -136,8 +136,8 @@ namespace Gym_Booking_Manager
             Console.WriteLine("You have booked the Lane for " + timeSlot);
 
 
-            spaces.Create<SpacesAvail>("id", "1", "isBooked", "true");
-
+            spaces.Update<SpacesAvail>("id", "1", "isBooked", "true");
+            
 
 
 
