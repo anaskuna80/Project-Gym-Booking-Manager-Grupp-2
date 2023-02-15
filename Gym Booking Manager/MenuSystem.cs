@@ -126,9 +126,10 @@ namespace Gym_Booking_Manager
                 Console.Write("   │-- [3] Spaces                                             │\n");
                 Console.Write("   │-- [4] Users                                              │\n");
                 Console.Write("   │-- [5] Group Schedule                                     │\n");
+                Console.Write("   │-- [6] Personal trainer                                   │\n");
                 Console.Write("   │                                                          │\n");
-                Console.Write("   │-- [6] Help                                               │\n");
-                Console.Write("   │-- [7] Logout/Exit                                        │\n");
+                Console.Write("   │-- [8] Help                                               │\n");
+                Console.Write("   │-- [9] Logout/Exit                                        │\n");
                 Console.Write("   └──────────────────────────────────────────────────────────┘\n");
                 Console.Write("   >> ");
                 int choice = Convert.ToInt32(Console.ReadLine());
@@ -160,17 +161,23 @@ namespace Gym_Booking_Manager
                         break;
                     case 5:
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("   EnteringGroupSchedule.");
+                        Console.WriteLine("   Entering GroupSchedule.");
                         Linger();
                         StaffMenuGroupSchedule(id);
                         break;
                     case 6:
                         Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("   Entering Personal Trainer.");
+                        Linger();
+                        StaffMenuPT();
+                        break;
+                    case 7:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("   Entering Help.");
                         Linger();
                         StaffHelp();
                         break;
-                    case 7:
+                    case 8:
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("   Logging out.");
                         Linger();
@@ -186,7 +193,7 @@ namespace Gym_Booking_Manager
         public static void StaffMenuGroupSchedule(int id)
         {
             Console.Write("   ┌────────────────┐                                          \n");
-            Console.Write("   │   Spaces       │                                          \n");
+            Console.Write("   │ GroupSchedule  │                                          \n");
             Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] View all Group Activities                          │\n");
             Console.Write("   │-- [2] Add  Group activity                                │\n");
@@ -232,6 +239,59 @@ namespace Gym_Booking_Manager
                 default:
                     Console.WriteLine("\n Invalid selection. Please try again.");
                     StaffMenuGroupSchedule(id);
+                    break;
+            }
+
+        }
+        public static void StaffMenuPT()
+        {
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │   PT           │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
+            Console.Write("   │-- [1] View available personal trainers                   │\n");
+            Console.Write("   │-- [2] Book Personal trainer                              │\n");
+            Console.Write("   │                                                          │\n");
+            Console.Write("   │-- [3] Help                                               │\n");
+            Console.Write("   │-- [4] Main Menu                                          │\n");
+            Console.Write("   └──────────────────────────────────────────────────────────┘\n");
+            string selection = Console.ReadLine();
+            switch (selection)
+            {
+                case "1":
+                    Console.WriteLine("Available Personal trainers:");
+                    Console.WriteLine();
+                    PersonalTrainer.ListPT();
+                    Console.WriteLine();
+                    break;
+
+                case "2":
+                    Console.WriteLine("\n Book Personal trainer");
+                    Console.WriteLine("------------------------------------------------");
+                    PersonalTrainer.BookPT();
+
+
+                    break;
+
+                case "5":
+                    Console.WriteLine("\n Help");
+                    Console.WriteLine("------------------------------------------------");
+                    Console.WriteLine("Welcome to the Help section of the PT Menu!");
+                    Console.WriteLine("\n [1] - View available personal trainer");
+                    Console.WriteLine("Displays of all available personal trainers.");
+                    Console.WriteLine("\n [2] - Book personal trainer");
+                    Console.WriteLine("Allows you to book a personal trainer");
+                    Console.WriteLine("\n [6] - Main Menu");
+                    Console.WriteLine("Returns you to the Main Menu.");
+                    Console.WriteLine("------------------------------------------------");
+                    break;
+
+                case "6":
+                    Console.Clear();
+                    StaffMenuMain(id);
+                    break;
+                default:
+                    Console.WriteLine("\n Invalid selection. Please try again.");
+                    StaffMenuPT();
                     break;
             }
 
