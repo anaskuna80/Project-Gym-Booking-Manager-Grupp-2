@@ -198,7 +198,7 @@ namespace Gym_Booking_Manager
             switch (selection)
             {
                 case "1":
-                    Console.WriteLine("Group Activitys:");
+                    Console.WriteLine("Group Activities:");
                     Console.WriteLine();
                     GroupSchedule.ViewSchedule();
                     Console.WriteLine();
