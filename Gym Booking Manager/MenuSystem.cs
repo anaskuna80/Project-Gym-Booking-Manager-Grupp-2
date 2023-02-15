@@ -188,7 +188,7 @@ namespace Gym_Booking_Manager
             Console.Write("   ┌────────────────┐                                          \n");
             Console.Write("   │   Spaces       │                                          \n");
             Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
-            Console.Write("   │-- [1] View all Group Activitys                           │\n");
+            Console.Write("   │-- [1] View all Group Activities                          │\n");
             Console.Write("   │-- [2] Add  Group activity                                │\n");
             Console.Write("   │                                                          │\n");
             Console.Write("   │-- [3] Help                                               │\n");
