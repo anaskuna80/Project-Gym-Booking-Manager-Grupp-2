@@ -147,7 +147,8 @@ namespace Gym_Booking_Manager
         {
             GymDatabaseContext updateactivity = new GymDatabaseContext();
             ViewSchedule();
-            Console.Write("What activity do you want to update?");
+            Console.WriteLine("What activity do you want to update?");
+            Console.Write("type the name of the activty");
             string choise = Console.ReadLine();
             foreach (GroupSchedule activity in updateactivity.Read<GroupSchedule>("name",choise))
             {
@@ -155,40 +156,49 @@ namespace Gym_Booking_Manager
                 {
                     Console.WriteLine($"[1]name:{activity.name}, [2]participant limit:{activity.participantLimit}, [3]instructor:{activity.instructor}"); //  [4]time:{activity.timeSlot} 
                     Console.WriteLine("what do you want to update?");
-                    int change = Convert.ToInt32(Console.ReadLine());
-                    if (change == 1)
+                    try
                     {
-                        Console.Write("name:");
-                        string id = Console.ReadLine();
-                        activity.name = id;
-                        GroupSchedule newgroup = new GroupSchedule(activity.name,activity.participantLimit,activity.instructor,activity.uniqueID);
-                        updateactivity.Update<GroupSchedule>(newgroup,activity);
-                        Console.WriteLine($"Activity name has been updated to({activity.name})");
-                        break;
+                        int change = Convert.ToInt32(Console.ReadLine());
+                        if (change == 1)
+                        {
+                            Console.Write("name:");
+                            string id = Console.ReadLine();
+                            activity.name = id;
+                            GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor, activity.uniqueID);
+                            updateactivity.Update<GroupSchedule>(newgroup, activity);
+                            Console.WriteLine($"Activity name has been updated to({activity.name})");
+                            break;
+                        }
+                        else if (change == 2)
+                        {
+                            Console.Write("participant limit:");
+                            int max = Convert.ToInt32(Console.ReadLine());
+                            activity.participantLimit = max;
+                            GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor, activity.uniqueID);
+                            updateactivity.Update<GroupSchedule>(newgroup, activity);
+                            Console.WriteLine($"Activity particpant limit has been updated to({activity.participantLimit})");
+                            break;
+                        }
+                        else if (change == 3)
+                        {
+                            Console.Write("instructor:");
+                            string person = Console.ReadLine();
+                            activity.instructor = person;
+                            GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor, activity.uniqueID);
+                            updateactivity.Update<GroupSchedule>(newgroup, activity);
+                            Console.WriteLine($"Activity instructor has been updated to({activity.instructor})");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Sorry please select 1-4");
+                        }
                     }
-                    else if (change == 2)
+                    catch
                     {
-                        Console.Write("participant limit:");
-                        int max = Convert.ToInt32(Console.ReadLine());
-                        activity.participantLimit = max;
-                        GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor, activity.uniqueID);
-                        updateactivity.Update<GroupSchedule>(newgroup, activity);
-                        Console.WriteLine($"Activity particpant limit has been updated to({activity.participantLimit})");
-                        break;
-                    }
-                    else if (change == 3)
-                    {
-                        Console.Write("instructor:");
-                        string person = Console.ReadLine();
-                        activity.instructor= person;
-                        GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor, activity.uniqueID);
-                        updateactivity.Update<GroupSchedule>(newgroup, activity);
-                        Console.WriteLine($"Activity instructor has been updated to({activity.instructor})");
-                        break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Sorry please select 1-4");
+                        Console.WriteLine();
+                        Console.WriteLine("Whoops wrong input..");
+                        Console.WriteLine("Please enter: 1,2 or 3 ");
                     }
                 }
             }
