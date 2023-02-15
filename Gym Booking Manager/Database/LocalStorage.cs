@@ -31,6 +31,8 @@ namespace Gym_Booking_Manager
         public DbSet<Customer> customer;
         public DbSet<Sportsequipment> sportsequipment;
         public DbSet<GroupSchedule> groupactivities;
+        public DbSet<PersonalTrainer> personaltrainer;
+
 
 
         static private readonly char sep = Path.DirectorySeparatorChar;
@@ -41,6 +43,7 @@ namespace Gym_Booking_Manager
         static private readonly string fpathSpace4 = $"{storage}{sep}customer.csv";
         static private readonly string fpathSpace5 = $"{storage}{sep}largeequipment.csv";
         static private readonly string fpathSpace6 = $"{storage}{sep}groupactivities.csv";
+        static private readonly string fpathSpace7 = $"{storage}{sep}personaltrainer.csv";
         //static private readonly string fpathSpace6 = $"{storage}{sep}equipment.csv";
         // private filepath1, 2, 3 etc...
 
@@ -53,6 +56,7 @@ namespace Gym_Booking_Manager
             this.customer = new DbSet<Customer>(fpathSpace4);
             this.largeequipment = new DbSet<Largeequipment>(fpathSpace5);
             this.groupactivities = new DbSet<GroupSchedule>(fpathSpace6);
+            this.personaltrainer = new DbSet<PersonalTrainer>(fpathSpace7)
         }
 
         public bool Create<T>(T entity)
@@ -92,6 +96,9 @@ namespace Gym_Booking_Manager
                     return this.largeequipment;
                 case "GroupSchedule":
                     return this.groupactivities;
+                case "PersonalTrainer":
+                    return this.personaltrainer;
+
 
                 // Add more cases for which DbSet<T> attributes exist within the class.
                 default:

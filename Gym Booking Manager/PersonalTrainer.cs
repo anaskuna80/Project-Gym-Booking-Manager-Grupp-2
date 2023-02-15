@@ -59,35 +59,5 @@ namespace Gym_Booking_Manager
                 return false;
             }
         }
-
-        /*public void AddEquipment(Equipment equipment)
-        {
-            EquipmentList.Add(equipment);
-        }
-
-        public void BookEquipment(Equipment equipment, IReservingEntity owner, DateTime startTime, DateTime endTime)
-        {
-            if (EquipmentList.Contains(equipment))
-            {
-                equipment.BookEquipment(owner, startTime, endTime);
-            }
-            else
-            {
-                Console.WriteLine("This equipment is not available for this personal trainer.");
-            }
-        }
-
-        public bool CancelEquipmentBooking(Equipment equipment, Reservation reservation)
-        {
-            if (EquipmentList.Contains(equipment))
-            {
-                return equipment.CancelBooking(reservation);
-            }
-            else
-            {
-                Console.WriteLine("This equipment is not available for this personal trainer.");
-                return false;
-            }
-        }*/
     }
 }
