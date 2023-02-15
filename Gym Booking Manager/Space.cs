@@ -29,7 +29,7 @@ namespace Gym_Booking_Manager
 
 
         //private static readonly List<Tuple<Category, int>> hourlyCosts = InitializeHourlyCosts(); // Costs may not be relevant for the prototype. Let's see what the time allows.
-        private Category category;
+        public Category category { get; set; }
         //public Category category { get; set; }
         public int id { get; set; }
         private readonly Calendar calendar;
@@ -49,10 +49,8 @@ namespace Gym_Booking_Manager
         public Space(Dictionary<String, String> constructionArgs)
         {
             this.id = Convert.ToInt32(constructionArgs[nameof(id)]);
-            if (!Category.TryParse(constructionArgs[nameof(category)], out this.category))
-            {
-                throw new ArgumentException("Couldn't parse a valid Space.Category value.", nameof(category));
-            }
+            this.category = (Category)
+                Enum.Parse(typeof(Category), constructionArgs[nameof(category)]);
             this.uniqueID = this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
             this.isBooked = Convert.ToBoolean(constructionArgs[nameof(isBooked)]);
             
@@ -88,9 +86,9 @@ namespace Gym_Booking_Manager
         }
         public enum Category
         {
-            Hall,
-            Lane,
-            Studio
+            hall,
+            lane,
+            studio
         }
 
         public void ViewTimeTable()

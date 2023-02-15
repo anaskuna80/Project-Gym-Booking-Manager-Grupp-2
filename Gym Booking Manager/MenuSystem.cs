@@ -133,25 +133,25 @@ namespace Gym_Booking_Manager
             {
                 case 1:
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write("   Entering Calendar.");
+                    Console.WriteLine("   Entering Calendar.");
                     Linger();
                     StaffMenuCalendar(id);
                     break;
                 case 2:
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write("   Entering Equipment.");
+                    Console.WriteLine("   Entering Equipment.");
                     StaffMenuEquipment(id);
 
                     break;
                 case 3:
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write("   Entering Spaces.");
-                    SpacesAvail.ChooseSpace();
+                    Console.WriteLine("   Entering Spaces.");
+                    StaffMenuSpaces(id);
                     //Linger();
                     break;
                 case 4:
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write("   Entering Users.");
+                    Console.WriteLine("   Entering Users.");
                     Linger();
                     break;
                 case 5:
@@ -159,13 +159,13 @@ namespace Gym_Booking_Manager
                     break;
                 case 6:
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write("   Logging out.");
+                    Console.WriteLine("   Logging out.");
                     Linger();
                     Environment.Exit(0);
                     break;
                 default:
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write("   Invalid choice!");
+                    Console.WriteLine("   Invalid choice!");
                     Linger();
                     break;
             }
@@ -309,7 +309,7 @@ namespace Gym_Booking_Manager
             }
         }
 
-        public static void StaffMenuSpaces()
+        public static void StaffMenuSpaces(int id)
         {
             Console.Write("   ┌────────────────┐                                          \n");
             Console.Write("   │   Spaces       │                                          \n");
@@ -343,7 +343,7 @@ namespace Gym_Booking_Manager
                     string space2 = Console.ReadLine();
 
 
-                    foreach (Space place2 in space1.Read<Space>("name", space2))
+                    foreach (Space place2 in space1.Read<Space>("category", space2))
                     {
                         if (place2.isBooked == false)
                         {
@@ -354,6 +354,7 @@ namespace Gym_Booking_Manager
                             Space newspace = new Space(place2.uniqueID, place2.category, place2.id, place2.isBooked);
                             space1.Update<Space>(newspace, place2);
                             Console.WriteLine($"You reserved {place2.uniqueID}");
+                            break;
                         }
                     }
 
@@ -375,11 +376,11 @@ namespace Gym_Booking_Manager
 
                 case "6":
                     Console.Clear();
-                    StaffMenuSpaces();
+                    StaffMenuSpaces(id);
                     break;
                 default:
                     Console.WriteLine("\n Invalid selection. Please try again.");
-                    StaffMenuSpaces();
+                    StaffMenuSpaces(id);
                     break;
             }
 

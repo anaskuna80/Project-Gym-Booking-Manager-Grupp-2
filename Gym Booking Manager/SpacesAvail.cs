@@ -109,7 +109,7 @@ namespace Gym_Booking_Manager
 
             Console.WriteLine("You have booked the Hall for " + timeSlot);
 
-            spaces.Update<SpacesAvail>("id", "1", "isBooked", "true");
+            //spaces.Update<SpacesAvail>("id", "1", "isBooked", "true");
             Console.WriteLine("Press any key to return to Main Menu");
             Console.ReadKey();
             MenuSystem.Login();
@@ -136,7 +136,7 @@ namespace Gym_Booking_Manager
             Console.WriteLine("You have booked the Lane for " + timeSlot);
 
 
-            spaces.Update<SpacesAvail>("id", "1", "isBooked", "true");
+           // spaces.Update<SpacesAvail>("id", "1", "isBooked", "true");
             
 
 
@@ -171,9 +171,9 @@ namespace Gym_Booking_Manager
             Console.WriteLine("Enter the timeSlot you want to book: ");
             string timeSlot = Console.ReadLine();
             //update timeslot
-            spaces.Update<SpacesAvail>("id", "1", "isBooked", "true");
+            //spaces.Update<SpacesAvail>("id", "1", "isBooked", "true");
             //ask for name and update name
-            spaces.Update<SpacesAvail>("id", "1", "name", "name");
+            //spaces.Update<SpacesAvail>("id", "1", "name", "name");
 
 
 
