@@ -3,29 +3,31 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Gym_Booking_Manager
 {
-    internal class GroupActitity : GroupSchedule
+    internal class GroupActitity : GroupSchedule, ICSVable, IComparable<GroupActitity>
     {
-        public string ActivityID { get; set; }
+        public string name { get; set; }
+        public int uniqueID { get; set; }
         public int participantLimit { get; set; }
         private List<User> participants;
-        private Space space;
-        private Equipment equipment;
-        public string instructor { get; set; }
-        public string timeSlot { get; set; }
 
-        public GroupActitity(string ActivityID, int participantlimit, string instructor, string timeslot)
+        public string instructor { get; set; }
+        //public string timeSlot { get; set; }
+
+        public GroupActitity(string name, int participantlimit, string instructor, int uniqueID)
         {
-            this.ActivityID = ActivityID;
+            this.name = name;
             this.participantLimit = participantlimit;
             this.instructor = instructor;
-            this.timeSlot = timeslot;
-            //this.equipment = new Equipment(name,20);
-            //this.space = new Space(Space.Category.Hall,name);
+            this.participants = new List<User>();
+            
+            this .uniqueID = uniqueID;
+            //this.timeSlot = timeslot;
         }
 
 
@@ -43,6 +45,22 @@ namespace Gym_Booking_Manager
 
         public void Modify()
         {
+
+        }
+        public override string ToString()
+        {
+            return this.CSVify();
+        }
+        public string CSVify()
+        {
+            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{nameof(participantLimit)}:{participantLimit},{nameof(instructor)}:{instructor} ";
+        }
+        public int CompareTo(GroupActitity? other)
+        {
+            // If other is not a valid object reference, this instance is greater.
+            if (other == null) return 1;
+            // When category is the same, sort on name.
+            return this.uniqueID.CompareTo(other.uniqueID);
 
         }
     }

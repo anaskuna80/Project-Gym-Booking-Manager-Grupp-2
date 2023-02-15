@@ -12,8 +12,32 @@ namespace Gym_Booking_Manager
         
         static void Main(string[] args)
         {
+            bool status = true;
+            string choice;
+            do 
+            {
+                Console.WriteLine("  ...");
+                MenuSystem.Login();
+                Console.WriteLine("   Do you want to restart? y/n\n   >> ");
+                choice = Console.ReadLine().ToLower();
+                if (choice == "y")
+                {
+                    MenuSystem.Login();
+                }
+                else if (choice == "n")
+                {
+                    Console.WriteLine("   Bye, then");
+                    status = false;
+                }
+                else
+                {
+                    Console.WriteLine("   Invalid command!");
+                }
+            } while (status = true);
 
-            /*Space space = new Space(Space.Category.Hall, "Emil");
+
+            /*
+            Space space = new Space(Space.Category.Hall, "Emil");
             GymDatabaseContext spaces = new GymDatabaseContext();           
             spaces.Create<Space>(space);
             Space space1 = new Space(Space.Category.Studio, "Erik");
@@ -21,18 +45,10 @@ namespace Gym_Booking_Manager
             Staff user = new Staff("emil","1","hej@hej","0903432423","hej123");
             spaces.Create<Staff>(user);
             Staff user1 = new Staff("erik", "2", "hej1@hej1", "070123424", "hej12345");
-            spaces.Create<Staff>(user1);*/
-            //GymDatabaseContext spaces = new GymDatabaseContext(); 
+            spaces.Create<Staff>(user1);
+            GymDatabaseContext spaces = new GymDatabaseContext(); 
 
-            //spaces.Read<Staff>("id", "2");
-
-            //Console.WriteLine("Tillagd");
-
-            //Staff Test
-            //Staff user = new Staff("Alex", "1", "alex@alex", "0701234567", "alex123");
-            //spaces.Create<Staff>(user);
-            //Console.WriteLine("User added");
-
+            spaces.Read<Staff>("id", "2");
 
             
 
@@ -40,6 +56,8 @@ namespace Gym_Booking_Manager
             //UserMgmt.AddStaff();
             //UserMgmt.DelStaff();
             //MenuSystem.StaffMenuEquipment();
+            //GroupSchedule activity = new GroupSchedule();
+            //activity.AddActivity();*/
 
         }       // Static methods for the program
     }
