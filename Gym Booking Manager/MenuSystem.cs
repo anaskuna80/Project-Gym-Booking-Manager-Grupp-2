@@ -125,9 +125,10 @@ namespace Gym_Booking_Manager
                 Console.Write("   │-- [2] Equipment                                          │\n");
                 Console.Write("   │-- [3] Spaces                                             │\n");
                 Console.Write("   │-- [4] Users                                              │\n");
+                Console.Write("   │-- [5] Group Schedule                                     │\n");
                 Console.Write("   │                                                          │\n");
-                Console.Write("   │-- [5] Help                                               │\n");
-                Console.Write("   │-- [6] Logout/Exit                                        │\n");
+                Console.Write("   │-- [6] Help                                               │\n");
+                Console.Write("   │-- [7] Logout/Exit                                        │\n");
                 Console.Write("   └──────────────────────────────────────────────────────────┘\n");
                 Console.Write("   >> ");
                 int choice = Convert.ToInt32(Console.ReadLine());
@@ -159,11 +160,16 @@ namespace Gym_Booking_Manager
                         break;
                     case 5:
                         Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("   EnteringGroupSchedule.");
+                        Linger();
+                        StaffMenuGroupSchedule(id);
+                    case 6:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("   Entering Help.");
                         Linger();
                         StaffHelp();
                         break;
-                    case 6:
+                    case 7:
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.WriteLine("   Logging out.");
                         Linger();
