@@ -182,6 +182,59 @@ namespace Gym_Booking_Manager
                 }
             } while (true);
         }
+        public static void StaffMenuGroupSchedule(int id)
+        {
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │   Spaces       │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
+            Console.Write("   │-- [1] View all Group Activitys                           │\n");
+            Console.Write("   │-- [2] Add  Group activity                               │\n");
+            Console.Write("   │                                                          │\n");
+            Console.Write("   │-- [3] Help                                               │\n");
+            Console.Write("   │-- [4] Main Menu                                          │\n");
+            Console.Write("   └──────────────────────────────────────────────────────────┘\n");
+            string selection = Console.ReadLine();
+            switch (selection)
+            {
+                case "1":
+                    Console.WriteLine("Group Activitys:");
+                    Console.WriteLine();
+                    GroupSchedule.ViewSchedule();
+                    Console.WriteLine();
+                    break;
+
+                case "2":
+                    Console.WriteLine("\n Add Group Activity");
+                    Console.WriteLine("------------------------------------------------");
+                    GroupSchedule.AddActivity();
+
+
+                    break;
+
+                case "5":
+                    Console.WriteLine("\n Help");
+                    Console.WriteLine("------------------------------------------------");
+                    Console.WriteLine("Welcome to the Help section of the Group Menu!");
+                    Console.WriteLine("\n [1] - View Group Activitys");
+                    Console.WriteLine("Displays of all Group Activitys.");
+                    Console.WriteLine("\n [2] - Add Group Activity");
+                    Console.WriteLine("Allows you to add a Group Activity.");
+                    Console.WriteLine("\n [6] - Main Menu");
+                    Console.WriteLine("Returns you to the Main Menu.");
+                    Console.WriteLine("------------------------------------------------");
+                    break;
+
+                case "6":
+                    Console.Clear();
+                    StaffMenuMain(id);
+                    break;
+                default:
+                    Console.WriteLine("\n Invalid selection. Please try again.");
+                    StaffMenuGroupSchedule(id);
+                    break;
+            }
+
+        }
         public static void StaffMenuCalendar(int id)
         {
             Console.Write("   ┌────────────────┐                                          \n");
