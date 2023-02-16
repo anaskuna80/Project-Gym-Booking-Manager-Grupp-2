@@ -13,34 +13,15 @@ namespace Gym_Booking_Manager
 {
     internal class PersonalTrainer : ICSVable, IComparable<PersonalTrainer>
     {
-        public enum PT
-        {
-            Emil,
-            Andreas,
-            Alex,
-            Tassanee
-        }
-        public Category category { get; set; }
+
         public int uniqueID { get; set; }
         public string name { get; set; }
-        public Calendar Calendar { get; set; }
-        public bool isBooked { get; set; }
-        public string Consultation { get; set; }
-        public List<Equipment> EquipmentList { get; set; }
-        public int id { get; set; }
-        public virtual bool IsAvailable()
-        {
-            return true;
-        }
 
-        public PersonalTrainer(int uniqueID, string name, string consultation, int id, bool isBooked)
+        public PersonalTrainer(int uniqueID, string name)
         {
             this.uniqueID = uniqueID;
-            this.id = id;
             this.name = name;
-            this.Consultation = consultation;
-            Calendar = new Calendar();
-            this.isBooked = isBooked;   
+
             
         }
 
@@ -48,9 +29,7 @@ namespace Gym_Booking_Manager
         {
             this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
             this.name = (constructionArgs[nameof(name)]);
-            this.isBooked = Convert.ToBoolean(constructionArgs[nameof(isBooked)]);  
-            this.Consultation = (constructionArgs[nameof(Consultation)]);
-            this.id = Convert.ToInt32(constructionArgs[nameof(id)]);
+
         }
         /*public void MakeReservation(User person, DateTime start, DateTime end)
         {
@@ -80,57 +59,25 @@ namespace Gym_Booking_Manager
         }
         public static void BookPT()
         {
-            GymDatabaseContext pts = new GymDatabaseContext();
-            Console.WriteLine("All available Personal trainer:");
-            foreach (PersonalTrainer pt in pts.Read<PersonalTrainer>())
-            {
-                if (pt.isBooked == false)
-                {
-                    Console.WriteLine(pt);
-                }
-                
-            }
+            GymDatabaseContext reserv = new GymDatabaseContext();
+            ListPT();
             Console.WriteLine("Which Personal Trainer do you want to book?");
-            string choise = Console.ReadLine();
+            string choise1 = Console.ReadLine();
             Console.WriteLine("Supervised traing seasion or consultation?");
-            string training = Console.ReadLine(); 
+            string training = Console.ReadLine();
             Console.WriteLine("Id of the person who is booking the personal trainer");
             int id = Convert.ToInt32(Console.ReadLine());
-            foreach (PersonalTrainer pt in pts.Read<PersonalTrainer>("name", choise))
-            {
-                if (pt.isBooked == false)
-                {
-                    PersonalTrainer newpt = new PersonalTrainer(pt.uniqueID, pt.name, training, id ,true);
-                    pts.Update<PersonalTrainer>(newpt, pt);
-                }
-                else Console.WriteLine("Sorry that personal trainer is already booked..");
-                
-            }
-        }
-        public void BookSession(User name, DateTime startTime, DateTime endTime)
-        {
-            if (Calendar.IsAvailable(startTime, endTime))
-            {
-                Calendar.MakeReservation(name, startTime, endTime);
-                Console.WriteLine("Session with personal trainer '{0}' has been successfully booked.",name);
-            }
-            else
-            {
-                Console.WriteLine("Session with personal trainer '{0}' is not available for booking.", Consultation);
-            }
-        }
+            string reservation = Calendar.AddTime();
 
-        public bool CancelSession(Reservation reservation)
-        {
-            if (Calendar.HasReservation(reservation))
+            foreach (PersonalTrainer pt in reserv.Read<PersonalTrainer>("name", choise1))
             {
-                Calendar.RemoveReservation(reservation);
-                return true;
-            }
-            else
-            {
-                Console.WriteLine("This reservation does not exist for this personal trainer.");
-                return false;
+
+
+                Calendar newpt = new Calendar(pt.uniqueID, pt.name, training, id,reservation);
+                reserv.Create<Calendar>(newpt);
+                Console.WriteLine("You have made an reservation for personal trainer");
+                break;
+
             }
         }
         public int CompareTo(PersonalTrainer? other)
@@ -150,7 +97,7 @@ namespace Gym_Booking_Manager
         // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.
         public string CSVify()
         {
-            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{nameof(Consultation)}:{Consultation},{nameof(id)}:{id},{nameof(isBooked)}:{isBooked}";
+            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name}";
         }
     }
 }

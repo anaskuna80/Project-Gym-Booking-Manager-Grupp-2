@@ -31,28 +31,25 @@ namespace Gym_Booking_Manager
         //private static readonly List<Tuple<Category, int>> hourlyCosts = InitializeHourlyCosts(); // Costs may not be relevant for the prototype. Let's see what the time allows.
         public Category category { get; set; }
         //public Category category { get; set; }
-        public int id { get; set; }
-        private readonly Calendar calendar;
         public int uniqueID { get; set; }
-        public bool isBooked { get; set; }
 
-        public Space(Category category, int id, int uniqueiD, bool isBooked )
+
+        public Space(Category category, int uniqueiD )
         {
             this.category = category;
-            this.id = id;
             this.uniqueID= uniqueiD;
-            this.isBooked = isBooked;
+        
             
         }
 
         // Every class T to be used for DbSet<T> needs a constructor with this parameter signature. Make sure the object is properly initialized.
         public Space(Dictionary<String, String> constructionArgs)
         {
-            this.id = Convert.ToInt32(constructionArgs[nameof(id)]);
+           
             this.category = (Category)
                 Enum.Parse(typeof(Category), constructionArgs[nameof(category)]);
             this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
-            this.isBooked = Convert.ToBoolean(constructionArgs[nameof(isBooked)]);
+           
             
         }
 
@@ -60,8 +57,6 @@ namespace Gym_Booking_Manager
         {
             this.uniqueID = uniqueID;
             this.category = category;
-            this.id = id;
-            this.isBooked = isBooked;
         }
 
         public int CompareTo(Space? other)
@@ -82,7 +77,7 @@ namespace Gym_Booking_Manager
         // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.
         public string CSVify()
         {
-            return $"{nameof(uniqueID)}:{uniqueID},{nameof(category)}:{category.ToString()},{nameof(id)}:{id},{nameof(isBooked)}:{isBooked}";
+            return $"{nameof(uniqueID)}:{uniqueID},{nameof(category)}:{category.ToString()}";
         }
         public enum Category
         {
@@ -90,39 +85,44 @@ namespace Gym_Booking_Manager
             lane,
             studio
         }
-
-
-
-
-        // Consider how and when to add a new Space to the database.
-        // Maybe define a method to persist it? Any other reasonable schemes?
-
-        //private static List<Tuple<Category, int>> InitializeHourlyCosts()
-        //{
-        //    // TODO: fetch from "database"
-        //    var hourlyCosts = new List<Tuple<Category, int>>
-        //    {
-        //        Tuple.Create(Category.Hall, 500),
-        //        Tuple.Create(Category.Lane, 100),
-        //        Tuple.Create(Category.Studio, 400)
-        //    };
-        //    return hourlyCosts;
-        //}
-                /*public void RemoveReservation(Reservation reservation)
+        public static void ListSpace()
         {
-            
-            if (this.calendar.CancelReservation(reservation))
+            GymDatabaseContext space = new GymDatabaseContext();
+            Console.WriteLine("All Personal trainers:");
+            foreach (Space allspace in space.Read<Space>())
             {
-                Console.WriteLine("Reservation removed successfully.");
-            }
-            else
-            {
-                Console.WriteLine("Reservation could not be found.");
+
+
+                Console.WriteLine(allspace);
+
+
             }
         }
-        public bool HasReservation(Reservation reservation)
+
+        public static void BookSpace()
         {
-            return calendar.HasReservation(reservation);
-        }*/
+            GymDatabaseContext reserv = new GymDatabaseContext();
+            ListSpace();
+            Console.WriteLine("Which space do you want to book?");
+            string choise1 = Console.ReadLine();
+            Console.WriteLine("What are you reserving the space for?");
+            string choise2 = Console.ReadLine();
+            Console.WriteLine("Id of the person who is booking the space");
+            int id = Convert.ToInt32(Console.ReadLine());
+            string reservation = Calendar.AddTime();
+
+            foreach (Space pt in reserv.Read<Space>("category", choise1))
+            {
+
+
+                Calendar newpt = new Calendar(pt.uniqueID, pt.category.ToString(), choise2, id, reservation);
+                reserv.Create<Calendar>(newpt);
+                Console.WriteLine("You have made an reservation for personal trainer");
+                break;
+
+            }
+        }
+
+
     }
 }

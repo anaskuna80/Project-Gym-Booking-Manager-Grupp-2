@@ -60,7 +60,7 @@ namespace Gym_Booking_Manager
             this.largeequipment = new DbSet<Largeequipment>(fpathSpace5);
             this.groupactivities = new DbSet<GroupSchedule>(fpathSpace6);
             this.personaltrainer = new DbSet<PersonalTrainer>(fpathSpace7);
-            this.calendar = new DbSet<Calendar>(fpathSpace8)
+            this.calendar = new DbSet<Calendar>(fpathSpace8);
 
         }
 

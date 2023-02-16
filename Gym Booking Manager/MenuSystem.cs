@@ -274,7 +274,7 @@ namespace Gym_Booking_Manager
                 case "1":
                     Console.WriteLine("Available Personal trainers:");
                     Console.WriteLine();
-                    PersonalTrainer.ListPT();
+                    
                     Console.WriteLine();
                     break;
 
@@ -316,9 +316,8 @@ namespace Gym_Booking_Manager
             Console.Write("   │   Calendar     │                                          \n");
             Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] View All Reservations                              │\n");
-            Console.Write("   │-- [2] Vacant Reservations                                │\n");
-            Console.Write("   │-- [3] Make Reservation                                   │\n");
-            Console.Write("   │-- [4] Delete Reservation(s)                              │\n");
+            Console.Write("   │-- [2] Make Reservation                                   │\n");
+            Console.Write("   │-- [3] Delete Reservation(s)                              │\n");
             Console.Write("   │                                                          │\n");
             Console.Write("   │-- [5] Help                                               │\n");
             Console.Write("   │-- [6] Main Menu                                          │\n");
@@ -328,18 +327,13 @@ namespace Gym_Booking_Manager
             switch (val) 
             {
                 case "1":
-                    Console.Write("Coming soon...");
                     Calendar.ViewCalendar();
                     break;
                 case "2":
-                    Console.Write("Coming soon...");
-                    break;
-                case "3":
-                    Console.Write("Coming soon...");
                     Calendar.MakeReservation();
                     break;
-                case "4":
-                    Console.Write("Coming soon...");
+                case "3":
+                    Calendar.DeleteReservatin();
                     break;
                 case "5":
                     Console.Write("Coming soon...");
@@ -358,7 +352,7 @@ namespace Gym_Booking_Manager
             Console.Write("   │   Equipment    │                                          \n");
             Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] List of Equipments                                 │\n");
-            Console.Write("   │-- [2] Reserve Equipment                                  │\n");
+            Console.Write("   │-- [2] Reserve Sport Equipment                            │\n");
             Console.Write("   │-- [3] Reserve Large Equipment                            │\n");
             Console.Write("   │                                                          │\n");
             Console.Write("   │-- [5] Help                                               │\n");
@@ -370,64 +364,16 @@ namespace Gym_Booking_Manager
             switch (selection)
             {
                 case "1":
-                    Console.WriteLine("Largeequipment:");
-                    Console.WriteLine();
-                    foreach (Largeequipment largeequip in equipment.Read<Largeequipment>())
-                    {
-                        
-                            Console.WriteLine(largeequip.CSVify());
-                        
-                    }
-                    Console.WriteLine();
-                    Console.WriteLine("Sportsequipment:");
-                    Console.WriteLine();
-                    foreach (Sportsequipment sportsequip in equipment.Read<Sportsequipment>())
-                    {
-                        
-                            Console.WriteLine(sportsequip.CSVify());
-                        
-                    }
+                    Largeequipment.ListEquipment();
+                    Sportsequipment.ListEquipment();
                     break;
 
                 case "2":
-                    Console.WriteLine("\n Reserve Sportsequipment");
-                    Console.WriteLine("------------------------------------------------");
-                    Console.Write("Enter the name of the equipment you wish to reserve: ");
-                    string equipmentName = Console.ReadLine();
-                    
-
-                    foreach (Sportsequipment sportsequip in equipment.Read<Sportsequipment>("name", equipmentName))
-                    {
-                        if (sportsequip.isBooked == false)
-                        {
-                            
-                            
-                            sportsequip.id = id;
-                            sportsequip.isBooked = true;
-                            Sportsequipment newsport = new Sportsequipment(sportsequip.name, sportsequip.id, sportsequip.uniqueID, sportsequip.isBooked);
-                            equipment.Update<Sportsequipment>(newsport,sportsequip);
-                            Console.WriteLine($"You reserved {sportsequip.name}");
-                        }
-                    }
-
+                    Sportsequipment.BookEquipment();
 
                     break;
                 case "3":
-                    Console.WriteLine("\n Reserve Large equipment");
-                    Console.WriteLine("------------------------------------------------");
-                    Console.Write("Enter the name of the equipment you wish to reserve: ");
-                    string equipmentName1 = Console.ReadLine();
-
-                    foreach (Largeequipment largeequip in equipment.Read<Largeequipment>("name", equipmentName1))
-                    {
-                        if (largeequip.isBooked == false)
-                        {
-                            largeequip.id = id;
-                            largeequip.isBooked = true;
-                            Largeequipment newsport = new Largeequipment(largeequip.name, largeequip.id, largeequip.uniqueID, largeequip.isBooked);
-                            Console.WriteLine($"You reserved {largeequip.name}");
-                        }
-                    }
+                    Largeequipment.BookEquipment();
                     break;
                 case "5":
                     Console.WriteLine("\n Help");
@@ -458,7 +404,7 @@ namespace Gym_Booking_Manager
             Console.Write("   ┌────────────────┐                                          \n");
             Console.Write("   │   Spaces       │                                          \n");
             Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
-            Console.Write("   │-- [1] View Booked Spaces                                 │\n");
+            Console.Write("   │-- [1] View Spaces                                        │\n");
             Console.Write("   │-- [2] Reserve Space                                      │\n");
             Console.Write("   │                                                          │\n");
             Console.Write("   │-- [3] Help                                               │\n");
@@ -469,39 +415,10 @@ namespace Gym_Booking_Manager
             switch (selection)
             {
                 case "1":
-                    Console.WriteLine("Booked Spaces:");
-                    Console.WriteLine();
-                    foreach (Space place in space1.Read<Space>())
-                    {
-
-                        Console.WriteLine(place.CSVify());
-
-                    }
-                    Console.WriteLine();
+                    Space.ListSpace();
                     break;
-
                 case "2":
-                    Console.WriteLine("\n Reserve Space");
-                    Console.WriteLine("------------------------------------------------");
-                    Console.Write("Enter the name of the space you wish to reserve: ");
-                    string space2 = Console.ReadLine();
-
-
-                    foreach (Space place2 in space1.Read<Space>("category", space2))
-                    {
-                        if (place2.isBooked == false)
-                        {
-
-
-                            place2.id = id;
-                            place2.isBooked = true;
-                            Space newspace = new Space(place2.uniqueID, place2.category, place2.id, place2.isBooked);
-                            space1.Update<Space>(newspace, place2);
-                            Console.WriteLine($"You reserved {place2.uniqueID}");
-                            break;
-                        }
-                    }
-
+                    Space.BookSpace();
 
                     break;
                 

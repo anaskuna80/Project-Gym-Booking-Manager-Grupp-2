@@ -74,35 +74,28 @@ namespace Gym_Booking_Manager
             int count2 = 0; 
             foreach (Sportsequipment sportsequip in equipment.Read<Sportsequipment>("name", equipname))
             {
-                if (sportsequip.id > 0)
-                {
-                    Console.WriteLine($"Notification sent to id:({sportsequip.id}) email and number to return equipment for the group activity");
-                    sportsequip.id = uniqueid;
-                    sportsequip.isBooked = true;
-                    Sportsequipment newsport = new Sportsequipment(sportsequip.name, sportsequip.id, sportsequip.uniqueID, sportsequip.isBooked);
+               
+                    Console.WriteLine($"Notification sent to id:() email and number to return equipment for the group activity");
+                    Sportsequipment newsport = new Sportsequipment(sportsequip.name, sportsequip.uniqueID);
                     equipment.Update<Sportsequipment>(newsport, sportsequip);
                     Console.WriteLine($"You reserved a {sportsequip.name}");
                     count1++;
-                }
-                else if (sportsequip.id >= 500 && sportsequip.id <= 600) Console.WriteLine("Sorry these equipments is already booked by another activity.. ");
+                
+                
                 
                 if (count1 == totalequip) break;
             }
             foreach (Largeequipment sportsequip in equipment.Read<Largeequipment>("name", equipname))
             {
-                if (sportsequip.id > 0)
-                {
-                    Console.WriteLine($"Notification sent to id:({sportsequip.id}) email and number to return equipment for the group activity");
-                    sportsequip.id = uniqueid;
-                    sportsequip.isBooked = true;
-                    Largeequipment newsport = new Largeequipment(sportsequip.name, sportsequip.id, sportsequip.uniqueID, sportsequip.isBooked);
+                
+                    Console.WriteLine($"Notification sent to id:() email and number to return equipment for the group activity");
+                    
+                    Largeequipment newsport = new Largeequipment(sportsequip.name, sportsequip.uniqueID);
                     equipment.Update<Largeequipment>(newsport, sportsequip);
                     Console.WriteLine($"You reserved a {sportsequip.name}");
                     count2++;
-                }
-                else if (sportsequip.id >= 500 && sportsequip.id <= 600) Console.WriteLine("Sorry these equipments is already booked by another activity.. ");
-
-                if (count2 == totalequip) break;
+                
+              
             }
             Console.WriteLine();
             foreach (Space spaces in space.Read<Space>())
@@ -114,17 +107,14 @@ namespace Gym_Booking_Manager
             string choise = Console.ReadLine();
             foreach (Space space1 in space.Read<Space>("category", choise))
             {
-                if (space1.id > 0)
-                {
-                    Console.WriteLine($"Notification sent to id:({space1.id}) email and number that the space is been booked for a group activity");
-                    space1.id = uniqueid;
-                    space1.isBooked = true;
-                    Space newspace = new Space(space1.category,space1.id,space1.uniqueID,space1.isBooked);
+           
+                    Console.WriteLine($"Notification sent to id:() email and number that the space is been booked for a group activity");
+                    Space newspace = new Space(space1.category,space1.uniqueID);
                     space.Update<Space>(newspace,space1);
                     Console.WriteLine($"you reserved {space1.category}");
                     break;
 
-                }
+                
             }
             
 
