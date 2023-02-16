@@ -59,8 +59,7 @@ namespace Gym_Booking_Manager
             //GroupSchedule activity = new GroupSchedule();
             //activity.AddActivity();*/
             // Static methods for the program
-
-
+            
             
 
         }

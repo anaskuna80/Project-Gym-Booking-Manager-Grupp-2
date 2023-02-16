@@ -329,12 +329,14 @@ namespace Gym_Booking_Manager
             {
                 case "1":
                     Console.Write("Coming soon...");
+                    Calendar.ViewCalendar();
                     break;
                 case "2":
                     Console.Write("Coming soon...");
                     break;
                 case "3":
                     Console.Write("Coming soon...");
+                    Calendar.MakeReservation();
                     break;
                 case "4":
                     Console.Write("Coming soon...");
