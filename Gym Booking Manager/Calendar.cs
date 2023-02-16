@@ -12,6 +12,8 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static Gym_Booking_Manager.Space;
+using System.Xml;
 
 #if DEBUG
 [assembly: InternalsVisibleTo("Tests")]
@@ -20,64 +22,28 @@ namespace Gym_Booking_Manager
 {
     internal class Calendar
     {
-        /*private readonly List<Reservation> reservations;
+        public int uniqueID { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public static Dictionary<DateTime, string> reservations;
 
-        public Calendar()
+        public Calendar(int uniqueID, int id, string name)
         {
-            this.reservations = new List<Reservation>();
-            
+            this.uniqueID = uniqueID;
+            this.id = id;
+            this.name = name;
+            reservations = new Dictionary<DateTime, string>();
+        }
+        public Calendar(Dictionary<String, String> constructionArgs)
+        {
+            this.id = Convert.ToInt32(constructionArgs[nameof(id)]);
+            this.name = constructionArgs[nameof(name)];
+            this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
+            reservations = constructionArgs[nameof(reservations)];
+
         }
 
-        // Leaving this method for now. Idea being it may be useful to get entries within a "start" and "end" time/date range.
-        // Need parameters if so.
-        // Or maybe we'll come up with a better solution elsewhere.
-        public List<Reservation> GetSlice(DateTime start, DateTime end)
-        {
-            return this.reservations.FindAll(r => r.Start >= start && r.End <= end);
-        }
-
-        public void MakeReservation(User person, DateTime start, DateTime end)
-        {
-            var newReservation = new Reservation(person, start, end);
-            this.reservations.Add(newReservation);
-        }
-
-        public bool CancelReservation(Reservation reservation)
-        {
-            if (this.reservations.Remove(reservation))
-            {
-                return true;
-            }
-            else return false;
-        }
-        public bool IsAvailable( DateTime startTime, DateTime endTime)
-        {
-            return !this.reservations.Any(r =>
-                (startTime >= r.Start && startTime < r.End) ||
-                (endTime > r.Start && endTime <= r.End) ||
-                (startTime <= r.Start && endTime >= r.End));
-        }
-        public bool HasReservation(Reservation reservation)
-        {
-            return reservations.Contains(reservation);
-        }
-        public void RemoveReservation(Reservation reservation)
-        {
-
-            if (this.reservations.Contains(reservation))
-            {
-                this.reservations.Remove(reservation);
-                Console.WriteLine("Reservation removed successfully.");
-            }
-            else
-            {
-                Console.WriteLine("Reservation could not be found.");
-            }
-        }*/
-
-
-        //Test code for calender. Original(the old code) is above.
-        static Dictionary<DateTime, string> reservations = new Dictionary<DateTime, string>();
+        //static Dictionary<DateTime, string> reservations = new Dictionary<DateTime, string>();
 
         public static void CalendarApp()
         {
@@ -230,7 +196,16 @@ namespace Gym_Booking_Manager
                 Console.WriteLine("There are no reservations for that day.");
             }
         }
+        public override string ToString()
+        {
+            return this.CSVify(); // TODO: Don't use CSVify. Make it more readable.
+        }
 
+        // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.
+        public string CSVify()
+        {
+            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{nameof(id)}:{id},{nameof(reservations)}:{reservations.ToString()}";
+        }
         static void provkör()
         {
             Console.WriteLine("Welcome to the gym booking calendar.");

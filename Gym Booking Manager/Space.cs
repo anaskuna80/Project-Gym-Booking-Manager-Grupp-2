@@ -24,7 +24,7 @@ namespace Gym_Booking_Manager
     // As alluded to from previous paragraphs, implementing IComparable<T> is not exhaustive to cover all "comparisons".
     // Refer to official C# documentation to determine what interface to implement to allow use with
     // the class/method/operator that you want.
-    internal class Space : IReservable, ICSVable, IComparable<Space>
+    internal class Space : ICSVable, IComparable<Space>
     {
 
 
@@ -51,7 +51,7 @@ namespace Gym_Booking_Manager
             this.id = Convert.ToInt32(constructionArgs[nameof(id)]);
             this.category = (Category)
                 Enum.Parse(typeof(Category), constructionArgs[nameof(category)]);
-            this.uniqueID = this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
+            this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
             this.isBooked = Convert.ToBoolean(constructionArgs[nameof(isBooked)]);
             
         }
@@ -91,67 +91,8 @@ namespace Gym_Booking_Manager
             studio
         }
 
-        public void ViewTimeTable()
-        {
-            // Fetch
-            List<Reservation> tableSlice = this.calendar.GetSlice(DateTime.Now, DateTime.Now.AddMonths(1));
-            // Show?
-            foreach (Reservation reservation in tableSlice)
-            {
-               Console.WriteLine(reservation);  
-            }
 
-        }
 
-        public void MakeReservation(User person)
-        {
-            Console.WriteLine("Enter start time (hh:mm):");
-            string startTimeInput = Console.ReadLine();
-            Console.WriteLine("Enter end time (hh:mm):");
-            string endTimeInput = Console.ReadLine();
-
-            // Parse the input strings into DateTime objects for start and end times.
-            if (!DateTime.TryParseExact(startTimeInput, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime startTime) ||
-                !DateTime.TryParseExact(endTimeInput, "HH:mm", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime endTime))
-            {
-                Console.WriteLine("Invalid input. Please enter the time in the format hh:mm.");
-                return;
-            }
-
-            // Check if the start time is before the end time.
-            if (startTime >= endTime)
-            {
-                Console.WriteLine("The start time must be before the end time.");
-                return;
-            }
-
-            // Check if the reservation time is available.
-            if (!this.calendar.IsAvailable(startTime, endTime))
-            {
-                Console.WriteLine("The space is not available during the requested time.");
-                return;
-            }
-
-            // Create a new reservation and add it to the calendar.
-            this.calendar.MakeReservation(person, startTime,endTime);
-
-            Console.WriteLine("Reservation created successfully.");
-
-        }
-        public void CancelReservation(Reservation reservation)
-        {
-            // First check if the reservation exists
-            if (this.calendar.HasReservation(reservation))
-            {
-                // If it exists, remove it from the calendar
-                this.calendar.RemoveReservation(reservation);
-            }
-            else
-            {
-                // If the reservation does not exist, throw an exception
-                throw new Exception("The reservation could not be found and could not be cancelled.");
-            }
-        }
 
         // Consider how and when to add a new Space to the database.
         // Maybe define a method to persist it? Any other reasonable schemes?
