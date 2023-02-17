@@ -534,6 +534,7 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [8] Help                                               │\n");
             Console.Write("   │-- [9] Logout/Exit                                        │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
+            Console.Write("   >> ");
             try
             {
                 int choice = Convert.ToInt32(Console.ReadLine());
@@ -607,6 +608,7 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [8] Help                                               │\n");
             Console.Write("   │-- [9] Logout/Exit                                        │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
+            Console.Write("   >> ");
             try
             {
                 int choice = Convert.ToInt32(Console.ReadLine());
