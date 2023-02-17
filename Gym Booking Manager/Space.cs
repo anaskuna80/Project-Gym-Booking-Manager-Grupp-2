@@ -32,12 +32,14 @@ namespace Gym_Booking_Manager
         public Category category { get; set; }
         //public Category category { get; set; }
         public int uniqueID { get; set; }
+        public bool isRestricted { get; set; }
 
 
-        public Space(Category category, int uniqueiD )
+        public Space(int uniqueiD,Category category, bool isRestricted )
         {
             this.category = category;
             this.uniqueID= uniqueiD;
+            this.isRestricted= isRestricted;
         
             
         }
@@ -49,6 +51,7 @@ namespace Gym_Booking_Manager
             this.category = (Category)
                 Enum.Parse(typeof(Category), constructionArgs[nameof(category)]);
             this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
+            this.isRestricted = Convert.ToBoolean(constructionArgs[nameof(isRestricted)]);  
            
             
         }
@@ -77,7 +80,7 @@ namespace Gym_Booking_Manager
         // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.
         public string CSVify()
         {
-            return $"{nameof(uniqueID)}:{uniqueID},{nameof(category)}:{category.ToString()}";
+            return $"{nameof(uniqueID)}:{uniqueID},{nameof(category)}:{category.ToString()},{nameof(isRestricted)}:{isRestricted}";
         }
         public enum Category
         {
@@ -114,15 +117,54 @@ namespace Gym_Booking_Manager
             foreach (Space pt in reserv.Read<Space>("category", choise1))
             {
 
+                if (pt.isRestricted == false)
+                {
+                    Calendar newpt = new Calendar(pt.uniqueID, pt.category.ToString(), choise2, id, reservation);
+                    reserv.Create<Calendar>(newpt);
+                    Console.WriteLine("You have made an reservation for personal trainer");
+                    break;
 
-                Calendar newpt = new Calendar(pt.uniqueID, pt.category.ToString(), choise2, id, reservation);
-                reserv.Create<Calendar>(newpt);
-                Console.WriteLine("You have made an reservation for personal trainer");
-                break;
+                }
+                else
+                {
+                    Console.WriteLine("Sorry that space is restricted");
+                }
 
             }
         }
+        public static void RestrictedItems()
+        {
+            GymDatabaseContext restricted = new GymDatabaseContext();
+            Console.WriteLine();
+            Console.WriteLine("Restricted Spaces:");
+            foreach (Space restrict in restricted.Read<Space>())
+            {
+                if (restrict.isRestricted == true)
+                {
+                    Console.WriteLine(restrict);
+                }
 
+            }
+        }
+        public static void RestrictItem()
+        {
+            GymDatabaseContext restrict = new GymDatabaseContext();
+            ListSpace();
+            Console.WriteLine("What Space do you want to restict?");
+            string item = Console.ReadLine();
+            foreach (Space restricted in restrict.Read<Space>("name", item))
+            {
+                if (restricted.isRestricted == false)
+                {
+                    restricted.isRestricted = true;
+                    Space newitem = new Space(restricted.uniqueID, restricted.category, restricted.isRestricted);
+                    restrict.Update<Space>(newitem, restricted);
+                    Console.WriteLine("You have restricted the Space");
+                    break;
+                }
+
+            }
+        }
 
     }
 }

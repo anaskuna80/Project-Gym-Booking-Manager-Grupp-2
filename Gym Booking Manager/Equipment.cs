@@ -15,12 +15,14 @@ namespace Gym_Booking_Manager
     {
         public int uniqueID { get; set; }
         public string name { get; set; }
+        public bool isRestricted { get; set; }
 
-        protected Equipment(string name,  int uniqueID)
+        protected Equipment(int uniqueID,string name, bool isRestricted)
         {
             
             this.name = name;
             this.uniqueID = uniqueID;
+            this.isRestricted = isRestricted;
             
             
         }
@@ -29,6 +31,7 @@ namespace Gym_Booking_Manager
             
             this.name = constructionArgs[nameof(name)];
             this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
+            this.isRestricted = Convert.ToBoolean(constructionArgs[nameof(isRestricted)]);
 
         }
 
@@ -38,7 +41,7 @@ namespace Gym_Booking_Manager
         }
         public string CSVify()
         {
-            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name}";
+            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name}, {nameof(isRestricted)}:{isRestricted}";
         }
         public int CompareTo(Equipment? other)
         {

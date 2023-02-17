@@ -12,7 +12,7 @@ namespace Gym_Booking_Manager
     {
 
 
-        public Sportsequipment(string name, int uniqueID) : base(name,  uniqueID)
+        public Sportsequipment(int uniqueID, string name, bool isRestricted) : base(  uniqueID,name, isRestricted)
         {
 
         
@@ -36,12 +36,17 @@ namespace Gym_Booking_Manager
             foreach (Sportsequipment equip in reserv.Read<Sportsequipment>("name", choice1))
             {
 
-
-                Calendar newpt = new Calendar(equip.uniqueID, equip.name, choice2, id, reservation);
-                reserv.Create<Calendar>(newpt);
-                Console.WriteLine("You have made an reservation for a Sport equipment");
-                break;
-
+                if (equip.isRestricted == false)
+                {
+                    Calendar newpt = new Calendar(equip.uniqueID, equip.name, choice2, id, reservation);
+                    reserv.Create<Calendar>(newpt);
+                    Console.WriteLine("You have made an reservation for a Sport equipment");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Sorry that item is restricted");
+                }
             }
         }
         public static void ListEquipment()
@@ -57,13 +62,46 @@ namespace Gym_Booking_Manager
 
             }
         }
+        public static void RestrictedItems()
+        {
+            GymDatabaseContext restricted = new GymDatabaseContext();
+            Console.WriteLine();
+            Console.WriteLine("Restricted Sport equipment:");
+            foreach (Sportsequipment restrict in restricted.Read<Sportsequipment>())
+            {
+                if (restrict.isRestricted == true)
+                {
+                    Console.WriteLine(restrict);
+                }
+
+            }
+        }
+        public static void RestrictItem()
+        {
+            GymDatabaseContext restrict = new GymDatabaseContext();
+            ListEquipment();
+            Console.WriteLine("What item do you want to restict?");
+            string item = Console.ReadLine();
+            foreach (Sportsequipment restricted in restrict.Read<Sportsequipment>("name", item))
+            {
+                if (restricted.isRestricted == false)
+                {
+                    restricted.isRestricted = true;
+                    Sportsequipment newitem = new Sportsequipment(restricted.uniqueID, restricted.name, restricted.isRestricted);
+                    restrict.Update<Sportsequipment>(newitem, restricted);
+                    Console.WriteLine("You have restricted the Item");
+                    break;
+                }
+
+            }
+        }
         public override string ToString()
         {
             return this.CSVify(); 
         }
         public string CSVify()
         {
-            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name}";
+            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{nameof(isRestricted)}:{isRestricted}";
         }
         public int CompareTo(Sportsequipment? other)
         {

@@ -486,8 +486,8 @@ namespace Gym_Booking_Manager
             Console.Write("   ┌─────────────────┐                                                                          \n");
             Console.Write("   │   Restrict item │                                                                          \n");
             Console.Write("   ├─────────────────┴─────────────────────────────────────────────────────────────────────────┐\n");
-            Console.Write("   │-- [1] View restrict item     -  Displays of all Restrict item in equipment and spaces.    │\n");
-            Console.Write("   │-- [2] View unrestrict item   -  Displays of all Unrestrict item in equipment and spaces.  │\n");
+            Console.Write("   │-- [1] View restrict items     -  Displays of all Restrict item in equipment and spaces.   │\n");
+            Console.Write("   │-- [2] unrestrict item         -  Unrestrict an item                                       │\n");
             Console.Write("   │                                                                                           │\n");
             Console.Write("   │-- [3] Main Menu                                                                           │\n");
             Console.Write("   └───────────────────────────────────────────────────────────────────────────────────────────┘\n");
@@ -499,12 +499,14 @@ namespace Gym_Booking_Manager
                 case "1":
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("");
+                    Sportsequipment.RestrictedItems();
+                    Largeequipment.RestrictedItems();
+                    Space.RestrictedItems();
                     //Space.ListSpace();
                     break;
                 case "2":
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write("");
-                    //Space.BookSpace();
+                    Restrictitems()
                     break;
                 case "3":
                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -518,6 +520,37 @@ namespace Gym_Booking_Manager
                     break;
             }
 
+        }
+        public static void Restrictitems()
+        {
+            try
+            {
+
+                Console.WriteLine("What item do you want to un restrict?");
+                Console.WriteLine("1.Sportequipment 2.Large equipment 3.Space");
+                int choise = Convert.ToInt32(Console.ReadLine());
+                if (choise == 1)
+                {
+                    Sportsequipment.RestrictItem();
+                }
+                else if (choise == 2)
+                {
+                    Largeequipment.RestrictItem();
+                }
+                else if (choise == 3)
+                {
+                    Space.RestrictItem();
+                }
+                else
+                {
+
+                    Console.WriteLine($"Wrong choise {choise}");
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Wrong input..");
+            }
         }
 
         // ----- HERE IS THE CUSTOMER DOMAIN! ---------------------------------------------------------------------------------------------

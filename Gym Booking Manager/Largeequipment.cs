@@ -13,7 +13,7 @@ namespace Gym_Booking_Manager
     {
         
 
-        public Largeequipment(string name,int uniqueID) : base (name, uniqueID)
+        public Largeequipment(int uniqueID, string name, bool isRestricted) : base (uniqueID,name,isRestricted)
         {
             
 
@@ -37,11 +37,17 @@ namespace Gym_Booking_Manager
             foreach (Largeequipment equip in reserv.Read<Largeequipment>("name", choise1))
             {
 
-
-                Calendar newpt = new Calendar(equip.uniqueID, equip.name, choise2, id, reservation);
-                reserv.Create<Calendar>(newpt);
-                Console.WriteLine("You have made an reservation for a Large equipment");
-                break;
+                if (equip.isRestricted == false)
+                {
+                    Calendar newpt = new Calendar(equip.uniqueID, equip.name, choise2, id, reservation);
+                    reserv.Create<Calendar>(newpt);
+                    Console.WriteLine("You have made an reservation for a Large equipment");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Sorry that item is restricted");
+                }
 
             }
         }
@@ -58,14 +64,47 @@ namespace Gym_Booking_Manager
 
             }
         }
- 
+        public static void RestrictedItems()
+        {
+            GymDatabaseContext restricted = new GymDatabaseContext();
+            Console.WriteLine();
+            Console.WriteLine("Restricted Large equipment:");
+            foreach (Largeequipment restrict in restricted.Read<Largeequipment>())
+            {
+                if (restrict.isRestricted == true)
+                {
+                    Console.WriteLine(restrict);
+                }
+
+            }
+        }
+        public static void RestrictItem()
+        {
+            GymDatabaseContext restrict = new GymDatabaseContext();
+            ListEquipment();
+            Console.WriteLine("What item do you want to restict?");
+            string item = Console.ReadLine();
+            foreach (Largeequipment restricted in restrict.Read<Largeequipment>("name",item))
+            {
+                if (restricted.isRestricted == false)
+                {
+                    restricted.isRestricted= true;
+                    Largeequipment newitem = new Largeequipment(restricted.uniqueID, restricted.name, restricted.isRestricted);
+                    restrict.Update<Largeequipment>(newitem,restricted);
+                    Console.WriteLine("You have restricted the Item");
+                    break;
+                }
+
+            }
+        }
+
         public override string ToString()
         {
             return this.CSVify();
         }
         public string CSVify()
         {
-            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name}";
+            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{uniqueID},{nameof(isRestricted)}:{isRestricted}";
         }
         public int CompareTo(Largeequipment? other)
         {
