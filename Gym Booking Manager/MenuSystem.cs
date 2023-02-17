@@ -76,31 +76,63 @@ namespace Gym_Booking_Manager
                     foreach (Customer user in userdata.customer.read("id", userID))
                     {
                         Console.WriteLine($" User {userID} selected");
-                        do
+                        if (Convert.ToInt32(userID) > 300 && Convert.ToInt32(userID) < 500)
                         {
-                            Console.Write($"   [Try: {count} / 5]\n   Please enter password for <{userID}>: ");
-                            password = Console.ReadLine();
-                            if (password != "")
+                            do
                             {
-                                if (user.password == password)
+                                Console.Write($"   [Try: {count} / 5]\n   Please enter password for <{userID}>: ");
+                                password = Console.ReadLine();
+                                if (password != "")
                                 {
-                                    count = 5;
-                                    Console.WriteLine($"   Welcome {user.name}!");
-                                    int id = user.id;
-                                    MemberCustomerMenu();
+                                    if (user.password == password)
+                                    {
+                                        count = 5;
+                                        Console.WriteLine($"   Welcome {user.name}!");
+                                        int id = user.id;
+                                        NonMemberCustomerMenu();
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("   Incorrect password!");
+                                        count++;
+                                    }
                                 }
                                 else
                                 {
-                                    Console.WriteLine("   Incorrect password!");
+                                    Console.WriteLine("  Please type password");
                                     count++;
                                 }
-                            }
-                            else
+                            } while (count != 5);
+                        }
+                        else if (Convert.ToInt32(userID) > 100 && Convert.ToInt32(userID) < 300)
+                        {
+
+                            do
                             {
-                                Console.WriteLine("  Please type password");
-                                count++;
-                            }
-                        } while (count != 5);
+                                Console.Write($"   [Try: {count} / 5]\n   Please enter password for <{userID}>: ");
+                                password = Console.ReadLine();
+                                if (password != "")
+                                {
+                                    if (user.password == password)
+                                    {
+                                        count = 5;
+                                        Console.WriteLine($"   Welcome {user.name}!");
+                                        int id = user.id;
+                                        MemberCustomerMenu();
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("   Incorrect password!");
+                                        count++;
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("  Please type password");
+                                    count++;
+                                }
+                            } while (count != 5);
+                        }
                     }
                 }
                 else
@@ -336,7 +368,6 @@ namespace Gym_Booking_Manager
             Console.Write("   └──────────────────────────────────────────────────────────────────────────────────────┘\n");
             Console.Write("   >> ");
             string selection = Console.ReadLine();
-            GymDatabaseContext equipment = new GymDatabaseContext();
             switch (selection)
             {
                 case "1":
@@ -454,7 +485,6 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [3] PT                                                 │\n");
             Console.Write("   │-- [4] Schedules                                          │\n");
             Console.Write("   │-- [5] Spaces                                             │\n");
-            Console.Write("   │-- [6] User                                               │\n");
             Console.Write("   │-- [7] Group Schedule                                     │\n");
             Console.Write("   │                                                          │\n");
             Console.Write("   │-- [8] Help                                               │\n");
