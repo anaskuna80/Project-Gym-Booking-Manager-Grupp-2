@@ -15,7 +15,7 @@ namespace Gym_Booking_Manager
         public string name { get; set; }
         public int uniqueID { get; set; }
         public int participantLimit { get; set; }
-        private List<User> participants;
+        private List<int> participants;
 
         public string instructor { get; set; }
         //public string timeSlot { get; set; }
@@ -25,7 +25,7 @@ namespace Gym_Booking_Manager
             this.name = name;
             this.participantLimit = participantlimit;
             this.instructor = instructor;
-            this.participants = new List<User>();
+            this.participants = new List<int>();
             
             this .uniqueID = uniqueID;
             //this.timeSlot = timeslot;
@@ -41,7 +41,7 @@ namespace Gym_Booking_Manager
         }
 
 
-        public void SignUp(User participant)
+        public void SignUp(int participant)
         {
             if (participants.Count < participantLimit)
             {

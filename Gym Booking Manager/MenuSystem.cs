@@ -158,7 +158,7 @@ namespace Gym_Booking_Manager
                 Console.Write("   │-- [4] Users                                              │\n");
                 Console.Write("   │-- [5] Group Schedule                                     │\n");
                 Console.Write("   │-- [6] Personal Trainer                                   │\n");
-                Console.Write("   │-- [7] Restricted Items                                      │\n");
+                Console.Write("   │-- [7] Restricted Items                                   │\n");
                 Console.Write("   │                                                          │\n");
                 Console.Write("   │-- [8] Help                                               │\n");
                 Console.Write("   │-- [9] Logout/Exit                                        │\n");
@@ -277,6 +277,46 @@ namespace Gym_Booking_Manager
                     Console.Write("\n Update Group Activity\n");
                     Console.Write("──────────────────────────────────────────────────────────\n\n");
                     GroupSchedule.UpdateActivity();
+                    break;
+
+                case "5":
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write("   Going back to Main Menu.");
+                    Linger();
+                    StaffMenuMain(id);
+                    break;
+                default:
+                    Console.WriteLine("\n Invalid selection. Please try again.");
+                    StaffMenuGroupSchedule(id);
+                    break;
+            }
+
+        }
+        public static void CustomerMenuGroupSchedule(int id)
+        {
+            Console.Write("   ┌────────────────┐                                          \n");
+            Console.Write("   │ Group Schedule │                                          \n");
+            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
+            Console.Write("   │-- [1] View All Group Activities                          │\n");
+            Console.Write("   │-- [2] Sign up to Group activity                          │\n");
+            Console.Write("   │                                                          │\n");
+            Console.Write("   │-- [5] Main Menu                                          │\n");
+            Console.Write("   └──────────────────────────────────────────────────────────┘\n");
+            Console.Write("   >> ");
+            string selection = Console.ReadLine();
+            switch (selection)
+            {
+                case "1":
+                    Console.Write("\nAll Group Activities:\n");
+                    Console.Write("──────────────────────────────────────────────────────────\n\n");
+                    GroupSchedule.ViewSchedule();
+                    break;
+
+                case "2":
+                    Console.Write("\n Sign up to Group Activity\n");
+                    Console.Write("──────────────────────────────────────────────────────────\n\n");
+                    GroupSchedule.ViewSchedule();
+                    GroupActitity.SignUp(id);
                     break;
 
                 case "5":
@@ -507,7 +547,7 @@ namespace Gym_Booking_Manager
                     break;
                 case "2":
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Restrictitems()
+                    Restrictitems();
                     break;
                 case "3":
                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -555,7 +595,7 @@ namespace Gym_Booking_Manager
         }
 
         // ----- HERE IS THE CUSTOMER DOMAIN! ---------------------------------------------------------------------------------------------
-        public static void MemberCustomerMenu()
+        public static void MemberCustomerMenu(int id)
         {
             Console.Write("   ┌────────────────┐                                          \n");
             Console.Write("   │   Main Menu    │                                          \n");
@@ -596,7 +636,7 @@ namespace Gym_Booking_Manager
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write("   Entering GroupSchedule.");
                         Linger();
-                        StaffMenuGroupSchedule(id);
+                        CustomerMenuGroupSchedule(id);
                         break;
                     case 8:
                         Console.ForegroundColor = ConsoleColor.Yellow;
