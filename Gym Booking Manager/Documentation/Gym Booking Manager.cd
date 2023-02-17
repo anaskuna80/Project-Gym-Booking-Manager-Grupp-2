@@ -27,8 +27,15 @@
   </Class>
   <Class Name="Gym_Booking_Manager.Calendar">
     <Position X="12.75" Y="1.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Gym_Booking_Manager.Calendar.DateTimeExtensions" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Calendar.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>CAQAAAAAAAAAAAQEYAAAAAAAAAAEQAAAAEAAoAAAAgA=</HashCode>
+      <HashCode>CAQIAAAAAAAAAAQEYAAAAAAAAAAEQAAAAEAAoAAAAgA=</HashCode>
       <FileName>Calendar.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
