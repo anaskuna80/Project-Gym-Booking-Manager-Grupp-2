@@ -16,12 +16,13 @@ using static Gym_Booking_Manager.Space;
 using System.Xml;
 using static Gym_Booking_Manager.PersonalTrainer;
 
+
 #if DEBUG
 [assembly: InternalsVisibleTo("Tests")]
 #endif
 namespace Gym_Booking_Manager
 {
-    internal class Calendar : ICSVable, IComparable<Calendar>
+    public class Calendar :  ICSVable, IComparable<Calendar>
     {
         public int uniqueID { get; set; }
         public int id { get; set; }
@@ -77,101 +78,15 @@ namespace Gym_Booking_Manager
             Console.WriteLine("Reservation deleted");
 
         }
-        //public static void ViewCalendar()
-        //{
-        //    GymDatabaseContext calendar = new GymDatabaseContext();
-        //    Console.WriteLine("All Personal trainers:");
-        //    foreach (Calendar allcalendar in calendar.Read<Calendar>())
-        //    {
-        //        Console.WriteLine(allcalendar);
-        //    }
-        //}
-
-        public static class DateTimeExtensions
-        {
-            public static DateTime StartOfWeek(this DateTime dt, DayOfWeek startOfWeek)
-            {
-                int diff = (7 + (dt.DayOfWeek - startOfWeek)) % 7;
-                return dt.AddDays(-1 * diff).Date;
-            }
-        }
-
-
-
-
-
         public static void ViewCalendar()
         {
             GymDatabaseContext calendar = new GymDatabaseContext();
-            calendar.Read<Calendar>();
+            Console.WriteLine("All Personal trainers:");
+            foreach (Calendar allcalendar in calendar.Read<Calendar>())
             {
-                // Get the calendar entries and group them by week
-                var calendarEntries = calendar.Calendar.ToList();
-                var calendarWeeks = calendarEntries
-                    .GroupBy(entry => GetWeekStart(entry.TimeSlot))
-                    .OrderBy(group => group.Key);
-
-                // Initialize the selected week to the first week in the calendar
-                var selectedWeek = calendarWeeks.FirstOrDefault()?.Key ?? DateTime.Today.StartOfWeek(DayOfWeek.Monday);
-
-                // Display the calendar until the user exits
-                while (true)
-                {
-                    Console.Clear();
-                    Console.WriteLine($"Week of {selectedWeek:MMMM d, yyyy}");
-                    Console.WriteLine();
-
-                    // Display the calendar entries for the selected week
-                    var entries = calendarWeeks.FirstOrDefault(group => group.Key == selectedWeek)?.ToList() ?? new List<Calendar>();
-                    for (var dayOfWeek = DayOfWeek.Monday; dayOfWeek <= DayOfWeek.Sunday; dayOfWeek++)
-                    {
-                        var dayEntries = entries.Where(entry => entry.StartTime.DayOfWeek == dayOfWeek).ToList();
-                        Console.WriteLine($"{dayOfWeek,-9}{string.Join("\n", dayEntries.Select(entry => $"  {entry.StartTime:hh:mm tt} - {entry.Description}"))}");
-                    }
-
-                    // Get user input to navigate or exit the calendar
-                    Console.WriteLine();
-                    Console.WriteLine("Press 1 to view previous week, 2 to view next week, or 3 to exit");
-                    var input = Console.ReadKey().Key;
-                    if (input == ConsoleKey.D1)
-                    {
-                        selectedWeek = selectedWeek.AddDays(-7);
-                    }
-                    else if (input == ConsoleKey.D2)
-                    {
-                        selectedWeek = selectedWeek.AddDays(7);
-                    }
-                    else if (input == ConsoleKey.D3)
-                    {
-                        break;
-                    }
-                }
+                Console.WriteLine(allcalendar);
             }
         }
-
-        private static DateTime GetWeekStart(string timeSlot)
-        {
-            // Parse the timeSlot string into a DateTime object
-            var startTime = DateTime.Parse(timeSlot.Split(' ')[0] + " " + timeSlot.Split(' ')[1].Split('-')[0]);
-
-            // Get the start of the week for the start time
-            return startTime.StartOfWeek(DayOfWeek.Monday);
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         public static void MakeReservation()
