@@ -157,8 +157,8 @@ namespace Gym_Booking_Manager
                 Console.Write("   │-- [3] Spaces                                             │\n");
                 Console.Write("   │-- [4] Users                                              │\n");
                 Console.Write("   │-- [5] Group Schedule                                     │\n");
-                Console.Write("   │-- [6] Personal trainer                                   │\n");
-                Console.Write("   │-- [7] Restrict Item                                      │\n");
+                Console.Write("   │-- [6] Personal Trainer                                   │\n");
+                Console.Write("   │-- [7] Restricted Items                                      │\n");
                 Console.Write("   │                                                          │\n");
                 Console.Write("   │-- [8] Help                                               │\n");
                 Console.Write("   │-- [9] Logout/Exit                                        │\n");
@@ -503,6 +503,7 @@ namespace Gym_Booking_Manager
                     Largeequipment.RestrictedItems();
                     Space.RestrictedItems();
                     //Space.ListSpace();
+
                     break;
                 case "2":
                     Console.ForegroundColor = ConsoleColor.Yellow;
