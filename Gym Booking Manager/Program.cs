@@ -17,7 +17,6 @@ namespace Gym_Booking_Manager
             {
 
 
-                CsvFileManager.CopyCsvFilesToStorageFolder();
 
                 MenuSystem.Login();
                 Console.Write("   Retry Login? y/n\n   >> ");
