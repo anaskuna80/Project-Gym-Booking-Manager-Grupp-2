@@ -15,6 +15,10 @@ namespace Gym_Booking_Manager
             string choice;
             do 
             {
+
+
+                CsvFileManager.CopyCsvFilesToStorageFolder();
+
                 MenuSystem.Login();
                 Console.WriteLine("   Do you want to restart? y/n\n   >> ");
                 choice = Console.ReadLine().ToLower();
