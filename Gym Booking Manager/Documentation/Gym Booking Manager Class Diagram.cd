@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Gym_Booking_Manager.LocalStorage" BaseTypeListCollapsed="true">
-    <Position X="21.75" Y="4.25" Width="2.5" />
+    <Position X="22.75" Y="4" Width="2.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -16,17 +16,17 @@
       <HashCode>AGQQAAABAAAgAAABAAQAIIAgAAUAgEBABAACAIAACAQ=</HashCode>
       <FileName>Database\DbSet.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.707" />
   </Class>
   <Class Name="Gym_Booking_Manager.GymDatabaseContext">
-    <Position X="19.75" Y="1.75" Width="1.5" />
+    <Position X="21" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAEgAAEAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Database\GymDatabaseContext.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Gym_Booking_Manager.Calendar">
-    <Position X="12.75" Y="1.5" Width="1.5" />
+    <Position X="14" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAQAAAAAAAAAAAQEYAAAAAAAAAAEQAAAAEAAoAAAAgA=</HashCode>
       <FileName>Calendar.cs</FileName>
@@ -34,7 +34,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Gym_Booking_Manager.Customer">
-    <Position X="4" Y="6.75" Width="2" />
+    <Position X="5.5" Y="6.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Customer.cs</FileName>
@@ -42,7 +42,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Gym_Booking_Manager.Equipment">
-    <Position X="4.5" Y="2.25" Width="1.5" />
+    <Position X="5.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAQEAAAAABAAAAAEAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Equipment.cs</FileName>
@@ -50,7 +50,7 @@
     <Lollipop Position="0.239" />
   </Class>
   <Class Name="Gym_Booking_Manager.GroupActivity">
-    <Position X="10.75" Y="2.25" Width="1.5" />
+    <Position X="12" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAIAAAAAAAiAQEAAAAAAAAAAAEIAAAAAAAgAAEAAA=</HashCode>
       <FileName>GroupActivity.cs</FileName>
@@ -58,14 +58,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Gym_Booking_Manager.GroupSchedule">
-    <Position X="10.75" Y="6.5" Width="1.5" />
+    <Position X="12" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAEAAAAAACAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GroupSchedule.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Gym_Booking_Manager.Largeequipment">
-    <Position X="8.5" Y="2.25" Width="1.5" />
+    <Position X="9.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAAIAAAAAAQEAAQAAAAAAAAAAAAAAAAAgACAAAA=</HashCode>
       <FileName>Largeequipment.cs</FileName>
@@ -73,14 +73,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Gym_Booking_Manager.MenuSystem">
-    <Position X="2.25" Y="2.5" Width="1.5" />
+    <Position X="3.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CABEAABAAgAgAIAAIAAAAEAIAIAQgMAAAAAUAAAAAgQ=</HashCode>
       <FileName>MenuSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Gym_Booking_Manager.PersonalTrainer" BaseTypeListCollapsed="true">
-    <Position X="16.5" Y="1.5" Width="1.5" />
+    <Position X="17.75" Y="1.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -88,17 +88,17 @@
       <HashCode>AAQAAAAAAAAAAAQEAAAAAAACAAAEAAAAAAAEgAAAAAA=</HashCode>
       <FileName>PersonalTrainer.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Gym_Booking_Manager.Program">
-    <Position X="0.5" Y="2.5" Width="1.5" />
+    <Position X="2" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Gym_Booking_Manager.Space" BaseTypeListCollapsed="true">
-    <Position X="14.75" Y="1.5" Width="1.5" />
+    <Position X="16" Y="1.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
@@ -113,10 +113,10 @@
       <HashCode>AAUAIAAIAAAAAAQEAAACABAAAAAAAAAAAAAIgAAAAAA=</HashCode>
       <FileName>Space.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Gym_Booking_Manager.Sportsequipment">
-    <Position X="6.5" Y="2.25" Width="1.5" />
+    <Position X="7.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAAIAAAAAAQEAAQAAAAAAAAAAAAAAAAAgACAAAA=</HashCode>
       <FileName>Sportsequipment.cs</FileName>
@@ -124,7 +124,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Gym_Booking_Manager.Staff">
-    <Position X="8.5" Y="6.75" Width="1.5" />
+    <Position X="9.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Staff.cs</FileName>
@@ -132,28 +132,28 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Gym_Booking_Manager.User">
-    <Position X="6.5" Y="8" Width="1.75" />
+    <Position X="7.75" Y="8" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAkAAAAAAAAAAAEAAAgAAAAggAAAgA=</HashCode>
       <FileName>User.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Gym_Booking_Manager.UserMgmt">
-    <Position X="6.5" Y="6" Width="1.5" />
+    <Position X="7.75" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAQAAQAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>UserMgmt.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Gym_Booking_Manager.ICSVable">
-    <Position X="13.5" Y="6.5" Width="1.5" />
+    <Position X="14" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Interfaces\ICSVable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Gym_Booking_Manager.IDatabase">
-    <Position X="21.75" Y="1.75" Width="1.5" />
+    <Position X="23" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IDatabase.cs</FileName>
