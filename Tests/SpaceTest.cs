@@ -1,79 +1,60 @@
 using Gym_Booking_Manager;
 using static Gym_Booking_Manager.Space;
 using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 
-// There are many tools for improving how you write your tests,
-// but it's good enough to keep things simple to get things started.
 
-// You can google-search to find C# and MSTest documentation
-// from https://learn.microsoft.com to find out more.
 
-namespace Tests
+namespace Gym_Booking_Manager.Tests
 {
     [TestClass]
-    public class SpaceTest
+    public class SpaceTests
     {
         [TestMethod]
-        public void CreateSpace()
+        public void Constructor_WithDictionary_ShouldCreateSpaceObject()
         {
-            Space testSpace = new Space(Space.Category.Studio, "Test Studio");
-            Assert.IsNotNull(testSpace);
-        }
-
-        [TestMethod]
-        public void CreateSpaceFromDictionaryBadCategoryException()
-        {
-            bool threw = false;
-            var constructionArgs = new Dictionary<String, String>()
-                {
-                    { "category", "Sudio" },
-                    { "name", "Dance Studio" }
-                };
-
-            try
+            // Arrange
+            var constructionArgs = new Dictionary<string, string>
             {
-                Space sudioSpace = new Space(constructionArgs);
-            }
-            catch (Exception e)
-            {
-                threw = true;
-                Assert.IsInstanceOfType(e, typeof(ArgumentException));
-            }
+                { "category", "hall" },
+                { "uniqueID", "1" },
+                { "isRestricted", "true" }
+            };
 
-            Assert.IsTrue(threw);
+            // Act
+            var space = new Space(constructionArgs);
+
+            // Assert
+            Assert.AreEqual(Space.Category.hall, space.category);
+            Assert.AreEqual(1, space.uniqueID);
+            Assert.IsTrue(space.isRestricted);
         }
 
         [TestMethod]
-        public void SpaceToString()
+        public void ToString_ShouldReturnFormattedString()
         {
-            Space testSpace = new Space(Space.Category.Studio, "Test Studio");
-            Assert.AreEqual(testSpace.ToString(), "Some nice string representation"); // Fix this
+            // Arrange
+            var space = new Space(1, Space.Category.lane, false);
+
+            // Act
+            var result = space.ToString();
+
+            // Assert
+            Assert.AreEqual("uniqueID:1,category:lane,isRestricted:False", result);
         }
 
         [TestMethod]
-        public void SpaceCSVify()
+        public void CSVify_ShouldReturnFormattedString()
         {
-            Space testSpace = new Space(Space.Category.Studio, "Test Studio");
-            Assert.AreEqual(testSpace.CSVify(), "category:Studio,name:Test Studio");
+            // Arrange
+            var space = new Space(1, Space.Category.studio, true);
+
+            // Act
+            var result = space.CSVify();
+
+            // Assert
+            Assert.AreEqual("uniqueID:1,category:studio,isRestricted:True", result);
         }
-
-        [TestMethod]
-        public void SpaceCompareToSpace()
-        {
-            SortedSet<Space> sortedSpaces = new SortedSet<Space>();
-            Space testStudio = new Space(Space.Category.Studio, "Test Studio");
-            Space testHall = new Space(Space.Category.Hall, "Test Hall");
-
-            sortedSpaces.Add(testStudio);
-            sortedSpaces.Add(testHall);
-
-            var spaceEnumerator = sortedSpaces.GetEnumerator();
-
-            Assert.AreSame(testHall, spaceEnumerator.Current);
-            spaceEnumerator.MoveNext();
-            Assert.AreSame(testStudio, spaceEnumerator.Current);
-        }
-
-        
     }
 }
