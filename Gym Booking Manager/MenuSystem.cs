@@ -207,9 +207,9 @@ namespace Gym_Booking_Manager
                             break;
                         case 7:
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.Write("   Entering Restrict items.");
+                            Console.Write("   Entering Restrict items."); //Restrict items or unrestrict item
                             Linger();
-                            //StaffMenuRestrict();
+                            StaffMenuRestrict();
                             break;
                         case 8:
                             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -479,6 +479,45 @@ namespace Gym_Booking_Manager
                 Linger();
                 StaffMenuMain(id);
             }          
+        }
+
+        public static void StaffMenuRestrict()
+        {
+            Console.Write("   ┌─────────────────┐                                                                          \n");
+            Console.Write("   │   Restrict item │                                                                          \n");
+            Console.Write("   ├─────────────────┴─────────────────────────────────────────────────────────────────────────┐\n");
+            Console.Write("   │-- [1] View restrict item     -  Displays of all Restrict item in equipment and spaces.    │\n");
+            Console.Write("   │-- [2] View unrestrict item   -  Displays of all Unrestrict item in equipment and spaces.  │\n");
+            Console.Write("   │                                                                                           │\n");
+            Console.Write("   │-- [3] Main Menu                                                                           │\n");
+            Console.Write("   └───────────────────────────────────────────────────────────────────────────────────────────┘\n");
+            Console.Write("   >> ");
+            string selection = Console.ReadLine();
+            GymDatabaseContext space1 = new GymDatabaseContext();
+            switch (selection)
+            {
+                case "1":
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write("");
+                    //Space.ListSpace();
+                    break;
+                case "2":
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write("");
+                    //Space.BookSpace();
+                    break;
+                case "3":
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write("   Going back to Main Menu.");
+                    Linger();
+                    StaffMenuMain(id);
+                    break;
+                default:
+                    Console.WriteLine("\n Invalid selection. Please try again.");
+                    //StaffMenuSpaces(id);
+                    break;
+            }
+
         }
 
         // ----- HERE IS THE CUSTOMER DOMAIN! ---------------------------------------------------------------------------------------------
