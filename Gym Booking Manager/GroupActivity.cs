@@ -15,7 +15,7 @@ namespace Gym_Booking_Manager
         public string name { get; set; }
         public int uniqueID { get; set; }
         public int participantLimit { get; set; }
-        private List<int> participants;
+        public  List<int> participants;
 
         public string instructor { get; set; }
         //public string timeSlot { get; set; }
@@ -36,16 +36,17 @@ namespace Gym_Booking_Manager
             this.participantLimit = Convert.ToInt32(constructionArgs[nameof(participantLimit)]);
             this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
             this.instructor = constructionArgs[nameof(instructor)];
+            this.participants = new List<int>();
 
 
         }
 
 
-        public void SignUp(int participant)
+        public void SignUp(int id)
         {
             if (participants.Count < participantLimit)
             {
-                this.participants.Add(participant);
+                participants.Add(id);
                 Console.WriteLine("You signed up to the activity");
             }
 

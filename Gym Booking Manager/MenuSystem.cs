@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Net.Http.Headers;
 
 namespace Gym_Booking_Manager
 {
@@ -118,7 +119,7 @@ namespace Gym_Booking_Manager
                                         count = 5;
                                         Console.WriteLine($"   Welcome {user.name}!");
                                         int id = user.id;
-                                        MemberCustomerMenu();
+                                        MemberCustomerMenu(id);
                                     }
                                     else
                                     {
@@ -304,33 +305,43 @@ namespace Gym_Booking_Manager
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
             Console.Write("   >> ");
             string selection = Console.ReadLine();
-            switch (selection)
+            while (true)
             {
-                case "1":
-                    Console.Write("\nAll Group Activities:\n");
-                    Console.Write("──────────────────────────────────────────────────────────\n\n");
-                    GroupSchedule.ViewSchedule();
-                    break;
+                switch (selection)
+                {
+                    case "1":
+                        Console.Write("\nAll Group Activities:\n");
+                        Console.Write("──────────────────────────────────────────────────────────\n\n");
+                        GroupSchedule.ViewSchedule();
+                        break;
 
-                case "2":
-                    Console.Write("\n Sign up to Group Activity\n");
-                    Console.Write("──────────────────────────────────────────────────────────\n\n");
-                    GroupSchedule.ViewSchedule();
-                    GroupActitity.SignUp(id);
-                    break;
+                    case "2":
+                        Console.Write("\n Sign up to Group Activity\n");
+                        Console.Write("──────────────────────────────────────────────────────────\n\n");
+                        GroupSchedule.ViewSchedule();
+                        GymDatabaseContext activity = new GymDatabaseContext();
+                        Console.WriteLine("What activity do you want to sign up for?");
+                        string choise = Console.ReadLine();
+                        foreach (GroupSchedule act in activity.Read<GroupSchedule>("name", choise))
+                        {
+                            act.SignUp(id);
+                        }
 
-                case "5":
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.Write("   Going back to Main Menu.");
-                    Linger();
-                    StaffMenuMain(id);
-                    break;
-                default:
-                    Console.WriteLine("\n Invalid selection. Please try again.");
-                    StaffMenuGroupSchedule(id);
-                    break;
+                        break;
+
+                    case "5":
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("   Going back to Main Menu.");
+                        Linger();
+                        StaffMenuMain(id);
+                        break;
+                    default:
+                        Console.WriteLine("\n Invalid selection. Please try again.");
+                        StaffMenuGroupSchedule(id);
+                        break;
+                }
             }
-
+           
         }
         public static void StaffMenuPT()
         {
