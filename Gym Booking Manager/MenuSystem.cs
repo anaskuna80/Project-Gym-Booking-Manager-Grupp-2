@@ -158,7 +158,7 @@ namespace Gym_Booking_Manager
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write("   Entering Users.");
                             Linger();
-
+                            StaffMenuUsers(id);
                             break;
                         case 5:
                             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -382,8 +382,8 @@ namespace Gym_Booking_Manager
 
         public static void StaffMenuSpaces(int id)
         {
-            Console.Write("   ┌────────────────┐                                          \n");
-            Console.Write("   │   Spaces       │                                          \n");
+            Console.Write("   ┌────────────────┐                                                            \n");
+            Console.Write("   │   Spaces       │                                                            \n");
             Console.Write("   ├────────────────┴───────────────────────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] View Spaces     -  Displays of all booking spaces.                   │\n");
             Console.Write("   │-- [2] Reserve Space   -  Allows you to reserve a specific place of space.  │\n");
@@ -416,17 +416,16 @@ namespace Gym_Booking_Manager
         }
         public static void StaffMenuUsers(int id)
         {
-            Console.Write("   ┌────────────────┐                                          \n");
-            Console.Write("   │   User Menu    │                                          \n");
-            Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
-            Console.Write("   │-- [1] Add User                                           │\n");
-            Console.Write("   │-- [2] Delete User                                        │\n");
-            Console.Write("   │-- [3] Sell Membership                                    │\n");
-            Console.Write("   │-- [4] Sell Daypass                                       │\n");
-            Console.Write("   │                                                          │\n");
-            Console.Write("   │-- [5] Help                                               │\n");
-            Console.Write("   │-- [6] Main Menu                                          │\n");
-            Console.Write("   └──────────────────────────────────────────────────────────┘\n");
+            Console.Write("   ┌────────────────┐                                                                                     \n");
+            Console.Write("   │   User Menu    │                                                                                     \n");
+            Console.Write("   ├────────────────┴────────────────────────────────────────────────────────────────────────────────────┐\n");
+            Console.Write("   │-- [1] Add User          -  Add a new user (costumer).                                               │\n");
+            Console.Write("   │-- [2] Delete User       -  Delete an actual user (costomer).                                        │\n");
+            Console.Write("   │-- [3] Sell Membership   -  Sell a membership to costumer and VIP services                           │\n");
+            Console.Write("   │-- [4] Sell Daypass      -  Sell a 24h pass to let costumers have more access to some VIP services.  │\n");
+            Console.Write("   │                                                                                                     │\n");
+            Console.Write("   │-- [5] Main Menu                                                                                     │\n");
+            Console.Write("   └─────────────────────────────────────────────────────────────────────────────────────────────────────┘\n");
             Console.Write("   >> ");
             string input = Console.ReadLine();
             if (input == "1")
@@ -457,12 +456,7 @@ namespace Gym_Booking_Manager
                 Console.Write("   Going back to Main Menu.");
                 Linger();
                 StaffMenuMain(id);
-            }
-            else if (input == "6")
-            {
-                Console.Clear();
-                StaffMenuMain(id);
-            }
+            }          
         }
 
         // ----- HERE IS THE CUSTOMER DOMAIN! ----------------------------------------------------------------------------------------------
