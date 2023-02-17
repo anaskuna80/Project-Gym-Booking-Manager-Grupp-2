@@ -158,6 +158,7 @@ namespace Gym_Booking_Manager
                 Console.Write("   │-- [4] Users                                              │\n");
                 Console.Write("   │-- [5] Group Schedule                                     │\n");
                 Console.Write("   │-- [6] Personal trainer                                   │\n");
+                Console.Write("   │-- [7] Restrict Item                                      │\n");
                 Console.Write("   │                                                          │\n");
                 Console.Write("   │-- [8] Help                                               │\n");
                 Console.Write("   │-- [9] Logout/Exit                                        │\n");
@@ -205,6 +206,12 @@ namespace Gym_Booking_Manager
                             StaffMenuPT();
                             break;
                         case 7:
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write("   Entering Restrict items.");
+                            Linger();
+                            //StaffMenuRestrict();
+                            break;
+                        case 8:
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write("   Entering Help.");
                             Linger();
@@ -483,13 +490,69 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [1] Calendar                                           │\n");
             Console.Write("   │-- [2] Equipment                                          │\n");
             Console.Write("   │-- [3] PT                                                 │\n");
-            Console.Write("   │-- [4] Schedules                                          │\n");
-            Console.Write("   │-- [5] Spaces                                             │\n");
-            Console.Write("   │-- [7] Group Schedule                                     │\n");
+            Console.Write("   │-- [4] Group Schedule                                     │\n");
             Console.Write("   │                                                          │\n");
             Console.Write("   │-- [8] Help                                               │\n");
             Console.Write("   │-- [9] Logout/Exit                                        │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
+            try
+            {
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("   Entering Calendar.");
+                        Linger();
+                        StaffMenuCalendar(id);
+                        break;
+                    case 2:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("   Entering Equipment.");
+                        Linger();
+                        StaffMenuEquipment(id);
+                        break;
+                    case 3:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("   Entering Personal Trainer.");
+                        Linger();
+                        StaffMenuPT();
+                        break;
+                    case 4:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("   Entering GroupSchedule.");
+                        Linger();
+                        StaffMenuGroupSchedule(id);
+                        break;
+                    case 8:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("   Entering Help.");
+                        Linger();
+                        StaffHelp();
+                        break;
+                    case 9:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("   Logging out.");
+                        Linger();
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("   Invalid choice!");
+                        Linger();
+                        break;
+                }
+            }
+            catch(FormatException)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("   Invalid choice!\n   Please enter a valid selection!!!\n   Press any key to proceed...");
+                Console.ReadKey();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("\n   OK.");
+                Linger();
+            }
+            
         }
         public static void NonMemberCustomerMenu()
         {
@@ -497,15 +560,77 @@ namespace Gym_Booking_Manager
             Console.Write("   │   Main Menu    │                                          \n");
             Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] View Calendar                                      │\n");
-            Console.Write("   │-- [3] PT                                                 │\n");
-            Console.Write("   │-- [2] Reserv sport Equipment                             │\n");
-            Console.Write("   │-- [2] Buy Membership                                     │\n");
-            Console.Write("   │-- [3] Buy Daypass                                        │\n");
+            Console.Write("   │-- [2] PT                                                 │\n");
+            Console.Write("   │-- [3] Reserv sport Equipment                             │\n");
+            Console.Write("   │-- [4] Buy Membership                                     │\n");
+            Console.Write("   │-- [5] Buy Daypass                                        │\n");
             Console.Write("   │                                                          │\n");
-            Console.Write("   │-- [4] Help                                               │\n");
-            Console.Write("   │-- [5] Logout/Exit                                        │\n");
+            Console.Write("   │-- [8] Help                                               │\n");
+            Console.Write("   │-- [9] Logout/Exit                                        │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
+            try
+            {
+                int choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("   Entering Calendar.");
+                        Linger();
+                        StaffMenuCalendar(id);
+                        break;
+                    case 2:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("   Entering Personal Trainer.");
+                        Linger();
+                        StaffMenuPT();
+                        break;
+                    case 3:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Sportsequipment.BookEquipment();
+                        Linger();
+                        
+                        break;
+                    case 4:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("   Not yet implanted.");
+                        Linger();
+                        break;
+                    case 5:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("   Not yet implanted.");
+                        Linger();
+                        break;
+                    case 8:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("   Entering Help.");
+                        Linger();
+                        StaffHelp();
+                        break;
+                    case 9:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write("   Logging out.");
+                        Linger();
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write("   Invalid choice!");
+                        Linger();
+                        break;
+                }
+            }
+            catch (FormatException)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("   Invalid choice!\n   Please enter a valid selection!!!\n   Press any key to proceed...");
+                Console.ReadKey();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write("\n   OK.");
+                Linger();
+            }
         }
+
 
 
         public static void AdminMenuMain()

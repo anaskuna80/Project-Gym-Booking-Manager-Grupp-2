@@ -63,7 +63,7 @@ namespace Gym_Booking_Manager
             ListPT();
             Console.WriteLine("Which Personal Trainer do you want to book?");
             string choise1 = Console.ReadLine();
-            Console.WriteLine("Supervised training session or consultation?");
+            Console.WriteLine("Supervised training session or consultation? fees - 60$ for each training session and 30$ for consultation");
             string training = Console.ReadLine();
             Console.WriteLine("Id of the person who is booking the personal trainer");
             int id = Convert.ToInt32(Console.ReadLine());
@@ -76,6 +76,7 @@ namespace Gym_Booking_Manager
                 Calendar newpt = new Calendar(pt.uniqueID, pt.name, training, id,reservation);
                 reserv.Create<Calendar>(newpt);
                 Console.WriteLine("You have made an reservation for personal trainer");
+                Console.WriteLine("There is no option to pay at the moment so you can pay at the front desk with the session");
                 break;
 
             }
