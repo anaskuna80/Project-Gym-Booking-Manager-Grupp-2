@@ -47,7 +47,7 @@ namespace Gym_Booking_Manager
             int participantlimit = Convert.ToInt32(Console.ReadLine());
             Console.Write("Name for the instructor?:");
             string instuctor = Console.ReadLine();
-            Console.Write("UniqueID for the Activity? (500-600)");
+            Console.Write("UniqueID for the Activity? (500-600):");
             int uniqueid = Convert.ToInt32(Console.ReadLine());
             GroupSchedule activity = new GroupSchedule(name,participantlimit,instuctor,uniqueid);
             Console.WriteLine("Sports equipment:");
@@ -69,34 +69,35 @@ namespace Gym_Booking_Manager
             Console.Write("name of the equipment you need?");
             string equipname = Console.ReadLine();
             Console.Write("how many?");
+            string time = Calendar.AddTime();
             int totalequip = Convert.ToInt32(Console.ReadLine());
             int count1 = 0;
             int count2 = 0; 
             foreach (Sportsequipment sportsequip in equipment.Read<Sportsequipment>("name", equipname))
             {
                
-                    Console.WriteLine($"Notification sent to id:() email and number to return equipment for the group activity");
-                    Sportsequipment newsport = new Sportsequipment(sportsequip.name, sportsequip.uniqueID);
-                    equipment.Update<Sportsequipment>(newsport, sportsequip);
-                    Console.WriteLine($"You reserved a {sportsequip.name}");
+                    
+                    Calendar newsport = new Calendar(sportsequip.uniqueID,sportsequip.name,name, uniqueid,time);
+                    equipment.Create<Calendar>(newsport);
                     count1++;
                 
                 
                 
                 if (count1 == totalequip) break;
             }
+            if (count1 > 0) Console.WriteLine($"You reserved {count1}.");
             foreach (Largeequipment sportsequip in equipment.Read<Largeequipment>("name", equipname))
             {
                 
-                    Console.WriteLine($"Notification sent to id:() email and number to return equipment for the group activity");
-                    
-                    Largeequipment newsport = new Largeequipment(sportsequip.name, sportsequip.uniqueID);
-                    equipment.Update<Largeequipment>(newsport, sportsequip);
-                    Console.WriteLine($"You reserved a {sportsequip.name}");
+                   
+                    Calendar newsport = new Calendar(sportsequip.uniqueID, sportsequip.name, name, uniqueid, time);
+                    equipment.Create<Calendar>(newsport);
                     count2++;
-                
-              
+                    if (count2 == totalequip) break;
+
+
             }
+            if(count2 > 0 ) Console.WriteLine($"You reserved {count2}.");
             Console.WriteLine();
             foreach (Space spaces in space.Read<Space>())
             {
@@ -108,9 +109,9 @@ namespace Gym_Booking_Manager
             foreach (Space space1 in space.Read<Space>("category", choise))
             {
            
-                    Console.WriteLine($"Notification sent to id:() email and number that the space is been booked for a group activity");
-                    Space newspace = new Space(space1.category,space1.uniqueID);
-                    space.Update<Space>(newspace,space1);
+                    
+                    Calendar newspace = new Calendar(space1.uniqueID, space1.category.ToString(), name, uniqueid, time);
+                    space.Create<Calendar>(newspace);
                     Console.WriteLine($"you reserved {space1.category}");
                     break;
 

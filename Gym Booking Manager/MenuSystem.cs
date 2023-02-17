@@ -467,6 +467,8 @@ namespace Gym_Booking_Manager
             Console.Write("   │   Main Menu    │                                          \n");
             Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] View Calendar                                      │\n");
+            Console.Write("   │-- [3] PT                                                 │\n");
+            Console.Write("   │-- [2] Reserv sport Equipment                             │\n");
             Console.Write("   │-- [2] Buy Membership                                     │\n");
             Console.Write("   │-- [3] Buy Daypass                                        │\n");
             Console.Write("   │                                                          │\n");
