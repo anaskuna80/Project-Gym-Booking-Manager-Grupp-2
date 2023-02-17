@@ -345,7 +345,7 @@ namespace Gym_Booking_Manager
                     Calendar.MakeReservation();
                     break;
                 case "3":
-                    Calendar.DeleteReservatin();
+                    Calendar.DeleteReservation();
                     break;
                 case "4":
                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -435,7 +435,7 @@ namespace Gym_Booking_Manager
             Console.Write("   │   User Menu    │                                                                                     \n");
             Console.Write("   ├────────────────┴────────────────────────────────────────────────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] Add User          -  Add a new user (costumer).                                               │\n");
-            Console.Write("   │-- [2] Delete User       -  Delete an actual user (costomer).                                        │\n");
+            Console.Write("   │-- [2] Delete User       -  Delete an actual user (customer).                                        │\n");
             Console.Write("   │-- [3] Sell Membership   -  Sell a membership to costumer and VIP services                           │\n");
             Console.Write("   │-- [4] Sell Daypass      -  Sell a 24h pass to let costumers have more access to some VIP services.  │\n");
             Console.Write("   │                                                                                                     │\n");

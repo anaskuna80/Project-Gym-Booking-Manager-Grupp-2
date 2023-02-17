@@ -63,7 +63,7 @@ namespace Gym_Booking_Manager
             ListPT();
             Console.WriteLine("Which Personal Trainer do you want to book?");
             string choise1 = Console.ReadLine();
-            Console.WriteLine("Supervised traing seasion or consultation?");
+            Console.WriteLine("Supervised training session or consultation?");
             string training = Console.ReadLine();
             Console.WriteLine("Id of the person who is booking the personal trainer");
             int id = Convert.ToInt32(Console.ReadLine());

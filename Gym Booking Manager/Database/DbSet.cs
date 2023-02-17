@@ -30,7 +30,7 @@ namespace Gym_Booking_Manager
              * object? For the flat file implementation, should we open and close
              * files at the lowest level? For now, yes.
              * 
-             * Naive solution for object management: Create the entity list in its entirity
+             * Naive solution for object management: Create the entity list in its entity
              * every time we want to perform an operation.
              * 
              * CRUD Methods: Create, Read, Update, Delete */
