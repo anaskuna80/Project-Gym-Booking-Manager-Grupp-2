@@ -12,11 +12,9 @@ namespace Gym_Booking_Manager
         
         static void Main(string[] args)
         {
-            bool status = true;
             string choice;
             do 
             {
-                Console.WriteLine("  ...");
                 MenuSystem.Login();
                 Console.WriteLine("   Do you want to restart? y/n\n   >> ");
                 choice = Console.ReadLine().ToLower();
@@ -27,13 +25,12 @@ namespace Gym_Booking_Manager
                 else if (choice == "n")
                 {
                     Console.WriteLine("   Bye, then");
-                    status = false;
                 }
                 else
                 {
                     Console.WriteLine("   Invalid command!");
                 }
-            } while (status = true);
+            } while (true);
 
 
             /*
