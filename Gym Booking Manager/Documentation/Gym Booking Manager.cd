@@ -28,7 +28,7 @@
   <Class Name="Gym_Booking_Manager.Calendar">
     <Position X="12.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAQAAAAAAAAAgAQEIAAAAAAAAAAEQAAAAEAAoAAAAgA=</HashCode>
+      <HashCode>CAQAAAAAAAAAAAQEYAAAAAAAAAAEQAAAAEAAoAAAAgA=</HashCode>
       <FileName>Calendar.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -97,13 +97,6 @@
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Gym_Booking_Manager.Reservation">
-    <Position X="10.25" Y="10" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAIAAACAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Reservation.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Gym_Booking_Manager.Space" BaseTypeListCollapsed="true">
     <Position X="14.75" Y="1.5" Width="1.5" />
     <Compartments>
@@ -164,13 +157,6 @@
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IDatabase.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="Gym_Booking_Manager.IReservable">
-    <Position X="16.5" Y="7.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAEAAAAAAAAE=</HashCode>
-      <FileName>Interfaces\IReservable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="9" />

@@ -51,7 +51,7 @@ namespace Gym_Booking_Manager
 
     //static Dictionary<DateTime, string> reservations = new Dictionary<DateTime, string>();
 
-        public static void DeleteReservatin()
+        public static void DeleteReservation()
         {
             GymDatabaseContext reservation = new GymDatabaseContext();
             Console.WriteLine("Here is a list of all current reservations:");

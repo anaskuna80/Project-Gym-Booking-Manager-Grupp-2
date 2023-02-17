@@ -313,7 +313,7 @@ namespace Gym_Booking_Manager
                     Calendar.MakeReservation();
                     break;
                 case "3":
-                    Calendar.DeleteReservatin();
+                    Calendar.DeleteReservation();
                     break;
                 case "4":
                     Console.ForegroundColor = ConsoleColor.Yellow;
