@@ -112,7 +112,7 @@ namespace Gym_Booking_Manager
                 {
                     Sportsequipment.BookEquipment();
                 }
-                else Console.WriteLine("Wrong choise");
+                else Console.WriteLine("Wrong choice");
             }
             catch
             {

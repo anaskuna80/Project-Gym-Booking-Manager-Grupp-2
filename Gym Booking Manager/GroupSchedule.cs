@@ -166,7 +166,7 @@ namespace Gym_Booking_Manager
                             activity.participantLimit = max;
                             GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor, activity.uniqueID);
                             updateactivity.Update<GroupSchedule>(newgroup, activity);
-                            Console.WriteLine($"Activity particpant limit has been updated to({activity.participantLimit})");
+                            Console.WriteLine($"Activity participant limit has been updated to({activity.participantLimit})");
                             break;
                         }
                         else if (change == 3)

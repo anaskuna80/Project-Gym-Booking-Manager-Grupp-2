@@ -25,21 +25,21 @@ namespace Gym_Booking_Manager
         {
             GymDatabaseContext reserv = new GymDatabaseContext();
             ListEquipment();
-            Console.WriteLine("Which sportequipment do you want to book?");
-            string choise1 = Console.ReadLine();
+            Console.WriteLine("Which sport equipment do you want to book?");
+            string choice1 = Console.ReadLine();
             Console.WriteLine("What are you reserving the equipment for?");
-            string choise2 = Console.ReadLine();
-            Console.WriteLine("Id of the person who is booking the sportequipment");
+            string choice2 = Console.ReadLine();
+            Console.WriteLine("Id of the person who is booking the sport equipment");
             int id = Convert.ToInt32(Console.ReadLine());
             string reservation = Calendar.AddTime();
 
-            foreach (Sportsequipment equip in reserv.Read<Sportsequipment>("name", choise1))
+            foreach (Sportsequipment equip in reserv.Read<Sportsequipment>("name", choice1))
             {
 
 
-                Calendar newpt = new Calendar(equip.uniqueID, equip.name, choise2, id, reservation);
+                Calendar newpt = new Calendar(equip.uniqueID, equip.name, choice2, id, reservation);
                 reserv.Create<Calendar>(newpt);
-                Console.WriteLine("You have made an reservation for a Sportequipment");
+                Console.WriteLine("You have made an reservation for a Sport equipment");
                 break;
 
             }
@@ -47,7 +47,7 @@ namespace Gym_Booking_Manager
         public static void ListEquipment()
         {
             GymDatabaseContext space = new GymDatabaseContext();
-            Console.WriteLine("All Sportequipment:");
+            Console.WriteLine("All Sport equipment:");
             foreach (Sportsequipment allequip in space.Read<Sportsequipment>())
             {
 

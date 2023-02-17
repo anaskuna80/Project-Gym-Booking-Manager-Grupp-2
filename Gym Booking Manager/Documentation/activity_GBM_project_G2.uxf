@@ -349,7 +349,7 @@ valign=center</panel_attributes>
       <w>112</w>
       <h>28</h>
     </coordinates>
-    <panel_attributes>Sell Mambership</panel_attributes>
+    <panel_attributes>Sell Membership</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -426,7 +426,7 @@ valign=center</panel_attributes>
       <w>112</w>
       <h>28</h>
     </coordinates>
-    <panel_attributes>Purchase Mambership</panel_attributes>
+    <panel_attributes>Purchase Membership</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
