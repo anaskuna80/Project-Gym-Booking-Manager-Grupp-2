@@ -10,7 +10,7 @@ using static Gym_Booking_Manager.Space;
 
 namespace Gym_Booking_Manager
 {
-    internal class GroupActitity : ICSVable, IComparable<GroupActitity>
+    internal class GroupActivity : ICSVable, IComparable<GroupActivity>
     {
         public string name { get; set; }
         public int uniqueID { get; set; }
@@ -20,7 +20,7 @@ namespace Gym_Booking_Manager
         public string instructor { get; set; }
         //public string timeSlot { get; set; }
 
-        public GroupActitity(string name, int participantlimit, string instructor, int uniqueID)
+        public GroupActivity(string name, int participantlimit, string instructor, int uniqueID)
         {
             this.name = name;
             this.participantLimit = participantlimit;
@@ -30,7 +30,7 @@ namespace Gym_Booking_Manager
             this .uniqueID = uniqueID;
             //this.timeSlot = timeslot;
         }
-        public GroupActitity(Dictionary<String, String> constructionArgs)
+        public GroupActivity(Dictionary<String, String> constructionArgs)
         {
             this.name = constructionArgs[nameof(name)];
             this.participantLimit = Convert.ToInt32(constructionArgs[nameof(participantLimit)]);
@@ -65,7 +65,7 @@ namespace Gym_Booking_Manager
         {
             return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{nameof(participantLimit)}:{participantLimit},{nameof(instructor)}:{instructor} ";
         }
-        public int CompareTo(GroupActitity? other)
+        public int CompareTo(GroupActivity? other)
         {
             // If other is not a valid object reference, this instance is greater.
             if (other == null) return 1;

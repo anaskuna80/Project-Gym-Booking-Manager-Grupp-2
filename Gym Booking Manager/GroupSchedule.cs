@@ -14,13 +14,13 @@ using System.Xml.Linq;
 #endif
 namespace Gym_Booking_Manager
 {
-    internal class GroupSchedule : GroupActitity
+    internal class GroupSchedule : GroupActivity
     {
-        private List<GroupActitity> activites;
+        private List<GroupActivity> activites;
 
         public GroupSchedule(string name,int participantlimit,string instructor,int uniqueID) : base(name, participantlimit,instructor,uniqueID)
         {
-            this.activites = new List<GroupActitity>();
+            this.activites = new List<GroupActivity>();
         }
 
         public GroupSchedule(Dictionary<String, String> constructionArgs) : base( constructionArgs)

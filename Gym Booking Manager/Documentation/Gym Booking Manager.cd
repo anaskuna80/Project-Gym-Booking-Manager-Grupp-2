@@ -27,15 +27,8 @@
   </Class>
   <Class Name="Gym_Booking_Manager.Calendar">
     <Position X="12.75" Y="1.5" Width="1.5" />
-    <NestedTypes>
-      <Class Name="Gym_Booking_Manager.Calendar.DateTimeExtensions" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Calendar.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>CAQIAAAAAAAAAAQEYAAAAAAAAAAEQAAAAEAAoAAAAgA=</HashCode>
+      <HashCode>CAQAAAAAAAAAAAQEYAAAAAAAAAAEQAAAAEAAoAAAAgA=</HashCode>
       <FileName>Calendar.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -51,12 +44,12 @@
   <Class Name="Gym_Booking_Manager.Equipment">
     <Position X="4.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAQEAAAAAAAAAAAEAAAAAAAAgAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAQEAAAAABAAAAAEAAAAAAAAgAAAAAA=</HashCode>
       <FileName>Equipment.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.239" />
   </Class>
-  <Class Name="Gym_Booking_Manager.GroupActitity">
+  <Class Name="Gym_Booking_Manager.GroupActivity">
     <Position X="10.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAIAAAAAAAiAQEAAAAAAAAAAAEIAAAAAAAgAAEAAA=</HashCode>
@@ -74,7 +67,7 @@
   <Class Name="Gym_Booking_Manager.Largeequipment">
     <Position X="8.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQEAAQAAAAAAAAAAAAAAAAAgACAAAA=</HashCode>
+      <HashCode>AAAAIAAIAAAAAAQEAAQAAAAAAAAAAAAAAAAAgACAAAA=</HashCode>
       <FileName>Largeequipment.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -82,7 +75,7 @@
   <Class Name="Gym_Booking_Manager.MenuSystem">
     <Position X="2.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CABAAAAAAgAgAIAAIAAAAEAIAIAQgIAAAAAUAAAAAgQ=</HashCode>
+      <HashCode>CABEAABAAgAgAIAAIAAAAEAIAIAQgMAAAAAUAAAAAgQ=</HashCode>
       <FileName>MenuSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -117,7 +110,7 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAUAAAAAAAAAAAQEAAACAAAAAAAAAAAAAAAIgAAAAAA=</HashCode>
+      <HashCode>AAUAIAAIAAAAAAQEAAACABAAAAAAAAAAAAAIgAAAAAA=</HashCode>
       <FileName>Space.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -125,7 +118,7 @@
   <Class Name="Gym_Booking_Manager.Sportsequipment">
     <Position X="6.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQEAAQAAAAAAAAAAAAAAAAAgACAAAA=</HashCode>
+      <HashCode>AAAAIAAIAAAAAAQEAAQAAAAAAAAAAAAAAAAAgACAAAA=</HashCode>
       <FileName>Sportsequipment.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
