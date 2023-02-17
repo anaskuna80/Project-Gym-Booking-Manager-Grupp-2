@@ -20,19 +20,23 @@ namespace Gym_Booking_Manager
                 CsvFileManager.CopyCsvFilesToStorageFolder();
 
                 MenuSystem.Login();
-                Console.WriteLine("   Do you want to restart? y/n\n   >> ");
+                Console.Write("   Retry Login? y/n\n   >> ");
                 choice = Console.ReadLine().ToLower();
                 if (choice == "y")
                 {
+                    Console.Clear();
                     MenuSystem.Login();
                 }
                 else if (choice == "n")
                 {
-                    Console.WriteLine("   Bye, then");
+                    Console.Write("\n   Bye, then!");
+                    Environment.Exit(0); 
                 }
                 else
                 {
-                    Console.WriteLine("   Invalid command!");
+                    Console.ForegroundColor= ConsoleColor.Red;
+                    Console.Write("\n   Invalid command!");
+                    Console.ResetColor();
                 }
             } while (true);
 
