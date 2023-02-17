@@ -111,7 +111,7 @@ namespace Gym_Booking_Manager
             
         }
 
-        // ----- HERE IS THE STAFF DOMAIN! ----------------------------------------------------------------------------------------------
+        // ----- HERE IS THE STAFF DOMAIN! ------------------------------------------------------------------------------------------------
         public static void StaffMenuMain(int id)
         {
             do
@@ -162,23 +162,23 @@ namespace Gym_Booking_Manager
                             break;
                         case 5:
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("   Entering GroupSchedule.");
+                            Console.Write("   Entering GroupSchedule.");
                             Linger();
                             StaffMenuGroupSchedule(id);
                             break;
                         case 6:
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("   Entering Personal Trainer.");
+                            Console.Write("   Entering Personal Trainer.");
                             Linger();
                             StaffMenuPT();
                             break;
                         case 7:
                             Console.ForegroundColor = ConsoleColor.Yellow;
-                            Console.WriteLine("   Entering Help.");
+                            Console.Write("   Entering Help.");
                             Linger();
                             StaffHelp();
                             break;
-                        case 8:
+                        case 9:
                             Console.ForegroundColor = ConsoleColor.Yellow;
                             Console.Write("   Logging out.");
                             Linger();
@@ -205,62 +205,45 @@ namespace Gym_Booking_Manager
         public static void StaffMenuGroupSchedule(int id)
         {
             Console.Write("   ┌────────────────┐                                          \n");
-            Console.Write("   │ GroupSchedule  │                                          \n");
+            Console.Write("   │ Group Schedule │                                          \n");
             Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
-            Console.Write("   │-- [1] View all Group Activities                          │\n");
-            Console.Write("   │-- [2] Add  Group activity                                │\n");
-            Console.Write("   │-- [3] Remove Group activity                              │\n");
-            Console.Write("   │-- [4] Update Group activity                              │\n");
+            Console.Write("   │-- [1] View All Group Activities                          │\n");
+            Console.Write("   │-- [2] Add Group Activity                                 │\n");
+            Console.Write("   │-- [3] Remove Group Activity                              │\n");
+            Console.Write("   │-- [4] Update Group Activity                              │\n");
             Console.Write("   │                                                          │\n");
-            Console.Write("   │-- [5] Help                                               │\n");
-            Console.Write("   │-- [6] Main Menu                                          │\n");
+            Console.Write("   │-- [5] Main Menu                                          │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
             Console.Write("   >> ");
             string selection = Console.ReadLine();
             switch (selection)
             {
                 case "1":
-                    Console.WriteLine("Group Activities:");
-                    Console.WriteLine();
+                    Console.Write("\nAll Group Activities:\n");
+                    Console.Write("──────────────────────────────────────────────────────────\n\n");
                     GroupSchedule.ViewSchedule();
-                    Console.WriteLine();
                     break;
 
                 case "2":
-                    Console.WriteLine("\n Add Group Activity");
-                    Console.WriteLine("------------------------------------------------");
+                    Console.Write("\n Add Group Activity\n");
+                    Console.Write("──────────────────────────────────────────────────────────\n\n");
                     GroupSchedule.AddActivity();
                     break;
                 case "3":
-                    Console.WriteLine("\n Remove Group Activity");
-                    Console.WriteLine("------------------------------------------------");
+                    Console.Write("\n Remove Group Activity\n");
+                    Console.Write("──────────────────────────────────────────────────────────\n\n");
                     GroupSchedule.RemoveActivity();
                     break;
                 case "4":
-                    Console.WriteLine("\n Update Group Activity");
-                    Console.WriteLine("------------------------------------------------");
+                    Console.Write("\n Update Group Activity\n");
+                    Console.Write("──────────────────────────────────────────────────────────\n\n");
                     GroupSchedule.UpdateActivity();
                     break;
 
                 case "5":
-                    Console.WriteLine("\n Help");
-                    Console.WriteLine("------------------------------------------------");
-                    Console.WriteLine("Welcome to the Help section of the Group Menu!");
-                    Console.WriteLine("\n [1] - View Group Activitys");
-                    Console.WriteLine("Displays of all Group Activitys.");
-                    Console.WriteLine("\n [2] - Add Group Activity");
-                    Console.WriteLine("Allows you to add a Group Activity.");
-                    Console.WriteLine("\n [3] - Remove Group Activity");
-                    Console.WriteLine("Allows you to remove a Group Activity.");
-                    Console.WriteLine("\n [4] - Update Group Activity");
-                    Console.WriteLine("Allows you to Update a Group Activity.");
-                    Console.WriteLine("\n [6] - Main Menu");
-                    Console.WriteLine("Returns you to the Main Menu.");
-                    Console.WriteLine("------------------------------------------------");
-                    break;
-
-                case "6":
-                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write("   Going back to Main Menu.");
+                    Linger();
                     StaffMenuMain(id);
                     break;
                 default:
@@ -275,8 +258,8 @@ namespace Gym_Booking_Manager
             Console.Write("   ┌────────────────┐                                                                             \n");
             Console.Write("   │   PT           │                                                                             \n");
             Console.Write("   ├────────────────┴────────────────────────────────────────────────────────────────────────────┐\n");
-            Console.Write("   │-- [1] View available personal trainers   -   Displays of all available personal trainers.   │\n");
-            Console.Write("   │-- [2] Book Personal trainer              -   Allows you to book a personal trainer          │\n");
+            Console.Write("   │-- [1] View Available Personal Trainers   -   Displays of all available personal trainers.   │\n");
+            Console.Write("   │-- [2] Book Personal Trainer              -   Allows you to book a personal trainer          │\n");
             Console.Write("   │                                                                                             │\n");
             Console.Write("   │-- [4] Main Menu                                                                             │\n");
             Console.Write("   └─────────────────────────────────────────────────────────────────────────────────────────────┘\n");
@@ -294,10 +277,11 @@ namespace Gym_Booking_Manager
                     Console.WriteLine("\n Book Personal trainer");
                     Console.WriteLine("------------------------------------------------");
                     PersonalTrainer.BookPT();
-
                     break;
                 case "4":
-                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write("   Going back to Main Menu.");
+                    Linger();
                     StaffMenuMain(id);
                     break;
                 default:
@@ -459,7 +443,7 @@ namespace Gym_Booking_Manager
             }          
         }
 
-        // ----- HERE IS THE CUSTOMER DOMAIN! ----------------------------------------------------------------------------------------------
+        // ----- HERE IS THE CUSTOMER DOMAIN! ---------------------------------------------------------------------------------------------
         public static void MemberCustomerMenu()
         {
             Console.Write("   ┌────────────────┐                                          \n");
@@ -471,7 +455,7 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [4] Schedules                                          │\n");
             Console.Write("   │-- [5] Spaces                                             │\n");
             Console.Write("   │-- [6] User                                               │\n");
-            Console.Write("   │-- [7] group Schedule                                     │\n");
+            Console.Write("   │-- [7] Group Schedule                                     │\n");
             Console.Write("   │                                                          │\n");
             Console.Write("   │-- [8] Help                                               │\n");
             Console.Write("   │-- [9] Logout/Exit                                        │\n");
@@ -513,7 +497,6 @@ namespace Gym_Booking_Manager
             Console.Write("   ┌────────────────┐                                          \n");
             Console.Write("   │   Calendar     │                                          \n");
             Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
-            Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] View All Reservations                              │\n");
             Console.Write("   │-- [2] Vacant Reservations                                │\n");
             Console.Write("   │-- [3] Make Reservation                                   │\n");
@@ -522,14 +505,12 @@ namespace Gym_Booking_Manager
             Console.Write("   │-- [5] Help                                               │\n");
             Console.Write("   │-- [6] Main Menu                                          │\n");
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
-            Console.Write("                                  You are at --> Calendar Menu \n");
         }
         public static void AdminMenuUser()
         {
             Console.Write("   ┌────────────────┐                                          \n");
-            Console.Write("   │   Calendar     │                                          \n");
+            Console.Write("   │   User         │                                          \n");
             Console.Write("   ├────────────────┴─────────────────────────────────────────┐\n");
-            Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
             Console.Write("   │-- [1] Add User                                           │\n");
             Console.Write("   │-- [2] Delete User                                        │\n");
             Console.Write("   │-- [3] Sell Membership                                    │\n");
@@ -540,6 +521,8 @@ namespace Gym_Booking_Manager
             Console.Write("   └──────────────────────────────────────────────────────────┘\n");
             Console.Write("                                     You are at --> Users Menu \n");
         }
+
+        // ----- This Method make browsing through the menus a bit cooler -----------------------------------------------------------------
         public static void Linger()
         {
             Thread.Sleep(250);
@@ -550,7 +533,7 @@ namespace Gym_Booking_Manager
             Console.ResetColor();
             Console.Clear();
         }
-
+        // --------------------------------------------------------------------------------------------------------------------------------
         public static void StaffHelp() 
         {
             Console.WriteLine("   To be applied");
@@ -560,100 +543,4 @@ namespace Gym_Booking_Manager
             Console.WriteLine("   Sorry, coming soooooooon!");
         }
     }
-
-    /*
-    Use any of this:?
-
-                Console.Write("   ┌──────────────────────────────────────────────────────────┐\n");
-                Console.Write("   │ User: <username>              Logged in <DD/MM HH:MM:SS> │\n");
-                Console.Write("   └──────────────────────────────────────────────────────────┘\n");
-
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text;
-    namespace Gym_Booking_Manager
-    {
-        public class MenuSystem
-        {
-            private const string UsersFilePath = "Users.csv";
-            public static void MainMenu()
-            {
-                Console.WriteLine(" *** Gym Booking Manager ***");
-                Console.WriteLine("Welcome, you need to login, please enter your userID: ");
-                string userID = Console.ReadLine();
-                // Check if user exists in the database
-                User user = GetUser(userID);
-                if (user == null)
-                {
-                    Console.WriteLine("User does not exist, would you like to create a new user?");
-                    string input = Console.ReadLine();
-                    if (input.ToLower() == "yes")
-                    {
-                        Console.WriteLine("Enter name:");
-                        string name = Console.ReadLine();
-                        Console.WriteLine("Enter phone number:");
-                        string phone = Console.ReadLine();
-                        Console.WriteLine("Enter email:");
-                        string email = Console.ReadLine();
-                        Console.WriteLine("Enter account type (Customer/Staff):");
-                        string accountType = Console.ReadLine();
-                        // Create new user and add it to the database
-                        User newUser = new User()
-                        {
-                            id = userID,
-                            name = name,
-                            phone = phone,
-                            email = email,
-                            accountType = accountType
-                        };
-                        AddUser(newUser);
-                    }
-                    else
-                    {
-                        Console.WriteLine("User creation cancelled.");
-                        return;
-                    }
-                }
-                // User exists or has been created, continue with the program
-                Console.WriteLine($"Welcome, {user.name}");
-                Console.WriteLine("Type of account: " + user.accountType);
-                // Program logic for displaying the main menu
-                Console.WriteLine("Main menu options:");
-                Console.WriteLine("1. View Log [Admin]");
-                Console.WriteLine("2. View Group Schedule [Admin, Staff]");
-                Console.WriteLine("3. Make reservation");
-                Console.WriteLine("4. Cancel reservation");
-                Console.WriteLine("5. Daypass");
-                Console.WriteLine("6. Membership");
-                Console.WriteLine("7. Add User");
-                Console.WriteLine("8. Delete User");
-            }
-            private static User GetUser(string userID)
-            {
-                if (!File.Exists(UsersFilePath))
-                {
-                    return null;
-                }
-                string[] lines = File.ReadAllLines(UsersFilePath);
-                foreach (string line in lines)
-                {
-                    string[] fields = line.Split(',');
-                    if (fields[0] == userID)
-                    {
-                        User user = new User()
-                        {
-                            id = fields[0],
-                            name = fields[1],
-                            phone = fields[2],
-                            email = fields[3],
-                            accountType = fields[4]
-                        };
-                        return user;
-                    }
-                }
-                return null
-    }
-    */
 }
