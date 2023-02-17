@@ -589,39 +589,6 @@ bg=blue</panel_attributes>
     <additional_attributes>10.0;10.0;190.0;310.0;600.0;240.0</additional_attributes>
   </element>
   <element>
-    <id>UMLActor</id>
-    <coordinates>
-      <x>968</x>
-      <y>112</y>
-      <w>48</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>Admin</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLUseCase</id>
-    <coordinates>
-      <x>816</x>
-      <y>136</y>
-      <w>96</w>
-      <h>32</h>
-    </coordinates>
-    <panel_attributes>View log</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>904</x>
-      <y>136</y>
-      <w>96</w>
-      <h>32</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes>10.0;20.0;100.0;10.0</additional_attributes>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
       <x>328</x>
