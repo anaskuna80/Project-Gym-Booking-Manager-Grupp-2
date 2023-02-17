@@ -36,7 +36,7 @@ namespace Gym_Booking_Manager
                 userID = Console.ReadLine();
                 if (userID == "quit".ToLower())
                 {
-                    Console.WriteLine("   Good Bye!");
+                    Console.WriteLine("   Login Aborted!");
                     break;
                 }
                 if (userID != "")
