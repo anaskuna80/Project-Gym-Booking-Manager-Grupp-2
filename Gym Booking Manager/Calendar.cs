@@ -109,11 +109,11 @@ namespace Gym_Booking_Manager
 
                 else if (choise == 3)
                 {
-                    Largeequipment.BookEquipment();
+                    LargeEquipment.BookEquipment();
                 }
                 else if (choise == 4)
                 {
-                    Sportsequipment.BookEquipment();
+                    SportsEquipment.BookEquipment();
                 }
                 else Console.WriteLine("Wrong choice");
             }
@@ -124,7 +124,8 @@ namespace Gym_Booking_Manager
             }
         public override string ToString()
         {
-            return this.CSVify(); // TODO: Don't use CSVify. Make it more readable.
+            return $"'{description}', '{name}', {timeSlot}";
+            //return this.CSVify(); // TODO: Don't use CSVify. Make it more readable.
         }
 
         // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.

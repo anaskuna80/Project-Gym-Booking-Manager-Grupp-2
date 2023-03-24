@@ -26,10 +26,10 @@ namespace Gym_Booking_Manager
     {
 
         public DbSet<Space> spaces;
-        public DbSet<Largeequipment> largeequipment;
+        public DbSet<LargeEquipment> largeequipment;
         public DbSet<Staff> staffs;
         public DbSet<Customer> customer;
-        public DbSet<Sportsequipment> sportsequipment;
+        public DbSet<SportsEquipment> sportsequipment;
         public DbSet<GroupSchedule> groupactivities;
         public DbSet<PersonalTrainer> personaltrainer;
         public DbSet<Calendar> calendar;
@@ -55,9 +55,9 @@ namespace Gym_Booking_Manager
             Directory.CreateDirectory(storage);
             this.spaces = new DbSet<Space>(fpathSpace);
             this.staffs = new DbSet<Staff>(fpathSpace2);
-            this.sportsequipment= new DbSet<Sportsequipment>(fpathSpace3);
+            this.sportsequipment= new DbSet<SportsEquipment>(fpathSpace3);
             this.customer = new DbSet<Customer>(fpathSpace4);
-            this.largeequipment = new DbSet<Largeequipment>(fpathSpace5);
+            this.largeequipment = new DbSet<LargeEquipment>(fpathSpace5);
             this.groupactivities = new DbSet<GroupSchedule>(fpathSpace6);
             this.personaltrainer = new DbSet<PersonalTrainer>(fpathSpace7);
             this.calendar = new DbSet<Calendar>(fpathSpace8);

@@ -8,16 +8,16 @@ using static Gym_Booking_Manager.Space;
 
 namespace Gym_Booking_Manager
 {
-    internal class Sportsequipment : Equipment, ICSVable, IComparable<Sportsequipment>
+    internal class SportsEquipment : Equipment, ICSVable, IComparable<SportsEquipment>
     {
 
 
-        public Sportsequipment(int uniqueID, string name, bool isRestricted) : base(  uniqueID,name, isRestricted)
+        public SportsEquipment(int uniqueID, string name, bool isRestricted) : base(  uniqueID,name, isRestricted)
         {
 
         
         }
-        public Sportsequipment(Dictionary<String, String> constructionArgs) : base (constructionArgs) 
+        public SportsEquipment(Dictionary<String, String> constructionArgs) : base (constructionArgs) 
         {
             
         }
@@ -33,7 +33,7 @@ namespace Gym_Booking_Manager
             int id = Convert.ToInt32(Console.ReadLine());
             string reservation = Calendar.AddTime();
 
-            foreach (Sportsequipment equip in reserv.Read<Sportsequipment>("name", choice1))
+            foreach (SportsEquipment equip in reserv.Read<SportsEquipment>("name", choice1))
             {
 
                 if (equip.isRestricted == false)
@@ -53,7 +53,7 @@ namespace Gym_Booking_Manager
         {
             GymDatabaseContext space = new GymDatabaseContext();
             Console.WriteLine("All Sport equipment:");
-            foreach (Sportsequipment allequip in space.Read<Sportsequipment>())
+            foreach (SportsEquipment allequip in space.Read<SportsEquipment>())
             {
 
 
@@ -67,7 +67,7 @@ namespace Gym_Booking_Manager
             GymDatabaseContext restricted = new GymDatabaseContext();
             Console.WriteLine();
             Console.WriteLine("Restricted Sport equipment:");
-            foreach (Sportsequipment restrict in restricted.Read<Sportsequipment>())
+            foreach (SportsEquipment restrict in restricted.Read<SportsEquipment>())
             {
                 if (restrict.isRestricted == true)
                 {
@@ -82,13 +82,13 @@ namespace Gym_Booking_Manager
             ListEquipment();
             Console.WriteLine("What item do you want to restict?");
             string item = Console.ReadLine();
-            foreach (Sportsequipment restricted in restrict.Read<Sportsequipment>("name", item))
+            foreach (SportsEquipment restricted in restrict.Read<SportsEquipment>("name", item))
             {
                 if (restricted.isRestricted == false)
                 {
                     restricted.isRestricted = true;
-                    Sportsequipment newitem = new Sportsequipment(restricted.uniqueID, restricted.name, restricted.isRestricted);
-                    restrict.Update<Sportsequipment>(newitem, restricted);
+                    SportsEquipment newitem = new SportsEquipment(restricted.uniqueID, restricted.name, restricted.isRestricted);
+                    restrict.Update<SportsEquipment>(newitem, restricted);
                     Console.WriteLine("You have restricted the Item");
                     break;
                 }
@@ -97,13 +97,14 @@ namespace Gym_Booking_Manager
         }
         public override string ToString()
         {
-            return this.CSVify(); 
+            return $"'{name}', {isRestricted}";
+            //return this.CSVify(); 
         }
         public string CSVify()
         {
             return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{nameof(isRestricted)}:{isRestricted}";
         }
-        public int CompareTo(Sportsequipment? other)
+        public int CompareTo(SportsEquipment? other)
         {
             // If other is not a valid object reference, this instance is greater.
             if (other == null) return 1;

@@ -51,7 +51,7 @@ namespace Gym_Booking_Manager
             int uniqueid = Convert.ToInt32(Console.ReadLine());
             GroupSchedule activity = new GroupSchedule(name,participantlimit,instuctor,uniqueid);
             Console.WriteLine("Sports equipment:");
-            foreach (Sportsequipment sportsequip in equipment.Read<Sportsequipment>())
+            foreach (SportsEquipment sportsequip in equipment.Read<SportsEquipment>())
             {
 
                 Console.WriteLine(sportsequip.CSVify());
@@ -59,7 +59,7 @@ namespace Gym_Booking_Manager
             }
             Console.WriteLine();
             Console.WriteLine("Large equipment:");
-            foreach (Largeequipment largeequip in equipment.Read<Largeequipment>())
+            foreach (LargeEquipment largeequip in equipment.Read<LargeEquipment>())
             {
 
                 Console.WriteLine(largeequip.CSVify());
@@ -73,7 +73,7 @@ namespace Gym_Booking_Manager
             int totalequip = Convert.ToInt32(Console.ReadLine());
             int count1 = 0;
             int count2 = 0; 
-            foreach (Sportsequipment sportsequip in equipment.Read<Sportsequipment>("name", equipname))
+            foreach (SportsEquipment sportsequip in equipment.Read<SportsEquipment>("name", equipname))
             {
                
                     
@@ -86,7 +86,7 @@ namespace Gym_Booking_Manager
                 if (count1 == totalequip) break;
             }
             if (count1 > 0) Console.WriteLine($"You reserved {count1}.");
-            foreach (Largeequipment sportsequip in equipment.Read<Largeequipment>("name", equipname))
+            foreach (LargeEquipment sportsequip in equipment.Read<LargeEquipment>("name", equipname))
             {
                 
                    
@@ -110,7 +110,8 @@ namespace Gym_Booking_Manager
             {
            
                     
-                    Calendar newspace = new Calendar(space1.uniqueID, space1.category.ToString(), name, uniqueid, time);
+                    Calendar newspace = new Calendar(2, space1.category.ToString(), name, uniqueid, time);
+                    //Calendar newspace = new Calendar(space1.uniqueID, space1.category.ToString(), name, uniqueid, time);
                     space.Create<Calendar>(newspace);
                     Console.WriteLine($"you reserved {space1.category}");
                     break;
