@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Net.Http.Headers;
+using Gym_Booking_Manager.Database;
 
 namespace Gym_Booking_Manager
 {
@@ -19,6 +20,8 @@ namespace Gym_Booking_Manager
             LocalStorage userdata = new LocalStorage();
             string userID = "";
             string password = "";
+            string stafforcustomer = "";
+            object[] staff = null;
             int count = 0;
             Console.Write("   ┌───────────────────────────────────────┐\n");
             Console.Write("   │  Gym Booking Manager (Grp2 Version)   │\n");
@@ -32,49 +35,65 @@ namespace Gym_Booking_Manager
             Console.Write("   └───────────────────────────────────────┘\n\n");
             do
             {
+                Console.WriteLine("Are you loging in as staff or customer?");
+                Console.WriteLine("1.Staff");
+                Console.WriteLine("2.Customer");
+                int choise = Convert.ToInt32(Console.ReadLine());
+                if (choise == 1)
+                {
+                    stafforcustomer = "staff";
+                }
+                else if (choise == 2)
+                {
+                    stafforcustomer = "customer";
+                }
+                else Console.WriteLine("Wrong input!");
                 Console.Write("   Please enter User ID: ");
+                
                 userID = Console.ReadLine();
                 if (userID == "quit".ToLower())
                 {
                     Console.WriteLine("   Login Aborted!");
                     break;
                 }
+                staff = PostgreSQLDatabase.readRecord(stafforcustomer, Convert.ToInt32(userID));
                 if (userID != "")
                 {
 
-                    if (userdata.staffs.read("id", userID).Count == 0 && userdata.customer.read("id",userID).Count == 0)
+                    if (staff == null) //(userdata.staffs.read("id", userID).Count == 0 && userdata.customer.read("id",userID).Count == 0)
                     {
                         Console.WriteLine($" {userID} was not found in the database");
                     }
-                    foreach (Staff user in userdata.staffs.read("id", userID))
+                
+                    else if (staff != null) //foreach (Staff user in userdata.staffs.read("id", userID))
                     {
                         Console.WriteLine($"   User {userID} selected");
                         do
                         {
-                            Console.Write($"   [Try: {count} / 5]\n   Please enter password for <{userID}>: ");
-                            password = Console.ReadLine();
-                            if (password != "")
+                        Console.Write($"   [Try: {count} / 5]\n   Please enter password for <{userID}>: ");
+                        password = Console.ReadLine();
+                        if (password != "")
+                        {
+                            if (Convert.ToString(staff[4]) == password)
                             {
-                                if (user.password == password)
-                                {
-                                    Console.Clear();
-                                    Console.WriteLine($"    Welcome {user.name}!");
-                                    StaffMenuMain(2/*user.id*/);
-                                }
-                                else
-                                {
-                                    Console.WriteLine(" Incorrect password");
-                                    count++;
-                                }
+                                Console.Clear();
+                                Console.WriteLine($"    Welcome {staff[1]}!");
+                                StaffMenuMain(Convert.ToInt32(staff[0]));
                             }
                             else
                             {
-                                Console.WriteLine(" Please type ur password");
+                                Console.WriteLine(" Incorrect password");
                                 count++;
                             }
-                        }while(count != 5);
-                    }
-                    foreach (Customer user in userdata.customer.read("id", userID))
+                        }
+                        else
+                        {
+                            Console.WriteLine(" Please type ur password");
+                            count++;
+                        }
+                    } while (count != 5);
+
+                    /*foreach (Customer user in userdata.customer.read("id", userID))
                     {
                         Console.WriteLine($" User {userID} selected");
                         if (Convert.ToInt32(userID) > 300 && Convert.ToInt32(userID) < 500)
@@ -133,8 +152,8 @@ namespace Gym_Booking_Manager
                                     count++;
                                 }
                             } while (count != 5);
-                        }
-                    }
+                        }*/
+                }
                 }
                 else
                 {
