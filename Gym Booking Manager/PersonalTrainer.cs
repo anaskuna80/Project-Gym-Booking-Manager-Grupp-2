@@ -73,7 +73,8 @@ namespace Gym_Booking_Manager
             {
 
 
-                Calendar newpt = new Calendar(pt.uniqueID, pt.name, training, id,reservation);
+                Calendar newpt = new Calendar(pt.name, training,reservation);
+                //Calendar newpt = new Calendar(pt.uniqueID, pt.name, training, id, reservation);
                 reserv.Create<Calendar>(newpt);
                 Console.WriteLine("You have made an reservation for personal trainer");
                 Console.WriteLine("There is no option to pay at the moment so you can pay at the front desk with the session");

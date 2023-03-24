@@ -24,7 +24,7 @@ namespace Gym_Booking_Manager.Database
         };
         public static NpgsqlConnection getConnection()
         {
-            return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=LÖSENORD;Database=TestDB");
+            return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=BenjiBenji9PG;Database=GymDB");
         }
         public static void testConnection()
         {
