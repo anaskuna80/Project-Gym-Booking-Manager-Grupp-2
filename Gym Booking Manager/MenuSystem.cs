@@ -20,8 +20,8 @@ namespace Gym_Booking_Manager
             LocalStorage userdata = new LocalStorage();
             string userID = "";
             string password = "";
-            string stafforcustomer = "";
-            object[] staff = null;
+            string staffOrCustomer = "";
+            object[]? staff = null;
             int count = 0;
             Console.Write("   ┌───────────────────────────────────────┐\n");
             Console.Write("   │  Gym Booking Manager (Grp2 Version)   │\n");
@@ -35,19 +35,34 @@ namespace Gym_Booking_Manager
             Console.Write("   └───────────────────────────────────────┘\n\n");
             do
             {
-                Console.WriteLine("Are you loging in as staff or customer?");
-                Console.WriteLine("1.Staff");
-                Console.WriteLine("2.Customer");
-                int choise = Convert.ToInt32(Console.ReadLine());
-                if (choise == 1)
+                try
                 {
-                    stafforcustomer = "staff";
+                    Console.WriteLine("Are you logging in as staff or customer?");
+                    Console.WriteLine("1: Staff");
+                    Console.WriteLine("2: Customer");
+                    Console.Write(">> ");
+                    int choice = Convert.ToInt32(Console.ReadLine());
+                    if (choice == 1)
+                    {
+                        staffOrCustomer = "staff";
+                    }
+                    else if (choice == 2)
+                    {
+                        staffOrCustomer = "customer";
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong input!");                    
+                    }
                 }
-                else if (choise == 2)
+                catch (FormatException)
                 {
-                    stafforcustomer = "customer";
+                    Console.WriteLine("\x1b[41m Invalid input!\x1b[0m \nPress Any Key To Retry...");
+                    Console.ReadKey();
+                    Console.Clear();
+                    Login();
                 }
-                else Console.WriteLine("Wrong input!");
+
                 Console.Write("   Please enter User ID: ");
                 
                 userID = Console.ReadLine();
@@ -56,7 +71,7 @@ namespace Gym_Booking_Manager
                     Console.WriteLine("   Login Aborted!");
                     break;
                 }
-                staff = PostgreSQLDatabase.readRecord(stafforcustomer, Convert.ToInt32(userID));
+                staff = PostgreSQLDatabase.readRecord(staffOrCustomer, Convert.ToInt32(userID));
                 if (userID != "")
                 {
 
@@ -615,7 +630,7 @@ namespace Gym_Booking_Manager
                 else
                 {
 
-                    Console.WriteLine($"Wrong choise {choise}");
+                    Console.WriteLine($"Wrong choice {choise}");
                 }
             }
             catch
