@@ -31,7 +31,7 @@ namespace Gym_Booking_Manager
             Console.WriteLine("Input Password: ");
             string password = Console.ReadLine();
 
-            Staff user = new Staff(id, name, email, phone, password);
+            Staff user = new Staff(name, email, phone, password);
 
 
 
@@ -63,7 +63,7 @@ namespace Gym_Booking_Manager
             Console.WriteLine("Input Password: ");
             string password = Console.ReadLine();
 
-            Customer user = new Customer(name:name, id:id, email:email, phone:phone, password:password);
+            Customer user = new Customer(name:name, email:email, phone:phone, password:password);
 
             spaces.Create<Customer>(user);
             Console.WriteLine("Customer added");

@@ -38,7 +38,7 @@ namespace Gym_Booking_Manager
 
                 if (equip.isRestricted == false)
                 {
-                    Calendar newpt = new Calendar(equip.name, choice2, id, reservation);
+                    Calendar newpt = new Calendar(equip.name, choice2, reservation);
                     reserv.Create<Calendar>(newpt);
                     Console.WriteLine("You have made an reservation for a Sport equipment");
                     break;

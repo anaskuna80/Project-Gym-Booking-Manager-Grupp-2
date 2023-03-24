@@ -121,7 +121,7 @@ namespace Gym_Booking_Manager
 
                 if (pt.isRestricted == false)
                 {
-                    Calendar newpt = new Calendar(2, pt.category.ToString(), choise2, id, reservation);
+                    Calendar newpt = new Calendar(pt.category.ToString(), choise2, reservation);
                     //Calendar newpt = new Calendar(pt.uniqueID, pt.category.ToString(), choise2, id, reservation);
                     reserv.Create<Calendar>(newpt);
                     Console.WriteLine("You have made an reservation for personal trainer");

@@ -18,7 +18,7 @@ namespace Gym_Booking_Manager
     {
         private List<GroupActivity> activites;
 
-        public GroupSchedule(string name,int participantlimit,string instructor,int uniqueID) : base(name, participantlimit,instructor,uniqueID)
+        public GroupSchedule(string name, int participantlimit, string instructor) : base(name, participantlimit, instructor)
         {
             this.activites = new List<GroupActivity>();
         }
@@ -49,7 +49,7 @@ namespace Gym_Booking_Manager
             string instuctor = Console.ReadLine();
             Console.Write("UniqueID for the Activity? (500-600):");
             int uniqueid = Convert.ToInt32(Console.ReadLine());
-            GroupSchedule activity = new GroupSchedule(name,participantlimit,instuctor,uniqueid);
+            GroupSchedule activity = new GroupSchedule(name,participantlimit,instuctor);
             Console.WriteLine("Sports equipment:");
             foreach (SportsEquipment sportsequip in equipment.Read<SportsEquipment>())
             {
@@ -77,7 +77,7 @@ namespace Gym_Booking_Manager
             {
                
                     
-                    Calendar newsport = new Calendar(sportsequip.uniqueID,sportsequip.name,name, uniqueid,time);
+                    Calendar newsport = new Calendar(sportsequip.name,name,time);
                     equipment.Create<Calendar>(newsport);
                     count1++;
                 
@@ -90,7 +90,7 @@ namespace Gym_Booking_Manager
             {
                 
                    
-                    Calendar newsport = new Calendar(sportsequip.uniqueID, sportsequip.name, name, uniqueid, time);
+                    Calendar newsport = new Calendar(sportsequip.name, name, time);
                     equipment.Create<Calendar>(newsport);
                     count2++;
                     if (count2 == totalequip) break;
@@ -110,7 +110,7 @@ namespace Gym_Booking_Manager
             {
            
                     
-                    Calendar newspace = new Calendar(2, space1.category.ToString(), name, uniqueid, time);
+                    Calendar newspace = new Calendar(space1.category.ToString(), name, time);
                     //Calendar newspace = new Calendar(space1.uniqueID, space1.category.ToString(), name, uniqueid, time);
                     space.Create<Calendar>(newspace);
                     Console.WriteLine($"you reserved {space1.category}");
@@ -156,7 +156,7 @@ namespace Gym_Booking_Manager
                             Console.Write("name:");
                             string id = Console.ReadLine();
                             activity.name = id;
-                            GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor, activity.uniqueID);
+                            GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor);
                             updateactivity.Update<GroupSchedule>(newgroup, activity);
                             Console.WriteLine($"Activity name has been updated to({activity.name})");
                             break;
@@ -166,7 +166,7 @@ namespace Gym_Booking_Manager
                             Console.Write("participant limit:");
                             int max = Convert.ToInt32(Console.ReadLine());
                             activity.participantLimit = max;
-                            GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor, activity.uniqueID);
+                            GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor);
                             updateactivity.Update<GroupSchedule>(newgroup, activity);
                             Console.WriteLine($"Activity participant limit has been updated to({activity.participantLimit})");
                             break;
@@ -176,7 +176,7 @@ namespace Gym_Booking_Manager
                             Console.Write("instructor:");
                             string person = Console.ReadLine();
                             activity.instructor = person;
-                            GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor, activity.uniqueID);
+                            GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor);
                             updateactivity.Update<GroupSchedule>(newgroup, activity);
                             Console.WriteLine($"Activity instructor has been updated to({activity.instructor})");
                             break;

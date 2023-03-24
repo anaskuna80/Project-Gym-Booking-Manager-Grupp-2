@@ -59,7 +59,7 @@ namespace Gym_Booking_Manager
                                 {
                                     Console.Clear();
                                     Console.WriteLine($"    Welcome {user.name}!");
-                                    StaffMenuMain(user.id);
+                                    StaffMenuMain(2/*user.id*/);
                                 }
                                 else
                                 {
@@ -89,7 +89,7 @@ namespace Gym_Booking_Manager
                                     {
                                         count = 5;
                                         Console.WriteLine($"   Welcome {user.name}!");
-                                        int id = user.id;
+                                        int id = 2;//user.id;
                                         NonMemberCustomerMenu();
                                     }
                                     else
@@ -118,7 +118,7 @@ namespace Gym_Booking_Manager
                                     {
                                         count = 5;
                                         Console.WriteLine($"   Welcome {user.name}!");
-                                        int id = user.id;
+                                        int id = 2;//user.id;
                                         MemberCustomerMenu(id);
                                     }
                                     else

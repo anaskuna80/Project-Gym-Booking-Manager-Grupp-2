@@ -20,14 +20,14 @@ namespace Gym_Booking_Manager
         public string instructor { get; set; }
         //public string timeSlot { get; set; }
 
-        public GroupActivity(string name, int participantlimit, string instructor, int uniqueID)
+        public GroupActivity(string name, int participantlimit, string instructor)
         {
             this.name = name;
             this.participantLimit = participantlimit;
             this.instructor = instructor;
             this.participants = new List<int>();
             
-            this .uniqueID = uniqueID;
+           
             //this.timeSlot = timeslot;
         }
         public GroupActivity(Dictionary<String, String> constructionArgs)

@@ -9,7 +9,7 @@ namespace Gym_Booking_Manager
 {
     internal class Customer : User , ICSVable , IComparable<Customer>
     {
-        public Customer(int id,string name, string email, string phone, string password) : base(id,name,email,phone,password)
+        public Customer(string name, string email, string phone, string password) : base(name,email,phone,password)
         {
 
         }
@@ -31,9 +31,10 @@ namespace Gym_Booking_Manager
         public int CompareTo(Customer? other)
         {
             // If other is not a valid object reference, this instance is greater.
-            if (other == null) return 1;           
+            if (other == null) return 1;
             // When category is the same, sort on name.
-            return this.id.CompareTo(other.id);
+            return 2;
+            //return this.id.CompareTo(other.id);
         }
         /*public int CompareTo(Customer? other)
         {

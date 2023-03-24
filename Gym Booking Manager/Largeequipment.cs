@@ -91,7 +91,7 @@ namespace Gym_Booking_Manager
                 if (restricted.isRestricted == false)
                 {
                     restricted.isRestricted= true;
-                    LargeEquipment newitem = new LargeEquipment(restricted.uniqueID, restricted.name, restricted.isRestricted);
+                    LargeEquipment newitem = new LargeEquipment(restricted.name, restricted.isRestricted);
                     restrict.Update<LargeEquipment>(newitem,restricted);
                     Console.WriteLine("You have restricted the Item");
                     break;
@@ -114,7 +114,8 @@ namespace Gym_Booking_Manager
             // If other is not a valid object reference, this instance is greater.
             if (other == null) return 1;
             // When category is the same, sort on name.
-            return this.uniqueID.CompareTo(other.uniqueID);
+            return 2;
+            //return this.uniqueID.CompareTo(other.uniqueID);
             
         }
 
