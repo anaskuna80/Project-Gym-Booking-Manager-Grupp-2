@@ -13,13 +13,18 @@ namespace Gym_Booking_Manager.Database
     {
         public static Dictionary<string, Type> TypeOfClass { get; } = new Dictionary<string, Type>
         {
-            { "Animal", typeof(Animal) },
-            { "Birds", typeof (Birds) },
-            { "Human", typeof(Human) }
+            { "Space", typeof(Space) },
+            { "Calendar", typeof(Calendar) },
+            { "GroupActivity", typeof(GroupActivity) },
+            { "LargeEquipment", typeof(LargeEquipment) },
+            { "PersonalTrainer", typeof(PersonalTrainer) },
+            { "SportsEquipment", typeof(SportsEquipment) },
+            { "Staff", typeof(Staff) },
+            { "Equipment", typeof (Equipment) }
         };
         public static NpgsqlConnection getConnection()
         {
-            return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=LÖSENORD;Database=GymDB");
+            return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=LÖSENORD;Database=TestDB");
         }
         public static void testConnection()
         {

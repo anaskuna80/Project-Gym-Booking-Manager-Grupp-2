@@ -429,16 +429,16 @@ namespace Gym_Booking_Manager
             switch (selection)
             {
                 case "1":
-                    Largeequipment.ListEquipment();
-                    Sportsequipment.ListEquipment();
+                    LargeEquipment.ListEquipment();
+                    SportsEquipment.ListEquipment();
                     break;
 
                 case "2":
-                    Sportsequipment.BookEquipment();
+                    SportsEquipment.BookEquipment();
 
                     break;
                 case "3":
-                    Largeequipment.BookEquipment();
+                    LargeEquipment.BookEquipment();
                     break;  
                 case "4":
                     Console.ForegroundColor = ConsoleColor.Yellow;
@@ -550,8 +550,8 @@ namespace Gym_Booking_Manager
                 case "1":
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("");
-                    Sportsequipment.RestrictedItems();
-                    Largeequipment.RestrictedItems();
+                    SportsEquipment.RestrictedItems();
+                    LargeEquipment.RestrictedItems();
                     Space.RestrictedItems();
                     //Space.ListSpace();
 
@@ -583,11 +583,11 @@ namespace Gym_Booking_Manager
                 int choise = Convert.ToInt32(Console.ReadLine());
                 if (choise == 1)
                 {
-                    Sportsequipment.RestrictItem();
+                    SportsEquipment.RestrictItem();
                 }
                 else if (choise == 2)
                 {
-                    Largeequipment.RestrictItem();
+                    LargeEquipment.RestrictItem();
                 }
                 else if (choise == 3)
                 {
@@ -713,7 +713,7 @@ namespace Gym_Booking_Manager
                         break;
                     case 3:
                         Console.ForegroundColor = ConsoleColor.Yellow;
-                        Sportsequipment.BookEquipment();
+                        SportsEquipment.BookEquipment();
                         Linger();
                         
                         break;

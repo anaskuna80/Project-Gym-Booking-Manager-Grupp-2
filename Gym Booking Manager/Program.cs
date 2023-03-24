@@ -1,4 +1,5 @@
 ﻿using Gym_Booking_Manager;
+using Gym_Booking_Manager.Database;
 using System.Runtime.CompilerServices;
 using System.Xml;
 
@@ -12,6 +13,10 @@ namespace Gym_Booking_Manager
         
         static void Main(string[] args)
         {
+            PostgreSQLDatabase.testConnection();
+            Space yta1 = new Space(Space.Category.hall, true);
+            PostgreSQLDatabase.createRecord(yta1);
+            Console.ReadKey();
             string choice;
             do 
             {

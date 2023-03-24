@@ -31,14 +31,13 @@ namespace Gym_Booking_Manager
         //private static readonly List<Tuple<Category, int>> hourlyCosts = InitializeHourlyCosts(); // Costs may not be relevant for the prototype. Let's see what the time allows.
         public Category category { get; set; }
         //public Category category { get; set; }
-        public int uniqueID { get; set; }
+        public int? uniqueID { get; set; } = null;
         public bool isRestricted { get; set; }
 
 
-        public Space(int uniqueiD,Category category, bool isRestricted )
+        public Space(Category category, bool isRestricted )
         {
             this.category = category;
-            this.uniqueID= uniqueiD;
             this.isRestricted= isRestricted;
         
             
@@ -69,13 +68,16 @@ namespace Gym_Booking_Manager
             // Sort primarily on category.
             if (this.category != other.category) return this.category.CompareTo(other.category);
             // When category is the same, sort on name.
-            return this.uniqueID.CompareTo(other.uniqueID);
+            return 2;
+            //return this.uniqueID.CompareTo(other.uniqueID);
         }
 
         public override string ToString()
         {
-            return this.CSVify(); // TODO: Don't use CSVify. Make it more readable.
+            return $"'{category}', {isRestricted}";
+            //return this.CSVify(); // TODO: Don't use CSVify. Make it more readable.
         }
+
 
         // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.
         public string CSVify()
@@ -119,7 +121,8 @@ namespace Gym_Booking_Manager
 
                 if (pt.isRestricted == false)
                 {
-                    Calendar newpt = new Calendar(pt.uniqueID, pt.category.ToString(), choise2, id, reservation);
+                    Calendar newpt = new Calendar(2, pt.category.ToString(), choise2, id, reservation);
+                    //Calendar newpt = new Calendar(pt.uniqueID, pt.category.ToString(), choise2, id, reservation);
                     reserv.Create<Calendar>(newpt);
                     Console.WriteLine("You have made an reservation for personal trainer");
                     break;
@@ -157,7 +160,8 @@ namespace Gym_Booking_Manager
                 if (restricted.isRestricted == false)
                 {
                     restricted.isRestricted = true;
-                    Space newitem = new Space(restricted.uniqueID, restricted.category, restricted.isRestricted);
+                    Space newitem = new Space(restricted.category, restricted.isRestricted);
+                    //Space newitem = new Space(restricted.uniqueID, restricted.category, restricted.isRestricted);
                     restrict.Update<Space>(newitem, restricted);
                     Console.WriteLine("You have restricted the Space");
                     break;

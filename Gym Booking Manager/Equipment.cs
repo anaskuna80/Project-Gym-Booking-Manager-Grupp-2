@@ -37,7 +37,8 @@ namespace Gym_Booking_Manager
 
         public override string ToString()
         {
-            return this.CSVify();
+            return $"'{name}', {isRestricted}";
+            //return this.CSVify();
         }
         public string CSVify()
         {
