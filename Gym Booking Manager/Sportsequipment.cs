@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gym_Booking_Manager.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,35 +33,38 @@ namespace Gym_Booking_Manager
             Console.WriteLine("Id of the person who is booking the sport equipment");
             int id = Convert.ToInt32(Console.ReadLine());
             string reservation = Calendar.AddTime();
+            Calendar newpt = new Calendar(choice1, choice2, id, reservation);
+            PostgreSQLDatabase.createRecord(newpt);
+            Console.WriteLine("You have made an reservation for a space");
+            //foreach (SportsEquipment equip in reserv.Read<SportsEquipment>("name", choice1))
+            //{
 
-            foreach (SportsEquipment equip in reserv.Read<SportsEquipment>("name", choice1))
-            {
-
-                if (equip.isRestricted == false)
-                {
-                    Calendar newpt = new Calendar(equip.name, choice2, reservation);
-                    reserv.Create<Calendar>(newpt);
-                    Console.WriteLine("You have made an reservation for a Sport equipment");
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Sorry that item is restricted");
-                }
-            }
+            //    if (equip.isRestricted == false)
+            //    {
+            //        Calendar newpt = new Calendar(equip.name, choice2, reservation);
+            //        reserv.Create<Calendar>(newpt);
+            //        Console.WriteLine("You have made an reservation for a Sport equipment");
+            //        break;
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Sorry that item is restricted");
+            //    }
+            //}
         }
         public static void ListEquipment()
         {
             GymDatabaseContext space = new GymDatabaseContext();
             Console.WriteLine("All Sport equipment:");
-            foreach (SportsEquipment allequip in space.Read<SportsEquipment>())
-            {
+            PostgreSQLDatabase.readAndPrintAllRecord("SportsEquipment");
+            //foreach (SportsEquipment allequip in space.Read<SportsEquipment>())
+            //{
 
 
-                Console.WriteLine(allequip);
+            //    Console.WriteLine(allequip);
 
 
-            }
+            //}
         }
         public static void RestrictedItems()
         {

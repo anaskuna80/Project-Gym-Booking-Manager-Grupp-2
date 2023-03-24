@@ -1,4 +1,5 @@
 ﻿
+using Gym_Booking_Manager.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,14 +49,15 @@ namespace Gym_Booking_Manager
         {
             GymDatabaseContext pts = new GymDatabaseContext();
             Console.WriteLine("All Personal trainers:");
-            foreach (PersonalTrainer pt in pts.Read<PersonalTrainer>())
-            {
-                
-                
-                   Console.WriteLine(pt);
-                
+            PostgreSQLDatabase.readAndPrintAllRecord("PersonalTrainer");
+            //foreach (PersonalTrainer pt in pts.Read<PersonalTrainer>())
+            //{
 
-            }
+
+            //       Console.WriteLine(pt);
+
+
+            //}
         }
         public static void BookPT()
         {
@@ -68,19 +70,21 @@ namespace Gym_Booking_Manager
             Console.WriteLine("Id of the person who is booking the personal trainer");
             int id = Convert.ToInt32(Console.ReadLine());
             string reservation = Calendar.AddTime();
+            Calendar newpt = new Calendar(choise1, training, id, reservation);
+            PostgreSQLDatabase.createRecord(newpt);
+            Console.WriteLine("You have made an reservation for personal trainer");
+            //foreach (PersonalTrainer pt in reserv.Read<PersonalTrainer>("name", choise1))
+            //{
 
-            foreach (PersonalTrainer pt in reserv.Read<PersonalTrainer>("name", choise1))
-            {
 
+            //    Calendar newpt = new Calendar(pt.name, training,reservation);
+            //    //Calendar newpt = new Calendar(pt.uniqueID, pt.name, training, id, reservation);
+            //    reserv.Create<Calendar>(newpt);
+            //    Console.WriteLine("You have made an reservation for personal trainer");
+            //    Console.WriteLine("There is no option to pay at the moment so you can pay at the front desk with the session");
+            //    break;
 
-                Calendar newpt = new Calendar(pt.name, training,reservation);
-                //Calendar newpt = new Calendar(pt.uniqueID, pt.name, training, id, reservation);
-                reserv.Create<Calendar>(newpt);
-                Console.WriteLine("You have made an reservation for personal trainer");
-                Console.WriteLine("There is no option to pay at the moment so you can pay at the front desk with the session");
-                break;
-
-            }
+            //}
         }
         public int CompareTo(PersonalTrainer? other)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gym_Booking_Manager.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -34,8 +35,8 @@ namespace Gym_Booking_Manager
             Staff user = new Staff(name, email, phone, password);
 
 
-
-            spaces.Create<Staff>(user);
+            PostgreSQLDatabase.createRecord(user);
+            //spaces.Create<Staff>(user);
             Console.WriteLine("Staff added");
 
 
@@ -63,9 +64,10 @@ namespace Gym_Booking_Manager
             Console.WriteLine("Input Password: ");
             string password = Console.ReadLine();
 
-            Customer user = new Customer(name:name, email:email, phone:phone, password:password);
+            Customer user = new Customer(name, email, phone, password);
+            PostgreSQLDatabase.createRecord(user);
 
-            spaces.Create<Customer>(user);
+            //spaces.Create<Customer>(user);
             Console.WriteLine("Customer added");
 
         }
@@ -79,25 +81,27 @@ namespace Gym_Booking_Manager
 
             GymDatabaseContext staffs = new GymDatabaseContext();
             Console.WriteLine("Here is a list of all current Staff members:");
-            var staffList = staffs.Read<Staff>();
-            foreach (var staff in staffList)
-            {
-                Console.WriteLine($"ID: {staff.id}, Name: {staff.name}");
-            }
+            PostgreSQLDatabase.readAndPrintAllRecord("Staff");
+
+            //var staffList = staffs.Read<Staff>();
+            //foreach (var staff in staffList)
+            //{
+            //    Console.WriteLine($"ID: {staff.id}, Name: {staff.name}");
+            //}
 
 
             Console.WriteLine("Enter the ID of the Staff to be deleted:");
             int staffId = Convert.ToInt32(Console.ReadLine());
 
-            Staff user = staffList.FirstOrDefault(s => s.id == staffId);
+            //Staff user = staffList.FirstOrDefault(s => s.id == staffId);
 
-            if (user == null)
-            {
-                Console.WriteLine("Staff not found. Please try again.");
-                return;
-            }
-
-            staffs.Delete<Staff>(user);
+            //if (user == null)
+            //{
+            //    Console.WriteLine("Staff not found. Please try again.");
+            //    return;
+            //}
+            PostgreSQLDatabase.deleteRecord("Staff", staffId);
+            //staffs.Delete<Staff>(user);
             Console.WriteLine("Staff deleted");
 
 
@@ -112,25 +116,27 @@ namespace Gym_Booking_Manager
             GymDatabaseContext customers = new GymDatabaseContext();
 
             Console.WriteLine("Here is a list of all current Customers:");
-            var customerList = customers.Read<Customer>();
-            foreach (var customer in customerList)
-            {
-                Console.WriteLine($"ID: {customer.id}, Name: {customer.name}");
-            }
+            PostgreSQLDatabase.readAndPrintAllRecord("Customer");
+            //var customerList = customers.Read<Customer>();
+            //foreach (var customer in customerList)
+            //{
+            //    Console.WriteLine($"ID: {customer.id}, Name: {customer.name}");
+            //}
 
 
             Console.WriteLine("Enter the ID of the Customer to be deleted:");
             int customerId = Convert.ToInt32(Console.ReadLine());
 
-            Customer user = customerList.FirstOrDefault(s => s.id == customerId);
+            //Customer user = customerList.FirstOrDefault(s => s.id == customerId);
 
-            if (user == null)
-            {
-                Console.WriteLine("Customer member not found. Please try again.");
-                return;
-            }
+            //if (user == null)
+            //{
+            //    Console.WriteLine("Customer member not found. Please try again.");
+            //    return;
+            //}
 
-            customers.Delete<Customer>(user);
+            PostgreSQLDatabase.deleteRecord("Customer", customerId);
+            //customers.Delete<Customer>(user);
             Console.WriteLine("customer member deleted");
 
 

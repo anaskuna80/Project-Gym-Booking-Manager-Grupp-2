@@ -21,7 +21,7 @@ namespace Gym_Booking_Manager
 
         public override string ToString()
         {
-            return $"'{email}', '{name}', '{phone}', '{password}'";
+            return $"'{email}', '{name}', '{password}', '{phone}'";
             //return this.CSVify(); // TODO: Don't use CSVify. Make it more readable.
         }
 

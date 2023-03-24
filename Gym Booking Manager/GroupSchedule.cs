@@ -77,7 +77,7 @@ namespace Gym_Booking_Manager
             {
                
                     
-                    Calendar newsport = new Calendar(sportsequip.name,name,time);
+                    Calendar newsport = new Calendar(sportsequip.name,name, 2,time);
                     equipment.Create<Calendar>(newsport);
                     count1++;
                 
@@ -90,7 +90,7 @@ namespace Gym_Booking_Manager
             {
                 
                    
-                    Calendar newsport = new Calendar(sportsequip.name, name, time);
+                    Calendar newsport = new Calendar(sportsequip.name, name, 2, time);
                     equipment.Create<Calendar>(newsport);
                     count2++;
                     if (count2 == totalequip) break;
@@ -110,7 +110,7 @@ namespace Gym_Booking_Manager
             {
            
                     
-                    Calendar newspace = new Calendar(space1.category.ToString(), name, time);
+                    Calendar newspace = new Calendar(space1.category.ToString(), name, 2, time);
                     //Calendar newspace = new Calendar(space1.uniqueID, space1.category.ToString(), name, uniqueid, time);
                     space.Create<Calendar>(newspace);
                     Console.WriteLine($"you reserved {space1.category}");

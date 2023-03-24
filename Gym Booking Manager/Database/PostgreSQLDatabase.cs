@@ -20,11 +20,12 @@ namespace Gym_Booking_Manager.Database
             { "PersonalTrainer", typeof(PersonalTrainer) },
             { "SportsEquipment", typeof(SportsEquipment) },
             { "Staff", typeof(Staff) },
+            { "Customer", typeof(Customer) },
             { "Equipment", typeof (Equipment) }
         };
         public static NpgsqlConnection getConnection()
         {
-            return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=PASSWORD;Database=GymDB");
+            return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=LÖSENORD;Database=GymDB");
         }
         public static void testConnection()
         {
@@ -73,6 +74,27 @@ namespace Gym_Booking_Manager.Database
                 return values;
             }
         }
+        public static void readAndPrintAllRecord(string typeOfObject)
+        {
+            using (NpgsqlConnection con = getConnection())
+            {
+                var query = $"SELECT * FROM {typeOfObject}";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, con);
+                con.Open();
+                var dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    for (int i = 0; i < dataReader.FieldCount; i++)
+                    {
+                        object value = dataReader.GetValue(i);
+                        Console.Write(Convert.ToString(value) + " ");
+                    }
+                    Console.WriteLine();
+                }
+
+            }
+        }
+
         public static void updateRecord(string tableName, int id, string attributeToEdit, string value)
         {
             Type typeOfObject = TypeOfClass[tableName];

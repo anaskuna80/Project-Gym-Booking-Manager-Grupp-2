@@ -39,7 +39,8 @@ namespace Gym_Booking_Manager
         }
         public override string ToString()
         {
-            return this.CSVify(); // TODO: Don't use CSVify. Make it more readable.
+            return $"'{email}', '{name}', '{password}', '{phone}'";
+            //return this.CSVify(); // TODO: Don't use CSVify. Make it more readable.
         }
 
         // Every class C to be used for DbSet<C> should have the ICSVable interface and the following implementation.

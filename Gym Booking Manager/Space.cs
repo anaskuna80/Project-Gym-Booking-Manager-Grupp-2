@@ -1,4 +1,5 @@
 ﻿
+using Gym_Booking_Manager.Database;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -93,15 +94,16 @@ namespace Gym_Booking_Manager
         public static void ListSpace()
         {
             GymDatabaseContext space = new GymDatabaseContext();
-            Console.WriteLine("All Personal trainers:");
-            foreach (Space allspace in space.Read<Space>())
-            {
+            Console.WriteLine("All spaces:");
+            PostgreSQLDatabase.readAndPrintAllRecord("Space");
+            //foreach (Space allspace in space.Read<Space>())
+            //{
 
 
-                Console.WriteLine(allspace);
+            //    Console.WriteLine(allspace);
 
 
-            }
+            //}
         }
 
         public static void BookSpace()
@@ -115,25 +117,27 @@ namespace Gym_Booking_Manager
             Console.WriteLine("Id of the person who is booking the space");
             int id = Convert.ToInt32(Console.ReadLine());
             string reservation = Calendar.AddTime();
+            Calendar newpt = new Calendar(choise1, choise2, id, reservation);
+            PostgreSQLDatabase.createRecord(newpt);
+            Console.WriteLine("You have made an reservation for a space");
+            //foreach (Space pt in reserv.Read<Space>("category", choise1))
+            //{
 
-            foreach (Space pt in reserv.Read<Space>("category", choise1))
-            {
+            //    if (pt.isRestricted == false)
+            //    {
+            //        Calendar newpt = new Calendar(pt.category.ToString(), choise2, reservation);
+            //        //Calendar newpt = new Calendar(pt.uniqueID, pt.category.ToString(), choise2, id, reservation);
+            //        reserv.Create<Calendar>(newpt);
+            //        Console.WriteLine("You have made an reservation for personal trainer");
+            //        break;
 
-                if (pt.isRestricted == false)
-                {
-                    Calendar newpt = new Calendar(pt.category.ToString(), choise2, reservation);
-                    //Calendar newpt = new Calendar(pt.uniqueID, pt.category.ToString(), choise2, id, reservation);
-                    reserv.Create<Calendar>(newpt);
-                    Console.WriteLine("You have made an reservation for personal trainer");
-                    break;
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("Sorry that space is restricted");
+            //    }
 
-                }
-                else
-                {
-                    Console.WriteLine("Sorry that space is restricted");
-                }
-
-            }
+            //}
         }
         public static void RestrictedItems()
         {

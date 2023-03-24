@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using static Gym_Booking_Manager.Space;
 using System.Xml;
 using static Gym_Booking_Manager.PersonalTrainer;
+using Gym_Booking_Manager.Database;
 
 
 #if DEBUG
@@ -25,16 +26,17 @@ namespace Gym_Booking_Manager
     public class Calendar :  ICSVable, IComparable<Calendar>
     {
         public int? uniqueID { get; set; } = null;
-        public int? id { get; set; } = null;
+        public int id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
         public string timeSlot { get; set; }
         
 
-        public Calendar(string name,string description, string timeSlot)
+        public Calendar(string name,string description, int id, string timeSlot)
         {
             this.name = name;
             this.timeSlot = timeSlot;
+            this.id = id;
             this.description = description;
         }
         public Calendar(Dictionary<String, String> constructionArgs)
@@ -54,36 +56,38 @@ namespace Gym_Booking_Manager
         {
             GymDatabaseContext reservation = new GymDatabaseContext();
             Console.WriteLine("Here is a list of all current reservations:");
-            var reservlist = reservation.Read<Calendar>();
-            foreach (var staff in reservlist)
-            {
-                Console.WriteLine(staff);
-            }
+            PostgreSQLDatabase.readAndPrintAllRecord("Calendar");
+            //var reservlist = reservation.Read<Calendar>();
+            //foreach (var staff in reservlist)
+            //{
+            //    Console.WriteLine(staff);
+            //}
 
 
             Console.WriteLine("Enter the uniqueID of the reservation to be deleted:");
             int uniqueId = Convert.ToInt32(Console.ReadLine());
 
-            Calendar reserv = reservlist.FirstOrDefault(c => c.uniqueID == uniqueId);
+            //Calendar reserv = reservlist.FirstOrDefault(c => c.uniqueID == uniqueId);
 
-            if (reserv == null)
-            {
-                Console.WriteLine("Reservation not found. Please try again.");
-                return;
-            }
-
-            reservation.Delete<Calendar>(reserv);
-            Console.WriteLine("Reservation deleted");
+            //if (reserv == null)
+            //{
+            //    Console.WriteLine("Reservation not found. Please try again.");
+            //    return;
+            //}
+            PostgreSQLDatabase.deleteRecord("Calendar", uniqueId);
+            //reservation.Delete<Calendar>(reserv);
+            //Console.WriteLine("Reservation deleted");
 
         }
         public static void ViewCalendar()
         {
-            GymDatabaseContext calendar = new GymDatabaseContext();
+            PostgreSQLDatabase.readAndPrintAllRecord("Calendar");
+            //GymDatabaseContext calendar = new GymDatabaseContext();
             Console.WriteLine("All Personal trainers:");
-            foreach (Calendar allcalendar in calendar.Read<Calendar>())
-            {
-                Console.WriteLine(allcalendar);
-            }
+            //foreach (Calendar allcalendar in calendar.Read<Calendar>())
+            //{
+            //    Console.WriteLine(allcalendar);
+            //}
         }
 
 
@@ -122,7 +126,7 @@ namespace Gym_Booking_Manager
             }
         public override string ToString()
         {
-            return $"'{description}', '{name}', {timeSlot}";
+            return $"'{description}', {id}, '{name}', '{timeSlot}'";
             //return this.CSVify(); // TODO: Don't use CSVify. Make it more readable.
         }
 
