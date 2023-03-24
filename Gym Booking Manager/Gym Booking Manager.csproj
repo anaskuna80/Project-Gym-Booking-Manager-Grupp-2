@@ -27,4 +27,8 @@
     <None Include="bin\Debug\net6.0\GymDB\storage\staff.csv" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="7.0.2" />
+  </ItemGroup>
+
 </Project>
