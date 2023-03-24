@@ -25,16 +25,14 @@ namespace Gym_Booking_Manager
     public class Calendar :  ICSVable, IComparable<Calendar>
     {
         public int? uniqueID { get; set; } = null;
-        public int id { get; set; }
+        public int? id { get; set; } = null;
         public string name { get; set; }
         public string description { get; set; }
         public string timeSlot { get; set; }
         
 
-        public Calendar(string name,string description, int id, string timeSlot)
+        public Calendar(string name,string description, string timeSlot)
         {
-            
-            this.id = id;
             this.name = name;
             this.timeSlot = timeSlot;
             this.description = description;

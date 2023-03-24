@@ -13,7 +13,7 @@ namespace Gym_Booking_Manager
     internal class GroupActivity : ICSVable, IComparable<GroupActivity>
     {
         public string name { get; set; }
-        public int uniqueID { get; set; }
+        public int? uniqueID { get; set; } = null;
         public int participantLimit { get; set; }
         public  List<int> participants;
 
@@ -71,7 +71,8 @@ namespace Gym_Booking_Manager
             // If other is not a valid object reference, this instance is greater.
             if (other == null) return 1;
             // When category is the same, sort on name.
-            return this.uniqueID.CompareTo(other.uniqueID);
+            return 2;
+            //return this.uniqueID.CompareTo(other.uniqueID);
 
         }
     }

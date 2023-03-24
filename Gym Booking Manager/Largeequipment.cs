@@ -14,7 +14,7 @@ namespace Gym_Booking_Manager
     {
         
 
-        public LargeEquipment(int uniqueID, string name, bool isRestricted) : base (uniqueID,name,isRestricted)
+        public LargeEquipment(string name, bool isRestricted) : base (name,isRestricted)
         {
             
 
@@ -40,7 +40,8 @@ namespace Gym_Booking_Manager
 
                 if (equip.isRestricted == false)
                 {
-                    Calendar newpt = new Calendar(equip.uniqueID, equip.name, choise2, id, reservation);
+                    Calendar newpt = new Calendar(equip.name, choise2, reservation);
+                    //Calendar newpt = new Calendar(equip.uniqueID, equip.name, choise2, id, reservation);
                     reserv.Create<Calendar>(newpt);
                     Console.WriteLine("You have made an reservation for a Large equipment");
                     break;

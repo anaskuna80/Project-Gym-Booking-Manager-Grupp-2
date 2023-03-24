@@ -13,15 +13,14 @@ namespace Gym_Booking_Manager
 {
     internal class Equipment: ICSVable, IComparable<Equipment>
     {
-        public int uniqueID { get; set; }
+        public int? uniqueID { get; set; } = null;
         public string name { get; set; }
         public bool isRestricted { get; set; }
 
-        protected Equipment(int uniqueID,string name, bool isRestricted)
+        protected Equipment(string name, bool isRestricted)
         {
             
             this.name = name;
-            this.uniqueID = uniqueID;
             this.isRestricted = isRestricted;
             
             
@@ -49,7 +48,8 @@ namespace Gym_Booking_Manager
             // If other is not a valid object reference, this instance is greater.
             if (other == null) return 1;
             // When category is the same, sort on name.
-            return this.uniqueID.CompareTo(other.uniqueID);
+            return 2;
+            //return this.uniqueID.CompareTo(other.uniqueID);
             
         }
     }
