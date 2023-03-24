@@ -14,12 +14,12 @@ namespace Gym_Booking_Manager
     internal class PersonalTrainer : ICSVable, IComparable<PersonalTrainer>
     {
 
-        public int uniqueID { get; set; }
+        public int? uniqueID { get; set; } = null;
         public string name { get; set; }
 
-        public PersonalTrainer(int uniqueID, string name)
+        public PersonalTrainer(string name)
         {
-            this.uniqueID = uniqueID;
+            
             this.name = name;
 
             
@@ -73,7 +73,7 @@ namespace Gym_Booking_Manager
             {
 
 
-                Calendar newpt = new Calendar(pt.uniqueID, pt.name, training, id,reservation);
+                Calendar newpt = new Calendar(pt.name, training, id,reservation);
                 reserv.Create<Calendar>(newpt);
                 Console.WriteLine("You have made an reservation for personal trainer");
                 Console.WriteLine("There is no option to pay at the moment so you can pay at the front desk with the session");
@@ -87,7 +87,8 @@ namespace Gym_Booking_Manager
             if (other == null) return 1;
             // Sort primarily on category.
             // When category is the same, sort on name.
-            return this.uniqueID.CompareTo(other.uniqueID);
+            return 2;
+            //return this.uniqueID.CompareTo(other.uniqueID);
         }
 
         public override string ToString()

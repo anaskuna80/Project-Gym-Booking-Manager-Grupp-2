@@ -13,7 +13,7 @@ namespace Gym_Booking_Manager
 {
     internal abstract class User 
     {
-        public int id { get; set; }
+        public int? id { get; set; } = null;
         public string name { get; set; } // Here the "field" is private, but properties (access of the field) public here - this constellation being purely declarative without change in functionality
         public string phone { get; set; }
         public string email { get; set; }
@@ -21,9 +21,9 @@ namespace Gym_Booking_Manager
         
       
 
-        protected User(int id, string name, string email, string phone, string password)
+        protected User( string name, string email, string phone, string password)
         {
-            this.id = id;
+            
             this.name = name;
             this.phone = phone;
             this.email = email;

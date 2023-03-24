@@ -12,7 +12,7 @@ namespace Gym_Booking_Manager
     {
 
 
-        public SportsEquipment(int uniqueID, string name, bool isRestricted) : base(  uniqueID,name, isRestricted)
+        public SportsEquipment(string name, bool isRestricted) : base(name, isRestricted)
         {
 
         
@@ -38,7 +38,7 @@ namespace Gym_Booking_Manager
 
                 if (equip.isRestricted == false)
                 {
-                    Calendar newpt = new Calendar(equip.uniqueID, equip.name, choice2, id, reservation);
+                    Calendar newpt = new Calendar(equip.name, choice2, id, reservation);
                     reserv.Create<Calendar>(newpt);
                     Console.WriteLine("You have made an reservation for a Sport equipment");
                     break;
@@ -87,7 +87,7 @@ namespace Gym_Booking_Manager
                 if (restricted.isRestricted == false)
                 {
                     restricted.isRestricted = true;
-                    SportsEquipment newitem = new SportsEquipment(restricted.uniqueID, restricted.name, restricted.isRestricted);
+                    SportsEquipment newitem = new SportsEquipment(restricted.name, restricted.isRestricted);
                     restrict.Update<SportsEquipment>(newitem, restricted);
                     Console.WriteLine("You have restricted the Item");
                     break;
@@ -109,7 +109,8 @@ namespace Gym_Booking_Manager
             // If other is not a valid object reference, this instance is greater.
             if (other == null) return 1;
             // When category is the same, sort on name.
-            return this.uniqueID.CompareTo(other.uniqueID);
+            return 2;
+            //return this.uniqueID.CompareTo(other.uniqueID);
             
         }
 
