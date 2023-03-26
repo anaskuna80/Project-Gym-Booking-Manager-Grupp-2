@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
@@ -31,7 +32,7 @@ namespace Gym_Booking_Manager
         }
         public static void ViewSchedule()
         {
-            GymDatabaseContext equipment = new GymDatabaseContext();
+            //GymDatabaseContext equipment = new GymDatabaseContext();
             Console.WriteLine("All schedule:");
             PostgreSQLDatabase.readAndPrintAllRecord("GroupActivity");
 
@@ -158,63 +159,49 @@ namespace Gym_Booking_Manager
         }
         public static void UpdateActivity()
         {
-            GymDatabaseContext updateactivity = new GymDatabaseContext();
+            //GymDatabaseContext updateactivity = new GymDatabaseContext();
             ViewSchedule();
-            Console.WriteLine("What activity do you want to update?");
-            Console.Write("type the name of the activty");
-            string choise = Console.ReadLine();
-            foreach (GroupSchedule activity in updateactivity.Read<GroupSchedule>("name",choise))
+            Console.Write("type the id of the activty:");
+            int choise = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("what do you want to update?");
+            Console.WriteLine("1:Name 2:Participantlimit 3:Instructor");
+            try
             {
-                if (activity.name == choise)
+                int change = Convert.ToInt32(Console.ReadLine());
+                if (change == 1)
                 {
-                    Console.WriteLine($"[1]name:{activity.name}, [2]participant limit:{activity.participantLimit}, [3]instructor:{activity.instructor}"); //  [4]time:{activity.timeSlot} 
-                    Console.WriteLine("what do you want to update?");
-                    try
-                    {
-                        int change = Convert.ToInt32(Console.ReadLine());
-                        if (change == 1)
-                        {
-                            Console.Write("name:");
-                            string id = Console.ReadLine();
-                            activity.name = id;
-                            GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor);
-                            updateactivity.Update<GroupSchedule>(newgroup, activity);
-                            Console.WriteLine($"Activity name has been updated to({activity.name})");
-                            break;
-                        }
-                        else if (change == 2)
-                        {
-                            Console.Write("participant limit:");
-                            int max = Convert.ToInt32(Console.ReadLine());
-                            activity.participantLimit = max;
-                            GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor);
-                            updateactivity.Update<GroupSchedule>(newgroup, activity);
-                            Console.WriteLine($"Activity participant limit has been updated to({activity.participantLimit})");
-                            break;
-                        }
-                        else if (change == 3)
-                        {
-                            Console.Write("instructor:");
-                            string person = Console.ReadLine();
-                            activity.instructor = person;
-                            GroupSchedule newgroup = new GroupSchedule(activity.name, activity.participantLimit, activity.instructor);
-                            updateactivity.Update<GroupSchedule>(newgroup, activity);
-                            Console.WriteLine($"Activity instructor has been updated to({activity.instructor})");
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Sorry please select 1-4");
-                        }
-                    }
-                    catch
-                    {
-                        Console.WriteLine();
-                        Console.WriteLine("Whoops wrong input..");
-                        Console.WriteLine("Please enter: 1,2 or 3 ");
-                    }
+                    Console.Write("New name:");
+                    string name = Console.ReadLine();
+                    PostgreSQLDatabase.updateRecord("GroupActivity", choise,"name",name);
+                    Console.WriteLine($"Activity name has been updated to({name})");
+                    
+                }
+                else if (change == 2)
+                {
+                    Console.Write("New participant limit:");
+                    string max = Console.ReadLine();
+                    PostgreSQLDatabase.updateRecord("GroupActivity", choise, "participantLimit", max);
+                    Console.WriteLine($"Activity participant limit has been updated to({max})");
+                    
+                }
+                else if (change == 3)
+                {
+                    Console.Write("New instructor:");
+                    string person = Console.ReadLine();
+                    PostgreSQLDatabase.updateRecord("GroupActivity", choise, "instructor", person);
+                    Console.WriteLine($"Activity instructor has been updated to({person})");
+                  
+                }
+                else
+                {
+                    Console.WriteLine("Sorry please select 1-4");
                 }
             }
+            catch
+            {
+                Console.WriteLine();
+                Console.WriteLine("Whoops wrong input..");
+            } 
         }
     }
 }

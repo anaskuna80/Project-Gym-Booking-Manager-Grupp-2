@@ -13,6 +13,7 @@ namespace Gym_Booking_Manager
         
         static void Main(string[] args)
         {
+            
             string choice;
             do 
             {
