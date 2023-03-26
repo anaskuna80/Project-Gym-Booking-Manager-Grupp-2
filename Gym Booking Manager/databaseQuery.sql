@@ -28,11 +28,11 @@ create table PersonalTrainer(
 	FOREIGN KEY (id) REFERENCES customer(id)
 );
 CREATE TABLE groupactivity (
-	uniqueID SERIAL,
+	ID SERIAL,
 	name TEXT,
 	participantLimit INT,
 	instructor INT,
-	PRIMARY KEY (uniqueID),
+	PRIMARY KEY (ID),
 	FOREIGN KEY (instructor) REFERENCES Personaltrainer(uniqueID)
 );
 Create table staff (
@@ -126,8 +126,8 @@ VALUES ('Mikael','hej@hej','hej12345','hej1233');
 insert into staff(name,email,phone,password)
 VALUES ('Kurt','hej@hej','hej12345','hej1234');	
 --data for groupactivity
-insert into groupactivity(name,participantLimit)
-VALUES ('Badminton', 20);
+insert into groupactivity(instructor,name,participantLimit)
+VALUES (2,'Badminton', 20);
 --data for customer
 insert into customer(name,email,phone,password)
 VALUES ('Kalle','hej@hej','hej12345','hej1234');

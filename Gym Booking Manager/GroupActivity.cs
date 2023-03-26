@@ -13,7 +13,7 @@ namespace Gym_Booking_Manager
     internal class GroupActivity : ICSVable, IComparable<GroupActivity>
     {
         public string name { get; set; }
-        public int? uniqueID { get; set; } = null;
+        public int? ID { get; set; } = null;
         public int participantLimit { get; set; }
         public  List<int> participants;
 
@@ -34,7 +34,7 @@ namespace Gym_Booking_Manager
         {
             this.name = constructionArgs[nameof(name)];
             this.participantLimit = Convert.ToInt32(constructionArgs[nameof(participantLimit)]);
-            this.uniqueID = Convert.ToInt32(constructionArgs[nameof(uniqueID)]);
+            this.ID = Convert.ToInt32(constructionArgs[nameof(ID)]);
             this.instructor = constructionArgs[nameof(instructor)];
             this.participants = new List<int>();
 
@@ -59,12 +59,12 @@ namespace Gym_Booking_Manager
         }
         public override string ToString()
         {
-            return $"'{name}', '{instructor}', {participantLimit} ";
+            return $"{instructor}, '{name}', {participantLimit} ";
             //return this.CSVify();
         }
         public string CSVify()
         {
-            return $"{nameof(uniqueID)}:{uniqueID},{nameof(name)}:{name},{nameof(participantLimit)}:{participantLimit},{nameof(instructor)}:{instructor} ";
+            return $"{nameof(ID)}:{ID},{nameof(name)}:{name},{nameof(participantLimit)}:{participantLimit},{nameof(instructor)}:{instructor} ";
         }
         public int CompareTo(GroupActivity? other)
         {

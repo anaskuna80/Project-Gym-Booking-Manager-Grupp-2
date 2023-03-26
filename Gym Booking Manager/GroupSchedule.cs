@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gym_Booking_Manager.Database;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
@@ -31,10 +32,13 @@ namespace Gym_Booking_Manager
         public static void ViewSchedule()
         {
             GymDatabaseContext equipment = new GymDatabaseContext();
-            foreach (GroupSchedule activity in equipment.Read<GroupSchedule>())
-            {
-                Console.WriteLine(activity);
-            }
+            Console.WriteLine("All schedule:");
+            PostgreSQLDatabase.readAndPrintAllRecord("GroupActivity");
+
+            //foreach (GroupSchedule activity in equipment.Read<GroupSchedule>())
+            //{
+            //    Console.WriteLine(activity);
+            //}
 
         }
         public static void AddActivity()
@@ -45,95 +49,112 @@ namespace Gym_Booking_Manager
             string name = Console.ReadLine();
             Console.Write("How many participants?:");
             int participantlimit = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Name for the instructor?:");
+            Console.Write("Set id for the instructor?:");
             string instuctor = Console.ReadLine();
-            Console.Write("UniqueID for the Activity? (500-600):");
+            Console.Write("Set id for the customer");
             int uniqueid = Convert.ToInt32(Console.ReadLine());
-            GroupSchedule activity = new GroupSchedule(name,participantlimit,instuctor);
+            GroupActivity activity = new GroupActivity(name,participantlimit,instuctor);
             Console.WriteLine("Sports equipment:");
-            foreach (SportsEquipment sportsequip in equipment.Read<SportsEquipment>())
-            {
+            PostgreSQLDatabase.readAndPrintAllRecord("SportsEquipment");
 
-                Console.WriteLine(sportsequip.CSVify());
+            //foreach (SportsEquipment sportsequip in equipment.Read<SportsEquipment>())
+            //{
 
-            }
+            //    Console.WriteLine(sportsequip.CSVify());
+
+            //}
             Console.WriteLine();
             Console.WriteLine("Large equipment:");
-            foreach (LargeEquipment largeequip in equipment.Read<LargeEquipment>())
-            {
+            PostgreSQLDatabase.readAndPrintAllRecord("LargeEquipment");
 
-                Console.WriteLine(largeequip.CSVify());
+            //foreach (LargeEquipment largeequip in equipment.Read<LargeEquipment>())
+            //{
 
-            }
+            //    Console.WriteLine(largeequip.CSVify());
+
+            //}
             Console.WriteLine("--------------------------------------------------");
             Console.Write("name of the equipment you need?");
             string equipname = Console.ReadLine();
-            Console.Write("how many?");
             string time = Calendar.AddTime();
+            Console.Write("how many?");
             int totalequip = Convert.ToInt32(Console.ReadLine());
             int count1 = 0;
-            int count2 = 0; 
-            foreach (SportsEquipment sportsequip in equipment.Read<SportsEquipment>("name", equipname))
-            {
-               
-                    
-                    Calendar newsport = new Calendar(sportsequip.name,name, 2,time);
-                    equipment.Create<Calendar>(newsport);
-                    count1++;
-                
-                
-                
-                if (count1 == totalequip) break;
-            }
-            if (count1 > 0) Console.WriteLine($"You reserved {count1}.");
-            foreach (LargeEquipment sportsequip in equipment.Read<LargeEquipment>("name", equipname))
-            {
+            int count2 = 0;
+            Calendar newsport = new Calendar(equipname, name, uniqueid, time);
+            PostgreSQLDatabase.createRecord(newsport);
+
+            //foreach (SportsEquipment sportsequip in equipment.Read<SportsEquipment>("name", equipname))
+            //{
+
+
+            //        Calendar newsport = new Calendar(sportsequip.name,name, 2,time);
+            //        equipment.Create<Calendar>(newsport);
+            //        count1++;
+
+
+
+            //    if (count1 == totalequip) break;
+            //}
+            //if (count1 > 0) Console.WriteLine($"You reserved {count1}.");
+
+            //foreach (LargeEquipment sportsequip in equipment.Read<LargeEquipment>("name", equipname))
+            //{
                 
                    
-                    Calendar newsport = new Calendar(sportsequip.name, name, 2, time);
-                    equipment.Create<Calendar>(newsport);
-                    count2++;
-                    if (count2 == totalequip) break;
+            //        Calendar newsport = new Calendar(sportsequip.name, name, 2, time);
+            //        equipment.Create<Calendar>(newsport);
+            //        count2++;
+            //        if (count2 == totalequip) break;
 
 
-            }
-            if(count2 > 0 ) Console.WriteLine($"You reserved {count2}.");
+            //}
+            //if(count2 > 0 ) Console.WriteLine($"You reserved {count2}.");
             Console.WriteLine();
-            foreach (Space spaces in space.Read<Space>())
-            {
-                Console.WriteLine(spaces);
-            }
+            PostgreSQLDatabase.readAndPrintAllRecord("Space");
+
+            //foreach (Space spaces in space.Read<Space>())
+            //{
+            //    Console.WriteLine(spaces);
+            //}
             Console.WriteLine("--------------------------------------------------");
             Console.Write("What space do you need?:");
             string choise = Console.ReadLine();
-            foreach (Space space1 in space.Read<Space>("category", choise))
-            {
+            Calendar newspace = new Calendar(choise, name, uniqueid, time);
+            PostgreSQLDatabase.createRecord(newspace);
+
+
+            //foreach (Space space1 in space.Read<Space>("category", choise))
+            //{
            
                     
-                    Calendar newspace = new Calendar(space1.category.ToString(), name, 2, time);
-                    //Calendar newspace = new Calendar(space1.uniqueID, space1.category.ToString(), name, uniqueid, time);
-                    space.Create<Calendar>(newspace);
-                    Console.WriteLine($"you reserved {space1.category}");
-                    break;
+            //        Calendar newspace = new Calendar(space1.category.ToString(), name, 2, time);
+            //        //Calendar newspace = new Calendar(space1.uniqueID, space1.category.ToString(), name, uniqueid, time);
+            //        space.Create<Calendar>(newspace);
+            //        Console.WriteLine($"you reserved {space1.category}");
+            //        break;
 
                 
-            }
+            //}
             
 
             //this.activites.Add(activity);
-            equipment.Create<GroupSchedule>(activity);
+            //equipment.Create<GroupSchedule>(activity);
+            PostgreSQLDatabase.createRecord(activity);
+
         }
         public static void RemoveActivity()
         {
             GymDatabaseContext grpactivity= new GymDatabaseContext();
             ViewSchedule();
-            Console.Write("What Activity do you want to remove?:");
-            string remove = Console.ReadLine();
-            foreach (GroupSchedule activity in grpactivity.Read<GroupSchedule>("name", remove))
-            {
-                grpactivity.Delete<GroupSchedule>(activity);
-                Console.WriteLine($"You have removed {activity.name} from the groupschedule");
-            }
+            Console.Write("What Activity do you want to remove?, enter the id of it:");
+            int remove = int.Parse(Console.ReadLine());
+            PostgreSQLDatabase.deleteRecord("GroupActivity", remove);
+            //foreach (GroupSchedule activity in grpactivity.Read<GroupSchedule>("name", remove))
+            //{
+            //    grpactivity.Delete<GroupSchedule>(activity);
+            //    Console.WriteLine($"You have removed {activity.name} from the groupschedule");
+            //}
         }
         public static void UpdateActivity()
         {
